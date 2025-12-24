@@ -21,7 +21,7 @@ class AgendaKegiatanResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Site Content';
+    protected static string|UnitEnum|null $navigationGroup = 'Konten';
     public static function form(Schema $schema): Schema
     {
         return AgendaKegiatanForm::configure($schema);

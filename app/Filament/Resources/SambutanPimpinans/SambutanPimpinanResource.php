@@ -20,7 +20,7 @@ class SambutanPimpinanResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-microphone';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Site Content';
+    protected static string|UnitEnum|null $navigationGroup = 'Konten';
 
     public static function form(Schema $schema): Schema
     {

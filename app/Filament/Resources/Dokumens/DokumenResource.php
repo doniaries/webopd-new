@@ -20,7 +20,7 @@ class DokumenResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Site Content';
+    protected static string|UnitEnum|null $navigationGroup = 'Konten';
 
     public static function form(Schema $schema): Schema
     {

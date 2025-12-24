@@ -20,7 +20,7 @@ class SliderResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-presentation-chart-line';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Site Content';
+    protected static string|UnitEnum|null $navigationGroup = 'Konten';
 
     public static function form(Schema $schema): Schema
     {
