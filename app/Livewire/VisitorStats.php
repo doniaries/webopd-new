@@ -24,10 +24,13 @@ class VisitorStats extends Component
         // Let's implement basic tracking here for display purposes if not in middleware.
 
         Visit::firstOrCreate([
-            'ip_address' => $this->ip,
-            'visit_date' => Carbon::today(),
+            'ip' => $this->ip,
+            'session_id' => session()->getId(),
         ], [
             'user_agent' => Request::userAgent(),
+            'visited_at' => Carbon::now(),
+            'last_activity' => Carbon::now(),
+            'url' => Request::url(),
         ]);
 
         $this->calculateStats();

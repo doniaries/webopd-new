@@ -6,6 +6,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
@@ -15,8 +16,21 @@ class BannerTable
     {
         return $table
             ->columns([
-                ImageColumn::make('gambar'),
-                ToggleColumn::make('is_active'),
+                TextColumn::make('order')
+                    ->label('Urutan')
+                    ->sortable(),
+                ImageColumn::make('gambar')
+                    ->label('Gambar'),
+                TextColumn::make('title')
+                    ->label('Judul')
+                    ->searchable()
+                    ->limit(30),
+                TextColumn::make('url')
+                    ->label('URL')
+                    ->limit(40)
+                    ->url(fn($record) => $record->url, shouldOpenInNewTab: true),
+                ToggleColumn::make('is_active')
+                    ->label('Aktif'),
             ])
             ->filters([
                 //
