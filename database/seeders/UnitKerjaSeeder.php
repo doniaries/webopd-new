@@ -13,7 +13,6 @@ class UnitKerjaSeeder extends Seeder
         $unitKerjas = [
             [
                 'nama_unit' => 'Bidang Sekretariat',
-                'slug' => Str::slug('Bidang Sekretariat'),
                 'slug' => 'bidang-sekretariat',
             ],
             [
