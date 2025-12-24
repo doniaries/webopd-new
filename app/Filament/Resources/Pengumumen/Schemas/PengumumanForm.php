@@ -29,7 +29,12 @@ class PengumumanForm
                 RichEditor::make('isi')
                     ->columnSpanFull(),
                 FileUpload::make('file')
-                    ->directory('pengumumen'),
+                    ->label('Lampiran')
+                    ->disk('public')
+                    ->directory('pengumuman')
+                    ->visibility('public')
+                    ->maxSize(2048)
+                    ->helperText('Upload lampiran (max 2MB). Format: PDF, DOC, DOCX, atau gambar'),
                 DateTimePicker::make('published_at'),
             ]);
     }

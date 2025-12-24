@@ -38,7 +38,12 @@ class LayananForm
                             ->columnSpanFull(),
                     ]),
                 FileUpload::make('file')
-                    ->directory('layanans/files'),
+                    ->label('File Layanan')
+                    ->disk('public')
+                    ->directory('layanans')
+                    ->visibility('public')
+                    ->maxSize(2048)
+                    ->helperText('Upload file layanan (max 2MB)'),
             ]);
     }
 }

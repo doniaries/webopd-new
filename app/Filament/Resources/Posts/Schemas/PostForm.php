@@ -40,8 +40,15 @@ class PostForm
                                     ->required()
                                     ->columnSpanFull(),
                                 FileUpload::make('foto_utama')
+                                    ->label('Foto Utama')
                                     ->image()
-                                    ->directory('posts'),
+                                    ->disk('public')
+                                    ->directory('posts')
+                                    ->visibility('public')
+                                    ->imageEditor()
+                                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                                    ->maxSize(2048)
+                                    ->helperText('Upload foto utama (max 2MB). Format: JPEG, JPG, PNG'),
                             ]),
                         Section::make('Meta')
                             ->columnSpan(1)

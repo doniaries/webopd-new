@@ -20,8 +20,15 @@ class ExternalLinkForm
                     ->url()
                     ->maxLength(255),
                 FileUpload::make('logo')
+                    ->label('Logo Link')
                     ->image()
-                    ->directory('external-links'),
+                    ->disk('public')
+                    ->directory('external-links')
+                    ->visibility('public')
+                    ->imageEditor()
+                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                    ->maxSize(2048)
+                    ->helperText('Upload logo link (max 2MB). Format: JPEG, JPG, PNG'),
             ]);
     }
 }

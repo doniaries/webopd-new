@@ -16,8 +16,15 @@ class InfografisForm
                 TextInput::make('judul')
                     ->maxLength(255),
                 FileUpload::make('gambar')
+                    ->label('Gambar Infografis')
                     ->image()
-                    ->directory('infografis'),
+                    ->disk('public')
+                    ->directory('infografis')
+                    ->visibility('public')
+                    ->imageEditor()
+                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                    ->maxSize(2048)
+                    ->helperText('Upload gambar infografis (max 2MB). Format: JPEG, JPG, PNG'),
                 TextInput::make('kategori')
                     ->maxLength(255),
                 Toggle::make('is_active')

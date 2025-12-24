@@ -22,6 +22,7 @@ class AgendaKegiatan extends Model
         'waktu_mulai',
         'sampai_tanggal',
         'waktu_selesai',
+        'foto',
     ];
 
     protected $casts = [
@@ -118,5 +119,17 @@ class AgendaKegiatan extends Model
                 $model->penyelenggara = 'Penyelenggara Tidak Diketahui';
             }
         });
+    }
+
+    /**
+     * Get the URL for the foto
+     */
+    public function getFotoUrlAttribute(): string
+    {
+        if ($this->foto && \Storage::disk('public')->exists($this->foto)) {
+            return asset('storage/' . $this->foto);
+        }
+
+        return asset('assets/images/defaults/no-image.png');
     }
 }

@@ -30,8 +30,15 @@ class SambutanPimpinanForm
                 TextInput::make('jabatan')
                     ->maxLength(255),
                 FileUpload::make('foto')
+                    ->label('Foto Pimpinan')
                     ->image()
-                    ->directory('sambutan'),
+                    ->disk('public')
+                    ->directory('sambutan-pimpinan')
+                    ->visibility('public')
+                    ->imageEditor()
+                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                    ->maxSize(2048)
+                    ->helperText('Upload foto pimpinan (max 2MB). Format: JPEG, JPG, PNG'),
                 RichEditor::make('isi_sambutan')
                     ->columnSpanFull(),
             ]);

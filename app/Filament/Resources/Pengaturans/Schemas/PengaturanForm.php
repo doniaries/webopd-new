@@ -29,11 +29,25 @@ class PengaturanForm
                             ->disabled()
                             ->dehydrated(),
                         FileUpload::make('logo')
+                            ->label('Logo Instansi')
                             ->image()
-                            ->directory('settings'),
+                            ->disk('public')
+                            ->directory('settings')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                            ->maxSize(2048)
+                            ->helperText('Upload logo instansi (max 2MB). Format: JPEG, JPG, PNG'),
                         FileUpload::make('favicon')
+                            ->label('Favicon')
                             ->image()
-                            ->directory('settings'),
+                            ->disk('public')
+                            ->directory('settings')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                            ->maxSize(2048)
+                            ->helperText('Upload favicon (max 2MB). Format: JPEG, JPG, PNG'),
                     ]),
                 Section::make('Contact Details')
                     ->schema([

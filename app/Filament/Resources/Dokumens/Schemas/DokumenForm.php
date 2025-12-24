@@ -30,11 +30,23 @@ class DokumenForm
                 Textarea::make('deskripsi')
                     ->columnSpanFull(),
                 FileUpload::make('cover')
+                    ->label('Cover Dokumen')
                     ->image()
-                    ->directory('dokumens/covers'),
+                    ->disk('public')
+                    ->directory('dokumen/covers')
+                    ->visibility('public')
+                    ->imageEditor()
+                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                    ->maxSize(2048)
+                    ->helperText('Upload cover dokumen (max 2MB). Format: JPEG, JPG, PNG'),
                 FileUpload::make('file')
-                    ->directory('dokumens/files')
+                    ->label('File Dokumen')
+                    ->disk('public')
+                    ->directory('dokumen/files')
+                    ->visibility('public')
                     ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'])
+                    ->maxSize(2048)
+                    ->helperText('Upload file dokumen (max 2MB). Format: PDF, DOC, DOCX, XLS, XLSX')
                     ->required(),
                 DatePicker::make('tahun_terbit'),
                 DateTimePicker::make('published_at'),

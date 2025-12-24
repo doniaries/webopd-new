@@ -2,7 +2,15 @@
 
 namespace App\Filament\Resources\AgendaKegiatans\Schemas;
 
+use Filament\Forms\Components\DatePicker;
+use Filament\Schemas\Components\Grid;
+use Filament\Forms\Components\Hidden;
+use Filament\Schemas\Components\Section;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\TimePicker;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
 
 class AgendaKegiatanForm
 {
@@ -10,7 +18,95 @@ class AgendaKegiatanForm
     {
         return $schema
             ->components([
-                //
+                // Section 1: Informasi Dasar
+                Section::make('Informasi Dasar')
+                    ->schema([
+                        TextInput::make('nama_agenda')
+                            ->label('Nama Agenda')
+                            ->required()
+                            ->maxLength(255)
+                            ->placeholder('Contoh: Rapat Koordinasi Bulanan')
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(function ($state, callable $set) {
+                                $set('slug', Str::slug($state));
+                            }),
+                        Hidden::make('slug')
+                            ->required()
+                            ->unique(ignoreRecord: true),
+                        Textarea::make('uraian_agenda')
+                            ->label('Uraian Kegiatan')
+                            ->required()
+                            ->placeholder('Deskripsi lengkap agenda kegiatan')
+                            ->columnSpanFull(),
+                        \Filament\Forms\Components\FileUpload::make('foto')
+                            ->label('Foto Agenda')
+                            ->image()
+                            ->disk('public')
+                            ->directory('agenda-kegiatan')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->imageEditorAspectRatios([
+                                '16:9',
+                                '4:3',
+                                '1:1',
+                            ])
+                            ->maxSize(2048)
+                            ->helperText('Upload foto agenda (max 2MB). Format: JPG, PNG')
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(1),
+
+                // Section 2: Detail Pelaksanaan
+                Section::make('Detail Pelaksanaan')
+                    ->schema([
+                        TextInput::make('penyelenggara')
+                            ->label('Penyelenggara')
+                            ->required()
+                            ->maxLength(255)
+                            ->placeholder('Contoh: Dinas Komunikasi dan Informatika'),
+                        TextInput::make('tempat')
+                            ->label('Tempat')
+                            ->required()
+                            ->maxLength(255)
+                            ->placeholder('Contoh: Ruang Rapat Lt. 3'),
+                    ])
+                    ->columns(2),
+
+                // Section 3: Waktu Pelaksanaan
+                Section::make('Waktu Pelaksanaan')
+                    ->schema([
+                        // Tanggal dan Waktu Mulai
+                        Grid::make(2)
+                            ->schema([
+                                DatePicker::make('dari_tanggal')
+                                    ->label('Tanggal Mulai')
+                                    ->required()
+                                    ->native(false)
+                                    ->displayFormat('d F Y')
+                                    ->default(now()),
+                                TimePicker::make('waktu_mulai')
+                                    ->label('Waktu Mulai')
+                                    ->seconds(false)
+                                    ->default(now()->format('H:00')),
+                            ]),
+
+                        // Tanggal dan Waktu Selesai
+                        Grid::make(2)
+                            ->schema([
+                                DatePicker::make('sampai_tanggal')
+                                    ->label('Tanggal Selesai')
+                                    ->required()
+                                    ->native(false)
+                                    ->displayFormat('d F Y')
+                                    ->afterOrEqual('dari_tanggal')
+                                    ->default(fn(callable $get) => $get('dari_tanggal') ?? now()),
+                                TimePicker::make('waktu_selesai')
+                                    ->label('Waktu Selesai')
+                                    ->seconds(false)
+                                    ->default(now()->addHour()->format('H:00')),
+                            ]),
+                    ])
+                    ->columns(1),
             ]);
     }
 }
