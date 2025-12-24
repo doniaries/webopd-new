@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Models;
+
+use App\Traits\HasSlug;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Tag extends Model
+{
+    use HasSlug, SoftDeletes;
+
+    protected $fillable = [
+        'name',
+        'slug',
+    ];
+
+    protected $slugSource = 'name';
+    protected $slugField = 'slug';
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
+}
