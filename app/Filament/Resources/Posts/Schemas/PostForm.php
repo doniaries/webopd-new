@@ -20,60 +20,75 @@ class PostForm
     {
         return $schema
             ->components([
-                Grid::make(3)
+                // Section 1: Content
+                Section::make('Content')
                     ->schema([
-                        Section::make('Content')
-                            ->columnSpan(2)
-                            ->schema([
-                                TextInput::make('title')
-                                    ->required()
-                                    ->maxLength(255)
-                                    ->live(onBlur: true)
-                                    ->afterStateUpdated(fn(string $operation, $state, callable $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
-                                TextInput::make('slug')
-                                    ->required()
-                                    ->maxLength(255)
-                                    ->unique(ignoreRecord: true)
-                                    ->disabled()
-                                    ->dehydrated(),
-                                RichEditor::make('content')
-                                    ->required()
-                                    ->columnSpanFull(),
-                                FileUpload::make('foto_utama')
-                                    ->label('Foto Utama')
-                                    ->image()
-                                    ->disk('public')
-                                    ->directory('posts')
-                                    ->visibility('public')
-                                    ->imageEditor()
-                                    ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
-                                    ->maxSize(2048)
-                                    ->helperText('Upload foto utama (max 2MB). Format: JPEG, JPG, PNG'),
-                            ]),
-                        Section::make('Meta')
-                            ->columnSpan(1)
-                            ->schema([
-                                Select::make('user_id')
-                                    ->relationship('user', 'name')
-                                    ->required()
-                                    ->searchable()
-                                    ->default(fn() => Auth::id()),
-                                Select::make('status')
-                                    ->options([
-                                        'draft' => 'Draft',
-                                        'published' => 'Published',
-                                        'archived' => 'Archived',
-                                    ])
-                                    ->required()
-                                    ->default('draft'),
-                                DateTimePicker::make('published_at'),
-                                Select::make('tags')
-                                    ->relationship('tags', 'name')
-                                    ->multiple()
-                                    ->preload(),
-                                Toggle::make('is_featured'),
-                            ]),
-                    ]),
+                        TextInput::make('title')
+                            ->required()
+                            ->maxLength(255)
+                            ->placeholder('Masukkan judul berita')
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn(string $operation, $state, callable $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                        TextInput::make('slug')
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: true)
+                            ->disabled()
+                            ->dehydrated(),
+                        RichEditor::make('content')
+                            ->required()
+                            ->placeholder('Tulis konten berita di sini...')
+                            ->columnSpanFull(),
+                        FileUpload::make('foto_utama')
+                            ->label('Foto Utama')
+                            ->image()
+                            ->disk('public')
+                            ->directory('posts')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->imageEditorAspectRatios([
+                                '16:9',
+                                '4:3',
+                                '1:1',
+                            ])
+                            ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                            ->maxSize(2048)
+                            ->helperText('Upload foto utama (max 2MB). Format: JPEG, JPG, PNG')
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(1),
+
+                // Section 2: Meta Information
+                Section::make('Meta Information')
+                    ->schema([
+                        Select::make('user_id')
+                            ->label('User')
+                            ->relationship('user', 'name')
+                            ->required()
+                            ->searchable()
+                            ->default(fn() => Auth::id()),
+                        Select::make('status')
+                            ->options([
+                                'draft' => 'Draft',
+                                'published' => 'Published',
+                                'archived' => 'Archived',
+                            ])
+                            ->required()
+                            ->default('draft'),
+                        DateTimePicker::make('published_at')
+                            ->label('Published At')
+                            ->native(false)
+                            ->displayFormat('d F Y H:i'),
+                        Select::make('tags')
+                            ->relationship('tags', 'name')
+                            ->multiple()
+                            ->preload()
+                            ->label('Tags'),
+                        Toggle::make('is_featured')
+                            ->label('Featured')
+                            ->default(false),
+                    ])
+                    ->columns(2),
             ]);
     }
 }
