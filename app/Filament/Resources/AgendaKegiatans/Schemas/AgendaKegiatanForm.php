@@ -38,21 +38,6 @@ class AgendaKegiatanForm
                             ->required()
                             ->placeholder('Deskripsi lengkap agenda kegiatan')
                             ->columnSpanFull(),
-                        \Filament\Forms\Components\FileUpload::make('foto')
-                            ->label('Foto Agenda')
-                            ->image()
-                            ->disk('public')
-                            ->directory('agenda-kegiatan')
-                            ->visibility('public')
-                            ->imageEditor()
-                            ->imageEditorAspectRatios([
-                                '16:9',
-                                '4:3',
-                                '1:1',
-                            ])
-                            ->maxSize(2048)
-                            ->helperText('Upload foto agenda (max 2MB). Format: JPG, PNG')
-                            ->columnSpanFull(),
                     ])
                     ->columns(1),
 

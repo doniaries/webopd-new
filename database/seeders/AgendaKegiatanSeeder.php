@@ -17,6 +17,9 @@ class AgendaKegiatanSeeder extends Seeder
         AgendaKegiatan::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
+        // Array of colors for placeholder images
+        $colors = ['10b981', '3b82f6', 'f59e0b', 'ef4444', '8b5cf6', 'ec4899', '06b6d4', '14b8a6', 'f97316'];
+
         // Sample agenda kegiatan data for next 3 months (3 events per month)
         $agendaKegiatanData = [
             // Month 1
@@ -30,6 +33,7 @@ class AgendaKegiatanSeeder extends Seeder
                 'sampai_tanggal' => Carbon::now()->subDays(2),
                 'waktu_mulai' => '09:00:00',
                 'waktu_selesai' => '12:00:00',
+                'foto' => 'https://placehold.co/800x600/' . $colors[0] . '/ffffff?text=Rapat+Koordinasi',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -43,6 +47,7 @@ class AgendaKegiatanSeeder extends Seeder
                 'sampai_tanggal' => Carbon::now()->addDays(8),
                 'waktu_mulai' => '08:00:00',
                 'waktu_selesai' => '16:00:00',
+                'foto' => 'https://placehold.co/800x600/' . $colors[1] . '/ffffff?text=Pelatihan+SDM',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -56,6 +61,7 @@ class AgendaKegiatanSeeder extends Seeder
                 'sampai_tanggal' => Carbon::now()->addDays(15),
                 'waktu_mulai' => '10:00:00',
                 'waktu_selesai' => '15:00:00',
+                'foto' => 'https://placehold.co/800x600/' . $colors[2] . '/ffffff?text=Monitoring+Program',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -71,6 +77,7 @@ class AgendaKegiatanSeeder extends Seeder
                 'sampai_tanggal' => Carbon::now()->addMonth()->startOfMonth()->addDays(5),
                 'waktu_mulai' => '08:00:00',
                 'waktu_selesai' => '17:00:00',
+                'foto' => 'https://placehold.co/800x600/' . $colors[3] . '/ffffff?text=Workshop+RKPD',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -84,6 +91,7 @@ class AgendaKegiatanSeeder extends Seeder
                 'sampai_tanggal' => Carbon::now()->addMonth()->startOfMonth()->addDays(12),
                 'waktu_mulai' => '13:00:00',
                 'waktu_selesai' => '15:30:00',
+                'foto' => 'https://placehold.co/800x600/' . $colors[4] . '/ffffff?text=Rapat+SKPD',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -97,6 +105,7 @@ class AgendaKegiatanSeeder extends Seeder
                 'sampai_tanggal' => Carbon::now()->addMonth()->endOfMonth()->subDays(5),
                 'waktu_mulai' => '09:30:00',
                 'waktu_selesai' => '14:00:00',
+                'foto' => 'https://placehold.co/800x600/' . $colors[5] . '/ffffff?text=Sosialisasi+APBD',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -112,6 +121,7 @@ class AgendaKegiatanSeeder extends Seeder
                 'sampai_tanggal' => Carbon::now()->addMonths(2)->startOfMonth()->addDays(2),
                 'waktu_mulai' => '09:00:00',
                 'waktu_selesai' => '15:00:00',
+                'foto' => 'https://placehold.co/800x600/' . $colors[6] . '/ffffff?text=Rapat+Paripurna',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -125,6 +135,7 @@ class AgendaKegiatanSeeder extends Seeder
                 'sampai_tanggal' => Carbon::now()->addMonths(2)->startOfMonth()->addDays(12),
                 'waktu_mulai' => '08:30:00',
                 'waktu_selesai' => '16:30:00',
+                'foto' => 'https://placehold.co/800x600/' . $colors[7] . '/ffffff?text=Pelatihan+E-Gov',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -138,6 +149,7 @@ class AgendaKegiatanSeeder extends Seeder
                 'sampai_tanggal' => Carbon::now()->addMonths(2)->endOfMonth()->subDays(1),
                 'waktu_mulai' => '08:00:00',
                 'waktu_selesai' => '17:00:00',
+                'foto' => 'https://placehold.co/800x600/' . $colors[8] . '/ffffff?text=Kunjungan+Kerja',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\HasSlug;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class AgendaKegiatan extends Model
 {
@@ -126,6 +127,12 @@ class AgendaKegiatan extends Model
      */
     public function getFotoUrlAttribute(): string
     {
+        // If foto is already a full URL (starts with http/https), return it directly
+        if ($this->foto && (str_starts_with($this->foto, 'http://') || str_starts_with($this->foto, 'https://'))) {
+            return $this->foto;
+        }
+
+        // Otherwise, check if it exists in storage
         if ($this->foto && \Storage::disk('public')->exists($this->foto)) {
             return asset('storage/' . $this->foto);
         }

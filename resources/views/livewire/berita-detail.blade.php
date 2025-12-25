@@ -58,7 +58,13 @@
             </div>
 
             <!-- Content -->
-            <div class="prose prose-lg dark:prose-invert max-w-none">
+            <div class="prose prose-lg dark:prose-invert max-w-none 
+                        text-gray-900 dark:text-gray-100
+                        prose-headings:text-gray-900 dark:prose-headings:text-gray-100
+                        prose-p:text-gray-900 dark:prose-p:text-gray-100
+                        prose-a:text-blue-600 dark:prose-a:text-blue-400
+                        prose-strong:text-gray-900 dark:prose-strong:text-gray-100
+                        prose-li:text-gray-900 dark:prose-li:text-gray-100">
                 {!! $post->content !!}
             </div>
 

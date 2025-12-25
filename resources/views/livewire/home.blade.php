@@ -22,12 +22,13 @@
                         @foreach ($recentPosts as $post)
                         <div class="bg-white dark:bg-zinc-800 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 h-full flex flex-col group">
                             <a href="{{ route('berita.show', $post->slug) }}" class="block relative aspect-video overflow-hidden">
-                                @if ($post->foto_utama_url && !str_contains($post->foto_utama_url, 'placeholder'))
-                                <img src="{{ $post->foto_utama_url }}"
+                                @if ($post->foto_utama)
+                                <img src="{{ asset('storage/' . $post->foto_utama) }}"
                                     alt="{{ $post->title }}"
-                                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/e2e8f0/64748b?text=No+Image';">
                                 @else
-                                <div class="w-full h-full bg-gray-200 dark:bg-zinc-700 flex items-center justify-center">
+                                <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-zinc-700 dark:to-zinc-800 flex items-center justify-center">
                                     <i class="bi bi-image text-4xl text-gray-400 dark:text-gray-500"></i>
                                 </div>
                                 @endif

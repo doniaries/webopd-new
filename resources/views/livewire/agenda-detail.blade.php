@@ -36,9 +36,9 @@
                                     <div>
                                         <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase">Tanggal</p>
                                         <p class="font-medium">
-                                            {{ indonesia_date($agenda->dari_tanggal, true) }}
+                                            {{ \Carbon\Carbon::parse($agenda->dari_tanggal)->translatedFormat('l, d F Y') }}
                                             @if ($agenda->sampai_tanggal && $agenda->sampai_tanggal != $agenda->dari_tanggal)
-                                            s.d. {{ indonesia_date($agenda->sampai_tanggal, true) }}
+                                            s.d. {{ \Carbon\Carbon::parse($agenda->sampai_tanggal)->translatedFormat('l, d F Y') }}
                                             @endif
                                         </p>
                                     </div>
@@ -50,9 +50,9 @@
                                     <div>
                                         <p class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase">Waktu</p>
                                         <p class="font-medium">
-                                            {{ indonesia_time($agenda->waktu_mulai) }}
+                                            {{ \Carbon\Carbon::parse($agenda->waktu_mulai)->format('H:i') }}
                                             @if ($agenda->waktu_selesai)
-                                            - {{ indonesia_time($agenda->waktu_selesai) }} WIB
+                                            - {{ \Carbon\Carbon::parse($agenda->waktu_selesai)->format('H:i') }} WIB
                                             @else
                                             WIB
                                             @endif

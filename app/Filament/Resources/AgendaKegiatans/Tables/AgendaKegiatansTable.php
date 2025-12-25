@@ -17,12 +17,6 @@ class AgendaKegiatansTable
     {
         return $table
             ->columns([
-                \Filament\Tables\Columns\ImageColumn::make('foto')
-                    ->label('Foto')
-                    ->disk('public')
-                    ->defaultImageUrl(asset('assets/images/defaults/no-image.png'))
-                    ->size(60)
-                    ->circular(),
                 TextColumn::make('nama_agenda')
                     ->label('Nama Agenda')
                     ->searchable()
