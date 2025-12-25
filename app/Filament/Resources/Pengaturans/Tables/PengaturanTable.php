@@ -16,9 +16,14 @@ class PengaturanTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Nama Instansi')
                     ->searchable()
                     ->sortable(),
-                ImageColumn::make('logo'),
+                ImageColumn::make('logo')
+                    ->label('Logo Instansi')
+                    ->disk('public')
+                    ->height(50)
+                    ->width(50),
                 TextColumn::make('email_instansi')
                     ->searchable(),
                 TextColumn::make('kepala_instansi')
