@@ -15,16 +15,17 @@ class PengaturanSeeder extends Seeder
         Pengaturan::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        // Create default settings
+        // Create default settings with logo Kabupaten Sijunjung
         $settings = [
             'name' => 'Dinas Komunikasi dan Informatika',
             'slug' => 'dinas-komunikasi-dan-informatika',
-            'logo' => null, // Akan diisi melalui admin
+            'kabupaten' => 'Sijunjung',
+            'logo' => 'images/logo.png', // Logo Kabupaten Sijunjung
             'favicon' => null, // Akan diisi melalui admin
             'kepala_instansi' => 'Kepala Dinas',
-            'alamat_instansi' => 'Gedung Bersama',
-            'no_telp_instansi' => '021-12345678',
-            'email_instansi' => 'info@example.com',
+            'alamat_instansi' => 'Gedung Bersama, Kabupaten Sijunjung',
+            'no_telp_instansi' => '0754-12345',
+            'email_instansi' => 'diskominfo@sijunjungkab.go.id',
             'facebook' => 'https://facebook.com',
             'twitter' => 'https://twitter.com',
             'instagram' => 'https://instagram.com',

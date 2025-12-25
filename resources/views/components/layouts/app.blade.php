@@ -8,6 +8,16 @@
 
     <title>{{ $title ?? config('app.name') }}</title>
 
+    <!-- Theme Initialization (Prevent FOUC) -->
+    <script>
+        // Initialize theme before page renders
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
@@ -25,7 +35,7 @@
     @stack('styles')
 </head>
 
-<body class="flex flex-col min-h-screen bg-gray-50 dark:bg-zinc-900">
+<body class="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
     @include('partials.header')
 
     <main class="flex-1">

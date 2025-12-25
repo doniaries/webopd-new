@@ -142,17 +142,16 @@ class PostSeeder extends Seeder
                         // Generate content from predefined Indonesian contents
                         $content = $this->faker->randomElement($indonesianContents);
 
-                        // Create post with placeholder image
+                        // Create post with placeholder image from placehold.co
                         $isFeatured = $i <= 5; // First 5 posts in each month will be featured
-                        
-                        // Generate simple placeholder data
-                        $placeholder = json_encode([
-                            'type' => 'placeholder',
-                            'bg_color' => 'bg-gray-200',
-                            'text' => 'Tidak ada gambar',
-                            'icon' => 'image-x'
-                        ]);
-                        
+
+                        // Generate random color for placeholder
+                        $colors = ['3b82f6', '10b981', 'f59e0b', 'ef4444', '8b5cf6', 'ec4899', '06b6d4'];
+                        $randomColor = $colors[array_rand($colors)];
+
+                        // Use placehold.co for featured image
+                        $placeholderUrl = "https://placehold.co/1200x630/{$randomColor}/ffffff?text=" . urlencode(substr($title, 0, 30));
+
                         $post = Post::create([
                             'title' => $title,
                             'slug' => Str::slug($title) . '-' . Str::random(6),
@@ -160,14 +159,14 @@ class PostSeeder extends Seeder
                             'published_at' => $postDate,
                             'status' => 'published',
                             'user_id' => $user->id,
-            
+
                             'views' => $this->faker->numberBetween(10, 1000),
-                            'foto_utama' => $placeholder, // Simpan placeholder SVG
+                            'foto_utama' => $placeholderUrl, // Use placehold.co URL
                             'is_featured' => $isFeatured,
                             'created_at' => $postDate,
                             'updated_at' => $postDate,
                         ]);
-                        
+
                         // Log the created post details
                         \Illuminate\Support\Facades\Log::info('Created post', [
                             'id' => $post->id,
@@ -202,6 +201,4 @@ class PostSeeder extends Seeder
             throw $e;
         }
     }
-
-
 }

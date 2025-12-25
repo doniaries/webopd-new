@@ -13,7 +13,7 @@ class Pengaturan extends Model
         'name',
         'slug',
         'logo',
-        'favicon',
+        // 'favicon',
         'kepala_instansi',
         'alamat_instansi',
         'no_telp_instansi',

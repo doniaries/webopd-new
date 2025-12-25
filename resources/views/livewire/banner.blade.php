@@ -40,17 +40,19 @@
     @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const bannerCount = {
+                {
+                    count($banners)
+                }
+            };
+
             new Swiper('.bannerSwiper', {
-                loop: {
-                    {
-                        count($banners) > 1 ? 'true' : 'false'
-                    }
-                },
-                autoplay: {
+                loop: bannerCount > 1,
+                autoplay: bannerCount > 1 ? {
                     delay: 3000,
                     disableOnInteraction: false,
                     pauseOnMouseEnter: true,
-                },
+                } : false,
                 effect: 'fade',
                 fadeEffect: {
                     crossFade: true

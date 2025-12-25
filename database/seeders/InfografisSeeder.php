@@ -15,11 +15,11 @@ class InfografisSeeder extends Seeder
         Infografis::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        // Sample infographic data
+        // Sample infographic data with placehold.co images
         $infografisData = [
             [
                 'judul' => 'Infografis Pertumbuhan Ekonomi',
-                'gambar' => 'image/infografis/ekonomi.jpg',
+                'gambar' => 'https://placehold.co/800x1200/3b82f6/ffffff?text=Ekonomi',
                 'kategori' => 'Ekonomi',
                 'is_active' => true,
                 'created_at' => now(),
@@ -27,7 +27,7 @@ class InfografisSeeder extends Seeder
             ],
             [
                 'judul' => 'Infografis Kesehatan Masyarakat',
-                'gambar' => 'image/infografis/kesehatan.jpg',
+                'gambar' => 'https://placehold.co/800x1200/10b981/ffffff?text=Kesehatan',
                 'kategori' => 'Kesehatan',
                 'is_active' => true,
                 'created_at' => now(),
@@ -35,7 +35,7 @@ class InfografisSeeder extends Seeder
             ],
             [
                 'judul' => 'Infografis Pendidikan',
-                'gambar' => 'image/infografis/pendidikan.jpg',
+                'gambar' => 'https://placehold.co/800x1200/f59e0b/ffffff?text=Pendidikan',
                 'kategori' => 'Pendidikan',
                 'is_active' => true,
                 'created_at' => now(),

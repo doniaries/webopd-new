@@ -9,12 +9,12 @@ class SambutanPimpinanSeeder extends Seeder
 {
     public function run()
     {
-        // Sample welcome message
+        // Sample welcome message with placehold.co image
         $welcomeMessage = [
             'judul' => 'Sambutan Kepala Dinas',
             'slug' => 'sambutan-kepala-dinas',
             'isi_sambutan' => 'Assalamu\'alaikum Warahmatullahi Wabarakatuh, Selamat datang di website resmi kami. Kami berkomitmen untuk memberikan pelayanan terbaik kepada masyarakat.',
-            'foto' => 'image/placeholder.jpg',
+            'foto' => 'https://placehold.co/400x400/6366f1/ffffff?text=Kepala+Dinas',
             'nama' => 'Dr. John Doe, M.Si',
             'jabatan' => 'Kepala Dinas Komunikasi dan Informatika',
             'created_at' => now(),

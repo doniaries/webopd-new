@@ -13,25 +13,34 @@ class BannerSeeder extends Seeder
         // Clear existing data
         Banner::truncate();
 
-        // Create banners with default placeholder image
+        // Create banners with placeholder images from placehold.co
         $banners = [
             [
                 'id' => 1,
-                'gambar' => 'assets/images/placeholder2.jpg',
+                'title' => 'Banner 1',
+                'gambar' => 'https://placehold.co/1920x600/3b82f6/ffffff?text=Banner+1',
+                'url' => '#',
+                'order' => 1,
                 'is_active' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'id' => 2,
-                'gambar' => 'assets/images/placeholder2.jpg',
+                'title' => 'Banner 2',
+                'gambar' => 'https://placehold.co/1920x600/10b981/ffffff?text=Banner+2',
+                'url' => '#',
+                'order' => 2,
                 'is_active' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'id' => 3,
-                'gambar' => 'assets/images/placeholder2.jpg',
+                'title' => 'Banner 3',
+                'gambar' => 'https://placehold.co/1920x600/f59e0b/ffffff?text=Banner+3',
+                'url' => '#',
+                'order' => 3,
                 'is_active' => true,
                 'created_at' => now(),
                 'updated_at' => now(),

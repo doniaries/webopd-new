@@ -16,32 +16,32 @@ class ExternalLinkSeeder extends Seeder
             [
                 'nama_link' => 'Dinas Koperasi dan UKM',
                 'url' => 'https://kukm.kemendag.go.id/',
-                'logo' => 'fa-solid fa-building',
+                'logo' => 'https://placehold.co/200x200/3b82f6/ffffff?text=KUKM',
             ],
             [
                 'nama_link' => 'Kementerian Koperasi dan UKM',
                 'url' => 'https://kemenkopukm.go.id/',
-                'logo' => 'fa-solid fa-building',
+                'logo' => 'https://placehold.co/200x200/10b981/ffffff?text=Kemenkop',
             ],
             [
                 'nama_link' => 'Layanan Perizinan Berusaha',
                 'url' => 'https://oss.go.id/',
-                'logo' => 'fa-solid fa-briefcase',
+                'logo' => 'https://placehold.co/200x200/f59e0b/ffffff?text=OSS',
             ],
             [
                 'nama_link' => 'BPJS Ketenagakerjaan',
                 'url' => 'https://www.bpjsketenagakerjaan.go.id/',
-                'logo' => 'fa-solid fa-users',
+                'logo' => 'https://placehold.co/200x200/ef4444/ffffff?text=BPJS+TK',
             ],
             [
                 'nama_link' => 'BPJS Kesehatan',
                 'url' => 'https://www.bpjs-kesehatan.go.id/',
-                'logo' => 'fa-solid fa-heartbeat',
+                'logo' => 'https://placehold.co/200x200/8b5cf6/ffffff?text=BPJS+Kes',
             ],
             [
                 'nama_link' => 'Dinas Tenaga Kerja',
                 'url' => 'https://disnaker.kemnaker.go.id/',
-                'logo' => 'fa-solid fa-hard-hat',
+                'logo' => 'https://placehold.co/200x200/ec4899/ffffff?text=Disnaker',
             ],
         ];
 
