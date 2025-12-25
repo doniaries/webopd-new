@@ -57,13 +57,13 @@ $pengaturan = Pengaturan::first();
                     @if (!empty($pengaturan->no_telp_instansi))
                     <p class="mt-3"><strong class="text-gray-800">Telepon:</strong> {{ $pengaturan->no_telp_instansi }}</p>
                     @else
-                    <p class="mt-3"><strong class="text-gray-800">Telepon:</strong> +62 123 4567 890</p>
+                    <p class="mt-3"><strong class="text-gray-800 dark:text-gray-200">Telepon:</strong> +62 123 4567 890</p>
                     @endif
 
                     @if (!empty($pengaturan->email_instansi))
-                    <p><strong class="text-gray-800">Email:</strong> {{ $pengaturan->email_instansi }}</p>
+                    <p><strong class="text-gray-800 dark:text-gray-200">Email:</strong> {{ $pengaturan->email_instansi }}</p>
                     @else
-                    <p><strong class="text-gray-800">Email:</strong> info@webopd.com</p>
+                    <p><strong class="text-gray-800 dark:text-gray-200">Email:</strong> info@webopd.com</p>
                     @endif
                 </div>
             </div>
@@ -73,10 +73,8 @@ $pengaturan = Pengaturan::first();
                 <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Tautan Cepat</h4>
                 <ul class="space-y-2">
                     <li><a href="{{ url('/') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Beranda</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Visi & Misi</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Sambutan Pimpinan</a></li>
-                    <li><a href="{{ route('berita.index') }}" class="text-gray-600 hover:text-blue-600 transition-colors">Berita</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Kontak</a></li>
+                    <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sambutan Pimpinan</a></li>
+                    <li><a href="{{ route('berita.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Berita</a></li>
                 </ul>
             </div>
 
@@ -84,8 +82,8 @@ $pengaturan = Pengaturan::first();
             <div>
                 <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Informasi</h4>
                 <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Infografis</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Dokumen</a></li>
+                    <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Infografis</a></li>
+                    <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dokumen</a></li>
                 </ul>
             </div>
         </div>
