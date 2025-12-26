@@ -16,8 +16,9 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                         <img src="{{ $logoUrl }}" alt="Logo" class="h-12 w-auto object-contain"
                             onerror="this.src='{{ asset('images/logo.png') }}'">
                         <div class="hidden sm:flex flex-col">
+                            <span class="text-xs text-gray-600 dark:text-gray-400 uppercase">Pemerintah Kabupaten {{ $pengaturan->kabupaten ?? 'Sijunjung' }}</span>
                             <h1 class="text-base font-bold text-gray-900 dark:text-white uppercase leading-tight">{{ $siteName }}</h1>
-                            <span class="text-xs text-gray-600 dark:text-gray-400 uppercase">Pemerintah {{ $pengaturan->kabupaten ?? 'Sijunjung' }}</span>
+
                         </div>
                     </a>
 

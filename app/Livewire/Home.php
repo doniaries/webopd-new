@@ -41,11 +41,16 @@ class Home extends Component
             ->take(4)
             ->get();
 
+        $infografis = \App\Models\Infografis::where('is_active', true)
+            ->latest()
+            ->get();
+
         return view('livewire.home', [
             'recentPosts' => $recentPosts,
             'agendas' => $agendas,
             'pengumuman' => $pengumuman,
             'popularPosts' => $popularPosts,
+            'infografis' => $infografis,
             'pageTitle' => config('app.name'),
             'pageDescription' => 'Website Resmi ' . config('app.name'),
         ]);
