@@ -24,7 +24,7 @@ class PengumumanForm
                     ->required()
                     ->maxLength(255)
                     ->unique(ignoreRecord: true)
-                    ->disabled()
+                    ->hidden()
                     ->dehydrated(),
                 RichEditor::make('isi')
                     ->columnSpanFull(),

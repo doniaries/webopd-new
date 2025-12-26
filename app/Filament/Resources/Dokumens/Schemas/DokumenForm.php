@@ -25,7 +25,7 @@ class DokumenForm
                     ->required()
                     ->maxLength(255)
                     ->unique(ignoreRecord: true)
-                    ->disabled()
+                    ->hidden()
                     ->dehydrated(),
                 Textarea::make('deskripsi')
                     ->columnSpanFull(),

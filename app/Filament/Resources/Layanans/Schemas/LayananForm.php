@@ -24,7 +24,7 @@ class LayananForm
                     ->required()
                     ->maxLength(255)
                     ->unique(ignoreRecord: true)
-                    ->disabled()
+                    ->hidden()
                     ->dehydrated(),
                 Section::make('Details')
                     ->schema([

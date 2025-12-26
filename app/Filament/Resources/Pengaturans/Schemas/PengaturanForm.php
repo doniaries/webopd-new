@@ -26,7 +26,7 @@ class PengaturanForm
                             ->required()
                             ->maxLength(255)
                             ->unique(ignoreRecord: true)
-                            ->disabled()
+                            ->hidden()
                             ->dehydrated(),
                         FileUpload::make('logo')
                             ->label('Logo Instansi')

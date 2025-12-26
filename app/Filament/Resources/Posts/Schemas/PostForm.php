@@ -34,7 +34,7 @@ class PostForm
                             ->required()
                             ->maxLength(255)
                             ->unique(ignoreRecord: true)
-                            ->disabled()
+                            ->hidden()
                             ->dehydrated(),
                         RichEditor::make('content')
                             ->label('Konten Berita')

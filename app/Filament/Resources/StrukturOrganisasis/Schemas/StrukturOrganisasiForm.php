@@ -31,7 +31,7 @@ class StrukturOrganisasiForm
                                     ->required()
                                     ->maxLength(255)
                                     ->unique(ignoreRecord: true)
-                                    ->disabled()
+                                    ->hidden()
                                     ->dehydrated(),
 
                                 TextInput::make('pimpinan')

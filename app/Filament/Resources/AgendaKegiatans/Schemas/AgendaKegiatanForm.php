@@ -4,7 +4,7 @@ namespace App\Filament\Resources\AgendaKegiatans\Schemas;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Schemas\Components\Grid;
-use Filament\Forms\Components\Hidden;
+
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -30,9 +30,12 @@ class AgendaKegiatanForm
                             ->afterStateUpdated(function ($state, callable $set) {
                                 $set('slug', Str::slug($state));
                             }),
-                        Hidden::make('slug')
+                        TextInput::make('slug')
                             ->required()
-                            ->unique(ignoreRecord: true),
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: true)
+                            ->hidden()
+                            ->dehydrated(),
                         Textarea::make('uraian_agenda')
                             ->label('Uraian Kegiatan')
                             ->required()
