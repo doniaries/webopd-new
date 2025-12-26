@@ -87,7 +87,6 @@
                     {{-- Banner & Visitor Stats --}}
                     <div class="space-y-6">
                         <livewire:banner />
-                        <livewire:visitor-stats />
                     </div>
                 </div>
             </div>
@@ -209,27 +208,44 @@
                 </div>
 
                 <!-- Preview Modal -->
-                <div x-show="modalOpen"
-                    style="display: none;"
-                    class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 backdrop-blur-md p-4"
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 scale-95"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="transition ease-in duration-200"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-95"
-                    @keydown.escape.window="closeModal()">
+                <!-- Preview Modal (Teleported to Body) -->
+                <template x-teleport="body">
+                    <div x-show="modalOpen"
+                        style="display: none;"
+                        class="fixed inset-0 z-[100000] flex items-center justify-center bg-black/95 backdrop-blur-md p-4"
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 scale-95"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-95"
+                        @keydown.escape.window="closeModal()"
+                        @click="closeModal()">
 
-                    <button @click="closeModal()" class="absolute top-6 right-6 text-white/70 hover:text-white p-2 transition-colors">
-                        <i class="bi bi-x-lg text-4xl"></i>
-                    </button>
+                        <div class="relative w-full h-full flex flex-col items-center justify-center p-4 py-8 cursor-pointer" @click.self="closeModal()">
+                            <div class="relative flex-1 w-full flex items-center justify-center overflow-hidden"
+                                x-data="{ 
+                                 zoom: 1, 
+                                 panX: 0, 
+                                 panY: 0, 
+                                 isDragging: false, 
+                                 startX: 0, 
+                                 startY: 0 
+                             }"
+                                @mousedown.prevent="if(zoom > 1) { isDragging = true; startX = $event.clientX - panX; startY = $event.clientY - panY; }"
+                                @mousemove.window="if(isDragging) { panX = $event.clientX - startX; panY = $event.clientY - startY; }"
+                                @mouseup.window="isDragging = false"
+                                @mouseup.window="isDragging = false">
 
-                    <img :src="previewImage" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl" @click.outside="closeModal()">
-
-                    <div class="absolute bottom-8 text-white/50 text-sm">
-                        Tekan ESC untuk menutup
+                                <img :src="previewImage"
+                                    class="max-w-full max-h-[95vh] w-auto h-auto object-contain transition-transform duration-200 rounded-lg shadow-2xl"
+                                    :class="{ 'cursor-grab': zoom > 1 && !isDragging, 'cursor-grabbing': isDragging, 'cursor-zoom-in': zoom === 1 }"
+                                    :style="`transform: scale(${zoom}) translate(${panX}px, ${panY}px); transition: ${isDragging ? 'none' : 'transform 0.2s ease-out'}`"
+                                    @click.stop="if(zoom === 1) { zoom = 2 } else { zoom = 1; panX = 0; panY = 0 }">
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </template>
             </div>
         </div>
     </section>
