@@ -3,12 +3,13 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Banner;
+use App\Models\Dokumen;
 use App\Models\Pengumuman;
 use App\Models\AgendaKegiatan;
-use App\Models\Dokumen;
-use App\Models\User;
-use Filament\Widgets\StatsOverviewWidget as BaseStatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+use Filament\Widgets\StatsOverviewWidget as BaseStatsOverviewWidget;
 
 class StatsOverviewWidget extends BaseStatsOverviewWidget
 {
@@ -43,6 +44,11 @@ class StatsOverviewWidget extends BaseStatsOverviewWidget
                 ->description('Jumlah pengguna terdaftar')
                 ->descriptionIcon('heroicon-m-users')
                 ->color('danger')
+                ->chart([2, 3, 4, 3, 5, 4, 6, 5]),
+            Stat::make('Total Banner', Banner::count())
+                ->description('Jumlah banner')
+                ->descriptionIcon('heroicon-m-photo')
+                ->color('purple')
                 ->chart([2, 3, 4, 3, 5, 4, 6, 5]),
         ];
     }
