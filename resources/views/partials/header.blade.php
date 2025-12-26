@@ -70,8 +70,8 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                         Profil <i class="bi bi-chevron-down text-xs"></i>
                     </a>
                     <ul class="absolute left-1/2 transform -translate-x-1/2 top-full hidden group-hover:block bg-white dark:bg-gray-800 shadow-lg rounded-b-lg min-w-[220px] py-2 z-50 border border-gray-200 dark:border-gray-700">
-                        <li><a href="{{ route('home') }}#sejarah" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Sejarah</a></li>
-                        <li><a href="{{ route('home') }}#visi-misi" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Visi & Misi</a></li>
+                        <!-- <li><a href="{{ route('home') }}#sejarah" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Sejarah</a></li> -->
+                        <!-- <li><a href="{{ route('home') }}#visi-misi" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Visi & Misi</a></li> -->
                         <li><a href="{{ route('home') }}#struktur" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Struktur Organisasi</a></li>
                     </ul>
                 </li>

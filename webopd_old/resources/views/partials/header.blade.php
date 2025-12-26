@@ -339,8 +339,8 @@
                     <li class="dropdown">
                         <a href="#">Profil <i class="bi bi-chevron-down ms-1" style="font-size: 0.8em;"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Sejarah</a></li>
-                            <li><a href="{{ route('profil.visi-misi') }}">Visi & Misi</a></li>
+                            <!-- <li><a href="#">Sejarah</a></li> -->
+                            <!-- <li><a href="{{ route('profil.visi-misi') }}">Visi & Misi</a></li> -->
                             <li><a href="{{ route('struktur-organisasi') }}">Struktur Organisasi</a></li>
                         </ul>
                     </li>

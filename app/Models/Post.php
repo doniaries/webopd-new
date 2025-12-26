@@ -52,9 +52,14 @@ class Post extends Model
 
     public function getFotoUtamaUrlAttribute()
     {
-        if ($this->foto_utama) {
-            return asset('storage/' . $this->foto_utama);
+        if (empty($this->foto_utama)) {
+            return null;
         }
-        return null;
+
+        if (filter_var($this->foto_utama, FILTER_VALIDATE_URL)) {
+            return $this->foto_utama;
+        }
+
+        return asset('storage/' . $this->foto_utama);
     }
 }

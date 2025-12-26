@@ -2,7 +2,7 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <div class="swiper mySwiper w-full h-[300px] md:h-[450px] lg:h-[550px] bg-gray-900 relative">
+    <div x-ref="swiperContainer" class="swiper w-full h-[300px] md:h-[450px] lg:h-[550px] bg-gray-900 relative">
         <div class="swiper-wrapper">
             @foreach ($sliders as $slider)
             <div class="swiper-slide relative flex items-center justify-center bg-gray-900">
@@ -60,8 +60,8 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                     @foreach($popularPosts as $post)
                     <a href="{{ route('berita.show', $post->slug) }}" class="group flex gap-2 bg-black/40 hover:bg-black/60 rounded-lg overflow-hidden transition-all duration-300 backdrop-blur-sm">
-                        @if($post->foto_utama)
-                        <img src="{{ asset('storage/' . $post->foto_utama) }}"
+                        @if($post->foto_utama_url)
+                        <img src="{{ $post->foto_utama_url }}"
                             alt="{{ $post->title }}"
                             class="w-16 h-16 object-cover flex-shrink-0"
                             onerror="this.onerror=null; this.src='https://placehold.co/100x100/1e293b/ffffff?text=No+Image';">
@@ -94,15 +94,21 @@
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const slideCount = {
-                {
-                    count($sliders)
-                }
-            };
 
-            new Swiper('.mySwiper', {
+    <!-- Alpine.js Slider Logic -->
+    <div x-data="{
+        swiper: null,
+        init() {
+            this.initSwiper();
+        },
+        initSwiper() {
+            if (this.swiper) {
+                this.swiper.destroy(true, true);
+            }
+
+            const slideCount = {{ count($sliders) }};
+
+            this.swiper = new Swiper(this.$refs.swiperContainer, {
                 loop: slideCount > 1,
                 effect: 'fade',
                 fadeEffect: {
@@ -121,12 +127,16 @@
                     el: '.swiper-pagination',
                     clickable: true,
                     renderBullet: function(index, className) {
-                        return '<span class="' + className + '">' + (index + 1) + '</span>';
+                        return '<span class=' + className + '>' + (index + 1) + '</span>';
                     },
                 },
             });
-        });
-    </script>
+        }
+    }"
+        x-init="init()"
+        class="absolute inset-0 pointer-events-none">
+        <!-- This div just holds the logic, actual slider is above -->
+    </div>
 
     <style>
         /* Custom pagination styling for numbered bullets */
