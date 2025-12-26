@@ -23,3 +23,6 @@ Route::get('/dokumen/{slug}', function () {
 // Agenda Kegiatan
 Route::get('/agenda', \App\Livewire\AgendaKegiatan::class)->name('agenda.index');
 Route::get('/agenda/{agenda:slug}', \App\Livewire\AgendaDetail::class)->name('agenda.show');
+
+// Struktur Organisasi
+Route::get('/struktur-organisasi', \App\Livewire\StrukturOrganisasi::class)->name('struktur-organisasi');

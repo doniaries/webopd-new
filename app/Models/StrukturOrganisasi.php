@@ -15,7 +15,7 @@ class StrukturOrganisasi extends Model
         'name',
         'description',
         'pimpinan',
-        'image',
+
         'slug',
     ];
 
@@ -32,11 +32,4 @@ class StrukturOrganisasi extends Model
      * @var string
      */
     protected $slugField = 'slug';
-
-    protected $appends = ['image_url'];
-
-    public function getImageUrlAttribute()
-    {
-        return $this->image ? asset('storage/' . $this->image) : null;
-    }
 }

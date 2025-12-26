@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('struktur_organisasis', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Nama Unit
+            $table->string('name')->unique(); // Nama Unit
             $table->text('description')->nullable(); // Keterangan Unit
             $table->string('pimpinan')->nullable(); // Nama Pimpinan
-            $table->string('image')->nullable(); // Image dari struktur (icon/logo)
+
             $table->string('slug')->unique();
             $table->timestamps();
         });
