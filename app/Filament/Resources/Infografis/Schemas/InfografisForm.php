@@ -25,8 +25,17 @@ class InfografisForm
                     ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
                     ->maxSize(2048)
                     ->helperText('Upload gambar infografis (max 2MB). Format: JPEG, JPG, PNG'),
-                TextInput::make('kategori')
-                    ->maxLength(255),
+                \Filament\Forms\Components\Select::make('kategori')
+                    ->searchable()
+                    ->options(\App\Models\Tag::pluck('name', 'name'))
+                    ->createOptionForm([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                    ])
+                    ->createOptionUsing(function (array $data) {
+                        return \App\Models\Tag::create($data)->name;
+                    }),
                 Toggle::make('is_active')
                     ->default(true),
             ]);

@@ -16,7 +16,9 @@ class InfografisTable
     {
         return $table
             ->columns([
-                ImageColumn::make('gambar'),
+                ImageColumn::make('gambar')
+                    ->disk('public')
+                    ->visibility('public'),
                 TextColumn::make('judul')
                     ->searchable()
                     ->sortable(),
