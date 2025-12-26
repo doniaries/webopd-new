@@ -16,7 +16,10 @@ class PostTable
     {
         return $table
             ->columns([
-                ImageColumn::make('foto_utama'),
+                ImageColumn::make('foto_utama')
+                    ->label('Foto Utama')
+                    ->disk('public')
+                    ->width(100),
                 TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
@@ -33,7 +36,8 @@ class PostTable
                 TextColumn::make('published_at')
                     ->dateTime()
                     ->sortable(),
-                ToggleColumn::make('is_featured'),
+                ToggleColumn::make('is_featured')
+                    ->label('Slider'),
                 TextColumn::make('views')
                     ->sortable(),
             ])

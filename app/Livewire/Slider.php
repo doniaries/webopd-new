@@ -3,22 +3,31 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Slider as SliderModel;
+use App\Models\Post;
 
 class Slider extends Component
 {
     public function render()
     {
-        // Slider relies on Post, let's just get all sliders for now or check if is_active exists.
-        // Assuming Slider table might not have is_active based on model file.
-        // We filter by valid post instead.
-        $sliders = SliderModel::whereHas('post', function ($q) {
-            $q->where('status', 'published');
-        })
-            ->get(); // Removed orderBy order if 'order' column is missing from fillable/schema
+        // Get featured posts for slider (following webopd_old pattern)
+        $sliders = Post::where('status', 'published')
+            ->where('is_featured', true)
+            ->with(['tags', 'user'])
+            ->latest('published_at')
+            ->take(5)
+            ->get();
+
+        // Get popular posts for overlay
+        $popularPosts = Post::where('status', 'published')
+            ->where('published_at', '<=', now())
+            ->with(['tags', 'user'])
+            ->orderBy('views', 'desc')
+            ->take(4)
+            ->get();
 
         return view('livewire.slider', [
-            'sliders' => $sliders
+            'sliders' => $sliders,
+            'popularPosts' => $popularPosts,
         ]);
     }
 }

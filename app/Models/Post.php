@@ -49,4 +49,12 @@ class Post extends Model
     {
         return $this->hasMany(Slider::class);
     }
+
+    public function getFotoUtamaUrlAttribute()
+    {
+        if ($this->foto_utama) {
+            return asset('storage/' . $this->foto_utama);
+        }
+        return null;
+    }
 }

@@ -25,6 +25,7 @@ class PostForm
                     ->schema([
                         TextInput::make('title')
                             ->required()
+                            ->label('Judul Berita')
                             ->maxLength(255)
                             ->placeholder('Masukkan judul berita')
                             ->live(onBlur: true)
@@ -36,6 +37,7 @@ class PostForm
                             ->disabled()
                             ->dehydrated(),
                         RichEditor::make('content')
+                            ->label('Konten Berita')
                             ->required()
                             ->placeholder('Tulis konten berita di sini...')
                             ->columnSpanFull(),
@@ -85,7 +87,8 @@ class PostForm
                             ->preload()
                             ->label('Tags'),
                         Toggle::make('is_featured')
-                            ->label('Featured')
+                            ->label('Tampilkan di Slider')
+                            ->helperText('Aktifkan untuk menampilkan berita ini di slider halaman utama')
                             ->default(false),
                     ])
                     ->columns(2),

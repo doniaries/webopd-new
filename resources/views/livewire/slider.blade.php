@@ -2,7 +2,7 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <div class="swiper mySwiper w-full h-[300px] md:h-[450px] lg:h-[550px] bg-gray-900">
+    <div class="swiper mySwiper w-full h-[300px] md:h-[450px] lg:h-[550px] bg-gray-900 relative">
         <div class="swiper-wrapper">
             @foreach ($sliders as $slider)
             <div class="swiper-slide relative flex items-center justify-center bg-gray-900">
@@ -18,11 +18,12 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
 
                 {{-- Content --}}
-                <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-12 md:mt-20">
+                <div class="relative z-10 text-left px-4 md:px-8 lg:px-16 max-w-7xl mx-auto w-full mt-12 md:mt-20">
                     @if ($slider->tags && count($slider->tags) > 0)
-                    <div class="flex flex-wrap justify-center gap-2 mb-4">
+                    <div class="flex flex-wrap gap-2 mb-4">
                         @foreach ($slider->tags as $tag)
-                        <span class="px-3 py-1 text-xs font-semibold bg-blue-600/90 text-white rounded-full shadow-lg backdrop-blur-sm">
+                        <span class="px-3 py-1 text-xs font-semibold text-white rounded-md shadow-lg backdrop-blur-sm"
+                            style="background-color: {{ $tag->color ?? '#f97316' }}">
                             {{ $tag->name }}
                         </span>
                         @endforeach
@@ -30,42 +31,88 @@
                     @endif
 
                     <a href="{{ route('berita.show', $slider->slug) }}" class="group block">
-                        <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight drop-shadow-lg group-hover:text-blue-400 transition-colors duration-300">
+                        <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight drop-shadow-lg group-hover:text-blue-400 transition-colors duration-300 max-w-4xl">
                             {{ $slider->title }}
                         </h2>
                     </a>
 
-                    {{-- Additional info if needed --}}
-                    {{-- <p class="text-gray-300 text-sm md:text-base line-clamp-2 md:line-clamp-3 max-w-2xl mx-auto drop-shadow-md">
-                            {{ $slider->excerpt ?? '' }}
-                    </p> --}}
+                    <div class="flex items-center text-white text-sm md:text-base gap-4">
+                        <i class="bi bi-clock"></i>
+                        <span>Baca Selengkapnya</span>
+                    </div>
                 </div>
             </div>
             @endforeach
         </div>
 
-        <!-- Navigation Buttons -->
-        <div class="swiper-button-next !text-white !opacity-50 hover:!opacity-100 transition-opacity !w-12 !h-12 !bg-black/20 hover:!bg-black/40 !rounded-full !hidden md:!flex"></div>
-        <div class="swiper-button-prev !text-white !opacity-50 hover:!opacity-100 transition-opacity !w-12 !h-12 !bg-black/20 hover:!bg-black/40 !rounded-full !hidden md:!flex"></div>
+        {{-- Navigation Buttons --}}
+        <div class="swiper-button-next !text-white !opacity-70 hover:!opacity-100 transition-opacity"></div>
+        <div class="swiper-button-prev !text-white !opacity-70 hover:!opacity-100 transition-opacity"></div>
 
-        <!-- Pagination -->
-        <div class="swiper-pagination !bottom-6"></div>
+        {{-- Pagination with numbers --}}
+        <div class="swiper-pagination"></div>
+
+        {{-- Popular Posts Overlay (Bottom) --}}
+        @if(isset($popularPosts) && $popularPosts->count() > 0)
+        <div class="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black/90 to-transparent pb-4 pt-12">
+            <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
+                <h3 class="text-white font-bold text-lg mb-3">Berita populer</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    @foreach($popularPosts as $post)
+                    <a href="{{ route('berita.show', $post->slug) }}" class="group flex gap-2 bg-black/40 hover:bg-black/60 rounded-lg overflow-hidden transition-all duration-300 backdrop-blur-sm">
+                        @if($post->foto_utama)
+                        <img src="{{ asset('storage/' . $post->foto_utama) }}"
+                            alt="{{ $post->title }}"
+                            class="w-16 h-16 object-cover flex-shrink-0"
+                            onerror="this.onerror=null; this.src='https://placehold.co/100x100/1e293b/ffffff?text=No+Image';">
+                        @else
+                        <div class="w-16 h-16 bg-gray-700 flex items-center justify-center flex-shrink-0">
+                            <i class="bi bi-image text-gray-400"></i>
+                        </div>
+                        @endif
+                        <div class="flex-1 py-1 pr-2 min-w-0">
+                            @if($post->tags->isNotEmpty())
+                            <span class="inline-block px-2 py-0.5 text-[10px] font-semibold text-white rounded mb-1"
+                                style="background-color: {{ $post->tags->first()->color ?? '#f97316' }}">
+                                {{ $post->tags->first()->name }}
+                            </span>
+                            @endif
+                            <h4 class="text-white text-xs font-semibold line-clamp-2 group-hover:text-blue-300 transition-colors">
+                                {{ $post->title }}
+                            </h4>
+                            <p class="text-gray-400 text-[10px] mt-0.5">
+                                {{ $post->user->name ?? 'Admin' }} - {{ $post->published_at?->diffForHumans() }}
+                            </p>
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const slideCount = {
+                {
+                    count($sliders)
+                }
+            };
+
             new Swiper('.mySwiper', {
-                loop: true,
+                loop: slideCount > 1,
                 effect: 'fade',
                 fadeEffect: {
                     crossFade: true
                 },
-                autoplay: {
+                autoplay: slideCount > 0 ? {
                     delay: 5000,
                     disableOnInteraction: false,
-                },
+                    pauseOnMouseEnter: true,
+                } : false,
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
@@ -73,9 +120,63 @@
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
-                    dynamicBullets: true,
+                    renderBullet: function(index, className) {
+                        return '<span class="' + className + '">' + (index + 1) + '</span>';
+                    },
                 },
             });
         });
     </script>
+
+    <style>
+        /* Custom pagination styling for numbered bullets */
+        .swiper-pagination {
+            bottom: 140px !important;
+            /* Above popular posts */
+            right: 20px !important;
+            left: auto !important;
+            width: auto !important;
+        }
+
+        .swiper-pagination-bullet {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.3);
+            opacity: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            margin: 0 4px !important;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1e40af;
+            transform: scale(1.1);
+        }
+
+        .swiper-pagination-bullet:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Navigation buttons styling */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: white !important;
+            background: rgba(0, 0, 0, 0.3) !important;
+            width: 44px !important;
+            height: 44px !important;
+            border-radius: 50% !important;
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 20px !important;
+        }
+    </style>
 </div>

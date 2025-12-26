@@ -4,7 +4,7 @@
     <meta name="description" content="{{ $pageDescription }}">
     @endpush
 
-    {{-- Slider Section --}}
+    {{-- Slider Section with Popular Posts Overlay --}}
     <livewire:slider />
 
     {{-- Berita Section --}}

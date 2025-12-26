@@ -32,10 +32,20 @@ class Home extends Component
             ->take(3)
             ->get();
 
+        // Popular posts (most viewed)
+        $popularPosts = Post::query()
+            ->where('status', 'published')
+            ->where('published_at', '<=', now())
+            ->with(['tags'])
+            ->orderBy('views', 'desc')
+            ->take(4)
+            ->get();
+
         return view('livewire.home', [
             'recentPosts' => $recentPosts,
             'agendas' => $agendas,
             'pengumuman' => $pengumuman,
+            'popularPosts' => $popularPosts,
             'pageTitle' => config('app.name'),
             'pageDescription' => 'Website Resmi ' . config('app.name'),
         ]);
