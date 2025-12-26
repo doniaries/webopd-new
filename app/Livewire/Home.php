@@ -42,7 +42,7 @@ class Home extends Component
             ->get();
 
         $infografis = \App\Models\Infografis::where('is_active', true)
-            ->latest()
+            ->oldest()
             ->get();
 
         return view('livewire.home', [
