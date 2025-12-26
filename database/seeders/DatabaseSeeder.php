@@ -15,16 +15,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ShieldSeeder::class,   // Set up roles and permissions using Filament Shield
             UserSeeder::class,     // Then create users
-            // Other seeders
-            UnitKerjaSeeder::class,
-            VisiMisiSeeder::class,
+            StrukturOrganisasiSeeder::class,
             SambutanPimpinanSeeder::class,
             PengaturanSeeder::class,
             TagSeeder::class,
             PostSeeder::class,
             BannerSeeder::class,
-            // SliderSeeder::class,
-            // ProdukHukumSeeder::class,
             InfografisSeeder::class,
             AgendaKegiatanSeeder::class,
             PengumumanSeeder::class,

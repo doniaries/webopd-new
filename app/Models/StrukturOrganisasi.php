@@ -5,20 +5,18 @@ namespace App\Models;
 use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 
-class UnitKerja extends Model
+class StrukturOrganisasi extends Model
 {
     use HasSlug;
 
-    protected $table = 'unit_kerjas';
+    protected $table = 'struktur_organisasis';
+
     protected $fillable = [
-        'nama_unit',
+        'name',
+        'description',
+        'pimpinan',
+        'image',
         'slug',
-    ];
-
-    protected $dates = ['published_at'];
-
-    protected $casts = [
-        'published_at' => 'datetime',
     ];
 
     /**
@@ -26,7 +24,7 @@ class UnitKerja extends Model
      *
      * @var string
      */
-    protected $slugSource = 'nama_unit';
+    protected $slugSource = 'name';
 
     /**
      * The field where the slug is stored.
@@ -34,4 +32,11 @@ class UnitKerja extends Model
      * @var string
      */
     protected $slugField = 'slug';
+
+    protected $appends = ['image_url'];
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? asset('storage/' . $this->image) : null;
+    }
 }

@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('logo')->nullable();
-            $table->string('favicon')->nullable();
             $table->string('kepala_instansi')->nullable();
             $table->text('alamat_instansi')->nullable();
             $table->string('no_telp_instansi', 20)->nullable();

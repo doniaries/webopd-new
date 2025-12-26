@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('unit_kerjas', function (Blueprint $table) {
+        Schema::create('struktur_organisasis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_unit')->unique();
+            $table->string('name'); // Nama Unit
+            $table->text('description')->nullable(); // Keterangan Unit
+            $table->string('pimpinan')->nullable(); // Nama Pimpinan
+            $table->string('image')->nullable(); // Image dari struktur (icon/logo)
             $table->string('slug')->unique();
             $table->timestamps();
-
-            $table->index(['nama_unit', 'slug']);
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('unit_kerjas');
+        Schema::dropIfExists('struktur_organisasis');
     }
 };
