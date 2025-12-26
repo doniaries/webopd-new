@@ -11,4 +11,9 @@ class ExternalLink extends Model
         'url',
         'logo',
     ];
+
+
+    protected $casts = [
+        'logo' => 'string',
+    ];
 }

@@ -19,14 +19,8 @@ class BannerForm
                     ->helperText('Judul atau nama banner (opsional)'),
                 TextInput::make('url')
                     ->label('URL Link')
-                    ->url()
                     ->maxLength(255)
                     ->helperText('Link tujuan ketika banner diklik (opsional)'),
-                // TextInput::make('order')
-                //     ->label('Urutan')
-                //     ->numeric()
-                //     ->default(0)
-                //     ->helperText('Urutan tampilan banner (semakin kecil semakin awal)'),
                 FileUpload::make('gambar')
                     ->label('Gambar Banner')
                     ->image()
@@ -34,9 +28,13 @@ class BannerForm
                     ->directory('banners')
                     ->visibility('public')
                     ->imageEditor()
+                    ->imageEditorAspectRatios([
+                        '4:5',
+                    ])
+                    ->imageCropAspectRatio('4:5')
                     ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
                     ->maxSize(2048)
-                    ->helperText('Upload gambar banner (max 2MB). Format: JPEG, JPG, PNG')
+                    ->helperText('Upload gambar banner (max 2MB). Format: JPEG, JPG, PNG. Rekomendasi ukuran: 400x500px (Rasio 4:5).')
                     ->required(),
                 Toggle::make('is_active')
                     ->label('Aktif')

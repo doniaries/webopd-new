@@ -15,7 +15,10 @@ class ExternalLinkTable
     {
         return $table
             ->columns([
-                ImageColumn::make('logo'),
+                ImageColumn::make('logo')
+                    ->label('Logo')
+                    ->disk('public')
+                    ->visibility('public'),
                 TextColumn::make('nama_link')
                     ->searchable()
                     ->sortable(),
