@@ -1,3 +1,8 @@
+@php
+use App\Models\Pengaturan;
+$pengaturan = Pengaturan::first();
+$opdName = $pengaturan->name ?? config('app.name');
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -6,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? config('app.name') }}</title>
+    <title>{{ isset($title) ? $title . ' - ' . $opdName : $opdName }}</title>
 
     <!-- Theme Initialization (Prevent FOUC) -->
     <script>

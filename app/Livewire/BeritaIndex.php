@@ -14,7 +14,7 @@ class BeritaIndex extends Component
     {
         $posts = Post::where('status', 'published')
             ->where('published_at', '<=', now())
-            ->paginate(10);
+            ->paginate(6);
 
         return view('livewire.berita-index', [
             'posts' => $posts
