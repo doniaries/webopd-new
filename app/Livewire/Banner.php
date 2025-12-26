@@ -10,7 +10,7 @@ class Banner extends Component
     public function render()
     {
         $banners = BannerModel::where('is_active', true)
-            ->orderBy('order', 'asc')
+            ->orderBy('id', 'asc')
             ->get();
 
         return view('livewire.banner', [

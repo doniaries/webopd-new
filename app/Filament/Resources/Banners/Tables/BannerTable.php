@@ -16,9 +16,6 @@ class BannerTable
     {
         return $table
             ->columns([
-                TextColumn::make('order')
-                    ->label('Urutan')
-                    ->sortable(),
                 ImageColumn::make('gambar')
                     ->label('Gambar'),
                 TextColumn::make('title')

@@ -22,11 +22,11 @@ class BannerForm
                     ->url()
                     ->maxLength(255)
                     ->helperText('Link tujuan ketika banner diklik (opsional)'),
-                TextInput::make('order')
-                    ->label('Urutan')
-                    ->numeric()
-                    ->default(0)
-                    ->helperText('Urutan tampilan banner (semakin kecil semakin awal)'),
+                // TextInput::make('order')
+                //     ->label('Urutan')
+                //     ->numeric()
+                //     ->default(0)
+                //     ->helperText('Urutan tampilan banner (semakin kecil semakin awal)'),
                 FileUpload::make('gambar')
                     ->label('Gambar Banner')
                     ->image()

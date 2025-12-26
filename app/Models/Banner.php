@@ -10,7 +10,6 @@ class Banner extends Model
         'title',
         'gambar',
         'url',
-        'order',
         'is_active',
     ];
 
