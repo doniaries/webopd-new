@@ -9,7 +9,6 @@ class Banner extends Model
     protected $fillable = [
         'title',
         'gambar',
-        'url',
         'is_active',
     ];
 

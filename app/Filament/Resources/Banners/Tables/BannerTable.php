@@ -24,10 +24,6 @@ class BannerTable
                     ->label('Judul')
                     ->searchable()
                     ->limit(30),
-                TextColumn::make('url')
-                    ->label('URL')
-                    ->limit(40)
-                    ->url(fn($record) => $record->url, shouldOpenInNewTab: true),
                 ToggleColumn::make('is_active')
                     ->label('Aktif'),
             ])

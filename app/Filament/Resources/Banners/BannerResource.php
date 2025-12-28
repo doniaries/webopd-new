@@ -9,6 +9,7 @@ use App\Filament\Resources\Banners\Schemas\BannerForm;
 use App\Filament\Resources\Banners\Tables\BannerTable;
 use App\Models\Banner;
 use BackedEnum;
+use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
@@ -24,7 +25,19 @@ class BannerResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return BannerForm::configure($schema);
+        return $schema
+            ->schema([
+                Forms\Components\FileUpload::make('gambar')
+                    ->image()
+                    ->required()
+                    ->disk('public')
+                    ->visibility('public')
+                    ->directory('banners')
+                    ->columnSpanFull(),
+                Forms\Components\Toggle::make('is_active')
+                    ->required()
+                    ->label('Aktif'),
+            ]);
     }
 
     public static function table(Table $table): Table

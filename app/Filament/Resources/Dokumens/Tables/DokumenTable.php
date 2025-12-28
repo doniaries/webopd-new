@@ -15,7 +15,9 @@ class DokumenTable
     {
         return $table
             ->columns([
-                ImageColumn::make('cover'),
+                ImageColumn::make('cover')
+                    ->disk('public')
+                    ->visibility('public'),
                 TextColumn::make('nama_dokumen')
                     ->searchable()
                     ->sortable(),
