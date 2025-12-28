@@ -29,12 +29,12 @@ Route::get('/agenda/{agenda:slug}', \App\Livewire\AgendaDetail::class)->name('ag
 // Struktur Organisasi
 Route::get('/struktur-organisasi', \App\Livewire\StrukturOrganisasi::class)->name('struktur-organisasi');
 
-Route::get('/force-link', function () {
-    // Hapus link yang lama/rusak jika ada
-    File::delete(public_path('storage'));
+// Route::get('/force-link', function () {
+//     // Hapus link yang lama/rusak jika ada
+//     File::delete(public_path('storage'));
 
-    // Panggil command melalui facade
-    Artisan::call('storage:link');
+//     // Panggil command melalui facade
+//     Artisan::call('storage:link');
 
-    return Artisan::output();
-});
+//     return Artisan::output();
+// });
