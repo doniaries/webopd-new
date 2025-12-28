@@ -14,17 +14,7 @@ jobs:
       run: |
         npm install
         npm run build
-    - name: 🛠️ Build & Optimize
-      run: |
-        composer install --no-dev --optimize-autoloader
-        npm install
-        npm run build
-        # Menyiapkan cache untuk performa maksimal
-        php artisan config:cache
-        php artisan route:cache
-        php artisan view:cache
-        php artisan filament:cache-components
-        php artisan icons:cache
+    
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
