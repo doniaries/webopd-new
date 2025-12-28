@@ -78,7 +78,7 @@
                             lightboxOpen: false, 
                             activeImage: '',
                             currentIndex: 0,
-                            images: {{ Js::from(array_map(fn($img) => asset('storage/' . $img), $post->gallery)) }},
+                            images: {{ Js::from(array_map(fn($img) => asset('storage/' . $img), array_values($post->gallery))) }},
                             openLightbox(index) {
                                 this.currentIndex = index;
                                 this.activeImage = this.images[index];
@@ -133,33 +133,31 @@
                                 x-transition:leave="transition ease-in duration-200"
                                 x-transition:leave-start="opacity-100"
                                 x-transition:leave-end="opacity-0"
-                                class="fixed inset-0 z-[99999] grid place-items-center bg-black/95 backdrop-blur-sm p-4"
+                                class="fixed inset-0 z-[99999] grid place-items-center bg-black/90 backdrop-blur-sm p-4"
                                 style="display: none;">
 
                                 <!-- Close Button -->
-                                <button @click="closeLightbox()" class="absolute top-4 right-4 text-white hover:text-gray-300 z-50 p-2 focus:outline-none">
+                                <button @click="closeLightbox()" class="absolute top-4 right-4 text-white hover:text-gray-300 z-50 p-2 focus:outline-none transition-colors">
                                     <i class="bi bi-x-lg text-2xl"></i>
                                 </button>
 
                                 <!-- Navigation Buttons -->
-                                <button @click="prev()" class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-50 p-4 focus:outline-none" x-show="images.length > 1">
-                                    <i class="bi bi-chevron-left text-4xl"></i>
+                                <button @click.stop="prev()" class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-50 p-4 focus:outline-none transition-colors bg-black/20 hover:bg-black/40 rounded-full" x-show="images.length > 1">
+                                    <i class="bi bi-chevron-left text-3xl md:text-4xl"></i>
                                 </button>
 
-                                <button @click="next()" class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-50 p-4 focus:outline-none" x-show="images.length > 1">
-                                    <i class="bi bi-chevron-right text-4xl"></i>
+                                <button @click.stop="next()" class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-50 p-4 focus:outline-none transition-colors bg-black/20 hover:bg-black/40 rounded-full" x-show="images.length > 1">
+                                    <i class="bi bi-chevron-right text-3xl md:text-4xl"></i>
                                 </button>
 
                                 <!-- Image Container -->
-                                <div class="relative w-full max-w-5xl h-full flex items-center justify-center p-4" @click.outside="closeLightbox()">
+                                <div class="relative w-full h-full flex items-center justify-center p-4 md:p-10 pointer-events-none" @click.outside="closeLightbox()">
                                     <img :src="activeImage"
-                                        class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
-                                        x-transition:enter="transition ease-out duration-300 transform"
-                                        x-transition:enter-start="opacity-0 scale-90"
-                                        x-transition:enter-end="opacity-100 scale-100">
+                                        class="max-w-[90vw] max-h-[70vh] md:max-w-[75vw] md:max-h-[60vh] object-contain rounded-lg shadow-2xl pointer-events-auto mx-auto"
+                                        alt="Gallery Preview">
 
                                     <!-- Counter -->
-                                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/90 bg-black/50 px-3 py-1 rounded-full text-sm font-medium">
+                                    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/90 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full text-sm font-medium border border-white/10 pointer-events-auto">
                                         <span x-text="currentIndex + 1"></span> / <span x-text="images.length"></span>
                                     </div>
                                 </div>
