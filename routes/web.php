@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', \App\Livewire\Home::class)->name('home');
 
@@ -26,3 +28,13 @@ Route::get('/agenda/{agenda:slug}', \App\Livewire\AgendaDetail::class)->name('ag
 
 // Struktur Organisasi
 Route::get('/struktur-organisasi', \App\Livewire\StrukturOrganisasi::class)->name('struktur-organisasi');
+
+Route::get('/force-link', function () {
+    // Hapus link yang lama/rusak jika ada
+    File::delete(public_path('storage'));
+
+    // Panggil command melalui facade
+    Artisan::call('storage:link');
+
+    return Artisan::output();
+});

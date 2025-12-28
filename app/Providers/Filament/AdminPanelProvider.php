@@ -25,6 +25,12 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->navigationItems([
+                \Filament\Navigation\NavigationItem::make('Halaman Depan')
+                    ->url('/', shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-globe-alt')
+                    ->sort(-3),
+            ])
             ->default()
             ->spa()
             ->sidebarCollapsibleOnDesktop()
