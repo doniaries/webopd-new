@@ -8,7 +8,9 @@
                 <div class="mb-8 rounded-xl overflow-hidden shadow-lg">
                     <img src="{{ $post->foto_utama_url }}"
                         alt="{{ $post->title }}"
-                        class="w-full h-auto max-h-[500px] object-cover"
+                        class="w-full h-auto max-h-[500px] object-cover select-none"
+                        oncontextmenu="return false;"
+                        draggable="false"
                         onerror="this.style.display='none'">
                 </div>
                 @endif
@@ -113,7 +115,9 @@
                             <div class="group relative w-24 h-24 rounded-lg overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700"
                                 @click="openLightbox({{ $loop->index }})">
                                 <img src="{{ asset('storage/' . $image) }}"
-                                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 select-none"
+                                    oncontextmenu="return false;"
+                                    draggable="false"
                                     alt="Galeri foto">
                                 <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                                     <div class="opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
@@ -153,7 +157,9 @@
                                 <!-- Image Container -->
                                 <div class="relative w-full h-full flex items-center justify-center p-4 md:p-10 pointer-events-none" @click.outside="closeLightbox()">
                                     <img :src="activeImage"
-                                        class="max-w-[90vw] max-h-[70vh] md:max-w-[75vw] md:max-h-[60vh] object-contain rounded-lg shadow-2xl pointer-events-auto mx-auto"
+                                        class="max-w-[90vw] max-h-[70vh] md:max-w-[75vw] md:max-h-[60vh] object-contain rounded-lg shadow-2xl pointer-events-auto mx-auto select-none"
+                                        oncontextmenu="return false;"
+                                        draggable="false"
                                         alt="Gallery Preview">
 
                                     <!-- Counter -->
