@@ -1,16 +1,14 @@
-<div class="py-12 bg-gray-50 dark:bg-zinc-900 min-h-screen">
+<div class="bg-gray-50 dark:bg-zinc-900 min-h-screen">
     @push('title', $pageTitle)
     @push('meta')
     <meta name="description" content="{{ $pageDescription }}">
     @endpush
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <x-page-header title="Struktur Organisasi" />
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {{-- Header Section --}}
         <div class="text-center mb-16">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                Struktur Organisasi
-            </h1>
-            <div class="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
             <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
                 Dinas Komunikasi dan Informatika Kabupaten Sijunjung
             </p>
