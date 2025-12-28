@@ -36,10 +36,10 @@
                         </h2>
                     </a>
 
-                    <div class="flex items-center text-white text-sm md:text-base gap-4">
-                        <i class="bi bi-clock"></i>
+                    <a href="{{ route('berita.show', $slider->slug) }}" class="inline-flex items-center text-white text-sm md:text-base gap-2 hover:text-blue-400 transition-colors w-fit">
+                        <i class="bi bi-arrow-right-circle"></i>
                         <span>Baca Selengkapnya</span>
-                    </div>
+                    </a>
                 </div>
             </div>
             @endforeach
