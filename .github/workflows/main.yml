@@ -9,9 +9,8 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
-
+      # Langkah WAJIB agar CSS/JS muncul di hosting
     - name: 🛠️ Install & Build Assets
-      # Langkah ini wajib agar folder public/build tercipta dan tampilan web normal
       run: |
         npm install
         npm run build
@@ -22,8 +21,3 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        exclude: |
-          **/.git*
-          **/node_modules/**
-          public/hot
-          storage/*.key
