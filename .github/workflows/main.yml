@@ -27,4 +27,3 @@ jobs:
           **/node_modules/**
           public/hot
           storage/*.key
-          .env
