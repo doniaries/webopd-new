@@ -17,6 +17,8 @@ class BannerTable
         return $table
             ->columns([
                 ImageColumn::make('gambar')
+                    ->disk('public')
+                    ->visibility('public')
                     ->label('Gambar'),
                 TextColumn::make('title')
                     ->label('Judul')
