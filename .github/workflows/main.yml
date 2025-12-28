@@ -9,8 +9,9 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
-    
+
     - name: 🛠️ Install & Build Assets
+      # Langkah ini wajib agar folder public/build tercipta dan tampilan web normal
       run: |
         npm install
         npm run build
@@ -21,10 +22,14 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: ./ 
+        # Karena akun FTP sudah kita arahkan langsung ke folder website.successmandiri.com
+        # maka server-dir cukup menggunakan ./
+        server-dir: ./
         protocol: ftp
         port: 21
         exclude: |
           **/.git*
           **/node_modules/**
           public/hot
+          storage/*.key
+          .env
