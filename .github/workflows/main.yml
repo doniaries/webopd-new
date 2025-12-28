@@ -22,11 +22,6 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        # Karena akun FTP sudah kita arahkan langsung ke folder website.successmandiri.com
-        # maka server-dir cukup menggunakan ./
-        server-dir: ./
-        protocol: ftp
-        port: 21
         exclude: |
           **/.git*
           **/node_modules/**
