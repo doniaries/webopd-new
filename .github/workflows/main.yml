@@ -9,11 +9,6 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
-      # Langkah WAJIB agar CSS/JS muncul di hosting
-    - name: 🛠️ Install & Build Assets
-      run: |
-        npm install
-        npm run build
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
