@@ -124,12 +124,13 @@
                 startY: 0,
                 translateX: 0,
                 translateY: 0,
-                zoomIn() {
-                    this.scale = Math.min(this.scale + 0.5, 4);
-                },
-                zoomOut() {
-                    this.scale = Math.max(this.scale - 0.5, 1);
-                    if(this.scale === 1) {
+                handleScroll(e) {
+                    const delta = e.deltaY > 0 ? -0.1 : 0.1;
+                    const newScale = Math.max(1, Math.min(4, this.scale + delta));
+                    
+                    this.scale = newScale;
+                    
+                    if (this.scale === 1) {
                         this.translateX = 0;
                         this.translateY = 0;
                     }
@@ -162,17 +163,6 @@
 
             <!-- Controls -->
             <div class="absolute top-4 right-4 flex items-center space-x-4 z-50">
-                <!-- Zoom Controls -->
-                <div class="flex items-center bg-white/10 rounded-lg p-1 backdrop-blur-md border border-white/20">
-                    <button @click="zoomOut()" class="p-2 text-white hover:text-blue-400 transition-colors">
-                        <i class="bi bi-dash-lg text-xl"></i>
-                    </button>
-                    <span class="text-white/80 text-sm w-12 text-center" x-text="Math.round(scale * 100) + '%'"></span>
-                    <button @click="zoomIn()" class="p-2 text-white hover:text-blue-400 transition-colors">
-                        <i class="bi bi-plus-lg text-xl"></i>
-                    </button>
-                </div>
-
                 <!-- Close Button -->
                 <button @click="closeLightbox(); reset()" class="p-2 text-white hover:text-red-400 focus:outline-none transition-colors rounded-full hover:bg-white/10">
                     <i class="bi bi-x-lg text-2xl"></i>
@@ -181,6 +171,7 @@
 
             <!-- Image Container -->
             <div class="w-full h-full flex items-center justify-center p-4 overflow-hidden cursor-move"
+                @wheel.prevent="handleScroll($event)"
                 @mousedown="startDrag($event)"
                 @mousemove="drag($event)"
                 @mouseup="stopDrag()"
