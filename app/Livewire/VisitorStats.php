@@ -6,9 +6,15 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Request;
 use App\Models\Visit;
 use Carbon\Carbon;
+use Livewire\Attributes\Lazy;
 
+#[Lazy]
 class VisitorStats extends Component
 {
+    public function placeholder()
+    {
+        return view('livewire.placeholders.skeleton-sidebar');
+    }
     public $today;
     public $month;
     public $online;

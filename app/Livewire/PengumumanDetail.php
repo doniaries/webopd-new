@@ -3,8 +3,10 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
 use App\Models\Pengumuman;
 
+#[Lazy]
 class PengumumanDetail extends Component
 {
     public Pengumuman $pengumuman;
@@ -19,5 +21,10 @@ class PengumumanDetail extends Component
         return view('livewire.pengumuman-detail', [
             'pengumuman' => $this->pengumuman
         ]);
+    }
+
+    public function placeholder()
+    {
+        return view('livewire.placeholders.skeleton-detail');
     }
 }

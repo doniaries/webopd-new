@@ -3,9 +3,11 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
 use Livewire\WithPagination;
 use App\Models\Post;
 
+#[Lazy]
 class BeritaIndex extends Component
 {
     use WithPagination;
@@ -20,5 +22,10 @@ class BeritaIndex extends Component
         return view('livewire.berita-index', [
             'posts' => $posts
         ]);
+    }
+
+    public function placeholder()
+    {
+        return view('livewire.placeholders.skeleton-news-grid');
     }
 }

@@ -3,11 +3,13 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
 use Livewire\WithPagination;
 use App\Models\AgendaKegiatan as AgendaKegiatanModel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
+#[Lazy]
 class AgendaKegiatan extends Component
 {
     use WithPagination;
@@ -106,5 +108,10 @@ class AgendaKegiatan extends Component
             'agendas' => $agendas,
             'pageTitle' => 'Agenda Kegiatan',
         ]);
+    }
+
+    public function placeholder()
+    {
+        return view('livewire.placeholders.skeleton-agenda');
     }
 }

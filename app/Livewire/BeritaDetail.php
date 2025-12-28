@@ -3,8 +3,10 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
 use App\Models\Post;
 
+#[Lazy]
 class BeritaDetail extends Component
 {
     public Post $post;
@@ -29,5 +31,10 @@ class BeritaDetail extends Component
             'post' => $this->post,
             'relatedPosts' => $relatedPosts
         ]);
+    }
+
+    public function placeholder()
+    {
+        return view('livewire.placeholders.skeleton-detail');
     }
 }

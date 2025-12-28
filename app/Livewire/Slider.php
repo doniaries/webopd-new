@@ -30,4 +30,9 @@ class Slider extends Component
             'popularPosts' => $popularPosts,
         ]);
     }
+
+    public function placeholder()
+    {
+        return view('livewire.placeholders.skeleton-slider');
+    }
 }

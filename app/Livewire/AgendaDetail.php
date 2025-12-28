@@ -3,8 +3,10 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
 use App\Models\AgendaKegiatan;
 
+#[Lazy]
 class AgendaDetail extends Component
 {
     public AgendaKegiatan $agenda;
@@ -19,5 +21,10 @@ class AgendaDetail extends Component
         return view('livewire.agenda-detail', [
             'pageTitle' => $this->agenda->nama_agenda,
         ]);
+    }
+
+    public function placeholder()
+    {
+        return view('livewire.placeholders.skeleton-detail');
     }
 }

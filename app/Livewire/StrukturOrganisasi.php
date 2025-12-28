@@ -5,7 +5,9 @@ namespace App\Livewire;
 use App\Models\StrukturOrganisasi as StrukturModel;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Lazy;
 
+#[Lazy]
 class StrukturOrganisasi extends Component
 {
     #[Layout('components.layouts.app')]
@@ -36,5 +38,10 @@ class StrukturOrganisasi extends Component
             'pageTitle' => 'Struktur Organisasi',
             'pageDescription' => 'Struktur Organisasi Dinas Komunikasi dan Informatika'
         ]);
+    }
+
+    public function placeholder()
+    {
+        return view('livewire.placeholders.skeleton-detail');
     }
 }

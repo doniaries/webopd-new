@@ -3,9 +3,11 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
 use Livewire\WithPagination;
 use App\Models\Pengumuman;
 
+#[Lazy]
 class PengumumanIndex extends Component
 {
     use WithPagination;
@@ -19,5 +21,10 @@ class PengumumanIndex extends Component
         return view('livewire.pengumuman-index', [
             'pengumuman' => $pengumuman
         ]);
+    }
+
+    public function placeholder()
+    {
+        return view('livewire.placeholders.skeleton-pengumuman');
     }
 }

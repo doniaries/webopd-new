@@ -111,7 +111,7 @@ $pengaturan = Pengaturan::first();
 
             <!-- Visitor Stats (New Location) -->
             <div>
-                <livewire:visitor-stats />
+                <livewire:visitor-stats lazy />
             </div>
         </div>
 
