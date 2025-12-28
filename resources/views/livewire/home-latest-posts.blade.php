@@ -41,16 +41,7 @@
         </a>
 
         <div class="p-5 flex-1 flex flex-col">
-            <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3 space-x-3">
-                <span class="flex items-center">
-                    <i class="bi bi-calendar3 mr-1"></i>
-                    {{ $post->created_at->format('d M Y') }}
-                </span>
-                <span class="flex items-center">
-                    <i class="bi bi-person-fill mr-1"></i>
-                    {{ $post->user->name ?? 'Admin' }}
-                </span>
-            </div>
+
 
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 <a href="{{ route('berita.show', $post->slug) }}">
@@ -62,13 +53,22 @@
                 {{ Str::limit(strip_tags($post->content), 100) }}
             </p>
 
-            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-                <span class="flex items-center">
-                    <i class="bi bi-eye mr-1"></i> {{ $post->views ?? 0 }} Dilihat
-                </span>
-                <a href="{{ route('berita.show', $post->slug) }}" class="text-blue-600 dark:text-blue-400 font-medium hover:underline">
-                    Baca Selengkapnya
-                </a>
+            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between text-xs">
+                <div class="flex items-center gap-3 text-gray-500 dark:text-gray-400">
+                    <span class="flex items-center gap-1.5 bg-gray-50 dark:bg-gray-700/50 px-2 py-1 rounded-md mb-0">
+                        <i class="bi bi-calendar3"></i>
+                        {{ $post->created_at->translatedFormat('d F Y') }}
+                    </span>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <span class="flex items-center gap-1 text-gray-400" title="{{ $post->views ?? 0 }} Dilihat">
+                        <i class="bi bi-eye"></i> {{ $post->views ?? 0 }}
+                    </span>
+                    <a href="{{ route('berita.show', $post->slug) }}" class="text-blue-600 dark:text-blue-400 font-medium hover:underline">
+                        Baca..
+                    </a>
+                </div>
             </div>
         </div>
     </div>
