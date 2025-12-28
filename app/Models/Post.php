@@ -15,6 +15,7 @@ class Post extends Model
         'slug',
         'content',
         'foto_utama',
+        'gallery',
         'user_id',
         'status',
         'published_at',
@@ -25,6 +26,7 @@ class Post extends Model
     protected $casts = [
         'published_at' => 'datetime',
         'is_featured' => 'boolean',
+        'gallery' => 'array',
     ];
 
     protected $slugSource = 'title';
@@ -38,11 +40,6 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
-    }
-
-    public function galleries()
-    {
-        return $this->hasMany(PostGallery::class);
     }
 
     public function sliders()

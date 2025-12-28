@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Posts\Schemas;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Schemas\Components\Grid;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
@@ -92,6 +93,25 @@ class PostForm
                             ->default(false),
                     ])
                     ->columns(2),
+
+                // Section 3: Gallery
+                Section::make('Galeri Foto')
+                    ->description('Upload foto-foto tambahan untuk galeri berita ini')
+                    ->schema([
+                        FileUpload::make('gallery')
+                            ->label('Foto Galeri')
+                            ->multiple()
+                            ->image()
+                            ->disk('public')
+                            ->directory('posts/galleries')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->columnSpanFull()
+                            ->reorderable()
+                            ->appendFiles()
+                            ->maxSize(2048)
+                            ->helperText('Upload foto galeri (max 2MB/foto). Bisa upload banyak sekaligus.'),
+                    ]),
             ]);
     }
 }

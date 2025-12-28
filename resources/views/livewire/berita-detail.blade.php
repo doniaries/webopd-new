@@ -13,34 +13,7 @@
                 </div>
                 @endif
 
-                @if($post->galleries->count() > 0)
-                <!-- Gallery Section -->
-                <div x-data="{ activeImage: '{{ asset('storage/' . $post->galleries->first()->image_path) }}' }" class="mb-8 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-md">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-                        <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                        Galeri Foto
-                    </h3>
-
-                    <!-- Main Preview -->
-                    <div class="mb-4 rounded-lg overflow-hidden shadow-inner bg-gray-100 dark:bg-gray-700 h-[300px] md:h-[450px]">
-                        <img :src="activeImage" class="w-full h-full object-contain transition-all duration-300">
-                    </div>
-
-                    <!-- Thumbnails -->
-                    <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-                        @foreach($post->galleries as $gallery)
-                        <button @click="activeImage = '{{ asset('storage/' . $gallery->image_path) }}'"
-                            class="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all p-0.5"
-                            :class="activeImage === '{{ asset('storage/' . $gallery->image_path) }}' ? 'border-blue-500 ring-2 ring-blue-200' : 'border-transparent opacity-70 hover:opacity-100'">
-                            <img src="{{ asset('storage/' . $gallery->image_path) }}" class="w-full h-full object-cover rounded-md">
-                        </button>
-                        @endforeach
-                    </div>
-                </div>
-                @endif
-
+                <!-- Gallery Removed from Top -->
                 <!-- Article Content -->
                 <article class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-8">
                     <!-- Title -->
@@ -98,6 +71,102 @@
                                 prose-li:text-gray-900 dark:prose-li:text-gray-100">
                         {!! $post->content !!}
                     </div>
+
+                    <!-- Gallery Grid Section (Bottom) -->
+                    @if(!empty($post->gallery) && count($post->gallery) > 0)
+                    <div x-data="{ 
+                            lightboxOpen: false, 
+                            activeImage: '',
+                            currentIndex: 0,
+                            images: {{ Js::from(array_map(fn($img) => asset('storage/' . $img), $post->gallery)) }},
+                            openLightbox(index) {
+                                this.currentIndex = index;
+                                this.activeImage = this.images[index];
+                                this.lightboxOpen = true;
+                                document.body.style.overflow = 'hidden'; 
+                            },
+                            closeLightbox() {
+                                this.lightboxOpen = false;
+                                document.body.style.overflow = '';
+                            },
+                            next() {
+                                this.currentIndex = (this.currentIndex + 1) % this.images.length;
+                                this.activeImage = this.images[this.currentIndex];
+                            },
+                            prev() {
+                                this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+                                this.activeImage = this.images[this.currentIndex];
+                            }
+                        }"
+                        @keydown.escape.window="closeLightbox()"
+                        @keydown.arrow-right.window="if(lightboxOpen) next()"
+                        @keydown.arrow-left.window="if(lightboxOpen) prev()"
+                        class="mt-10 pt-8 border-t border-gray-200 dark:border-gray-700">
+
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                            <i class="bi bi-images mr-3 text-blue-600"></i> Galeri Foto
+                        </h3>
+
+                        <!-- Thumbnail Grid -->
+                        <div class="flex flex-wrap gap-2">
+                            @foreach($post->gallery as $index => $image)
+                            <div class="group relative w-24 h-24 rounded-lg overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700"
+                                @click="openLightbox({{ $loop->index }})">
+                                <img src="{{ asset('storage/' . $image) }}"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                    alt="Galeri foto">
+                                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                                    <div class="opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+                                        <i class="bi bi-zoom-in text-gray-800 text-sm"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+
+                        <!-- Lightbox Modal -->
+                        <template x-teleport="body">
+                            <div x-show="lightboxOpen"
+                                x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0"
+                                x-transition:enter-end="opacity-100"
+                                x-transition:leave="transition ease-in duration-200"
+                                x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0"
+                                class="fixed inset-0 z-[99999] grid place-items-center bg-black/95 backdrop-blur-sm p-4"
+                                style="display: none;">
+
+                                <!-- Close Button -->
+                                <button @click="closeLightbox()" class="absolute top-4 right-4 text-white hover:text-gray-300 z-50 p-2 focus:outline-none">
+                                    <i class="bi bi-x-lg text-2xl"></i>
+                                </button>
+
+                                <!-- Navigation Buttons -->
+                                <button @click="prev()" class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-50 p-4 focus:outline-none" x-show="images.length > 1">
+                                    <i class="bi bi-chevron-left text-4xl"></i>
+                                </button>
+
+                                <button @click="next()" class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-50 p-4 focus:outline-none" x-show="images.length > 1">
+                                    <i class="bi bi-chevron-right text-4xl"></i>
+                                </button>
+
+                                <!-- Image Container -->
+                                <div class="relative w-full max-w-5xl h-full flex items-center justify-center p-4" @click.outside="closeLightbox()">
+                                    <img :src="activeImage"
+                                        class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+                                        x-transition:enter="transition ease-out duration-300 transform"
+                                        x-transition:enter-start="opacity-0 scale-90"
+                                        x-transition:enter-end="opacity-100 scale-100">
+
+                                    <!-- Counter -->
+                                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/90 bg-black/50 px-3 py-1 rounded-full text-sm font-medium">
+                                        <span x-text="currentIndex + 1"></span> / <span x-text="images.length"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    @endif
 
                     <!-- Back Button -->
                     <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
