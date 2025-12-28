@@ -123,6 +123,7 @@
                    });
                 },
                 startAutoplay() {
+                    this.stopAutoplay(); // Clear any existing interval first
                     if (this.totalSlides > 1) {
                         this.autoplayInterval = setInterval(() => {
                             this.next();
@@ -152,17 +153,7 @@
                     // Hide others
                     return 'z-0 scale-75 opacity-0 pointer-events-none invisible';
                 },
-                getSlideClass(index) {
-                    if (index === this.activeSlide) return 'z-20 scale-100 opacity-100 translate-x-0';
-                    
-                    let prev = (this.activeSlide - 1 + this.totalSlides) % this.totalSlides;
-                    let next = (this.activeSlide + 1) % this.totalSlides;
-                    
-                    if (index === prev) return 'z-10 scale-90 opacity-60 -translate-x-[60%] cursor-pointer';
-                    if (index === next) return 'z-10 scale-90 opacity-60 translate-x-[60%] cursor-pointer';
-                    
-                    return 'z-0 scale-75 opacity-0 pointer-events-none invisible';
-                },
+
                 openModal(image) {
                     this.previewImage = image;
                     this.modalOpen = true;
