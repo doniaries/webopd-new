@@ -157,7 +157,7 @@
                                         alt="Gallery Preview">
 
                                     <!-- Counter -->
-                                    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/90 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full text-sm font-medium border border-white/10 pointer-events-auto">
+                                    <div class="absolute -bottom-12 left-1/2 -translate-x-1/2 text-white/90 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full text-sm font-medium border border-white/10 pointer-events-auto">
                                         <span x-text="currentIndex + 1"></span> / <span x-text="images.length"></span>
                                     </div>
                                 </div>
