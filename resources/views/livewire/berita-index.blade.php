@@ -60,25 +60,20 @@
                                     @if($postTag)
                                     @php
                                     $tagName = $postTag->name;
-                                    $colors = [
-                                    'bg-blue-600', 'bg-red-600', 'bg-green-600', 'bg-yellow-600',
-                                    'bg-purple-600', 'bg-pink-600', 'bg-indigo-600', 'bg-teal-600',
-                                    'bg-orange-600', 'bg-cyan-600'
-                                    ];
-                                    $colorIndex = crc32($tagName) % count($colors);
-                                    if ($colorIndex < 0) $colorIndex=-$colorIndex;
-                                        $bgClass=$colors[$colorIndex];
-                                        @endphp
-                                        <a href="{{ route('berita.index', ['tag' => $postTag->slug]) }}"
-                                        class="inline-block px-2 py-1 text-xs font-semibold text-white {{ $bgClass }} rounded-md shadow-sm hover:opacity-90 transition-opacity pointer-events-auto">
+                                    // Use model accessor
+                                    $bgColor = $postTag->color;
+                                    @endphp
+                                    <a href="{{ route('berita.index', ['tag' => $postTag->slug]) }}"
+                                        class="inline-block px-2 py-1 text-xs font-semibold text-white rounded-md shadow-sm hover:opacity-90 transition-opacity pointer-events-auto"
+                                        style="background-color: {{ $bgColor }}">
                                         {{ $tagName }}
-                                        </a>
-                                        @else
-                                        <a href="{{ route('berita.index') }}"
-                                            class="inline-block px-2 py-1 text-xs font-semibold text-white bg-blue-600 rounded-md shadow-sm hover:opacity-90 transition-opacity pointer-events-auto">
-                                            Berita
-                                        </a>
-                                        @endif
+                                    </a>
+                                    @else
+                                    <a href="{{ route('berita.index') }}"
+                                        class="inline-block px-2 py-1 text-xs font-semibold text-white bg-blue-600 rounded-md shadow-sm hover:opacity-90 transition-opacity pointer-events-auto">
+                                        Berita
+                                    </a>
+                                    @endif
                                 </div>
                             </div>
 
@@ -164,41 +159,29 @@
                                 @php
                                 $tagName = $t->name;
                                 $isActive = request()->query('tag') === $t->slug;
+                                // Use the model accessor for color
+                                $bgClass = $t->color; // This returns a HEX code now, e.g., #3b82f6
 
-                                // Dynamic Color Generation for Pastel/Soft Look
-                                $colors = [
-                                'blue' => ['bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300', 'hover:bg-blue-100 dark:hover:bg-blue-900/50'],
-                                'red' => ['bg-red-50 text-red-600 dark:bg-red-900/30 dark:text-red-300', 'hover:bg-red-100 dark:hover:bg-red-900/50'],
-                                'green' => ['bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-300', 'hover:bg-green-100 dark:hover:bg-green-900/50'],
-                                'amber' => ['bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-300', 'hover:bg-amber-100 dark:hover:bg-amber-900/50'],
-                                'purple' => ['bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-300', 'hover:bg-purple-100 dark:hover:bg-purple-900/50'],
-                                'indigo' => ['bg-indigo-50 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-300', 'hover:bg-indigo-100 dark:hover:bg-indigo-900/50'],
-                                'pink' => ['bg-pink-50 text-pink-600 dark:bg-pink-900/30 dark:text-pink-300', 'hover:bg-pink-100 dark:hover:bg-pink-900/50'],
-                                'teal' => ['bg-teal-50 text-teal-600 dark:bg-teal-900/30 dark:text-teal-300', 'hover:bg-teal-100 dark:hover:bg-teal-900/50'],
-                                'cyan' => ['bg-cyan-50 text-cyan-600 dark:bg-cyan-900/30 dark:text-cyan-300', 'hover:bg-cyan-100 dark:hover:bg-cyan-900/50'],
-                                ];
-
-                                $colorKeys = array_keys($colors);
-                                $colorIndex = crc32($tagName) % count($colorKeys);
-                                if ($colorIndex < 0) $colorIndex=-$colorIndex;
-                                    $selectedColorKey=$colorKeys[$colorIndex];
-                                    $colorConfig=$colors[$selectedColorKey];
-
-                                    // Active State vs Inactive State
-                                    if ($isActive) {
-                                    $classes="bg-{$selectedColorKey}-600 text-white shadow-md transform scale-105" ;
-                                    } else {
-                                    $classes=$colorConfig[0] . ' ' . $colorConfig[1];
-                                    }
-                                    @endphp
-                                    <a href="{{ route('berita.index', ['tag' => $t->slug]) }}"
-                                    class="inline-flex items-center text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 {{ $classes }}">
+                                // Active State vs Inactive State
+                                if ($isActive) {
+                                $style = "background-color: {$bgClass}; color: white; transform: scale(1.05); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);";
+                                } else {
+                                // Make it look like a pastel version for inactive, or just use the color with lower opacity if possible,
+                                // but since we have hex, let's just use the solid color with white text for consistency with slider,
+                                // OR use a utility class if we want to be fancy.
+                                // For now, let's stick to the consistent solid color look from the slider.
+                                $style = "background-color: {$bgClass}; color: white;";
+                                }
+                                @endphp
+                                <a href="{{ route('berita.index', ['tag' => $t->slug]) }}"
+                                    class="inline-flex items-center text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 hover:opacity-90"
+                                    style="{{ $style }}">
                                     {{ $tagName }}
                                     <span class="ml-1.5 opacity-70 text-[10px] bg-white/20 px-1.5 rounded-full">{{ $t->posts_count }}</span>
-                                    </a>
-                                    @empty
-                                    <p class="text-sm text-gray-500 dark:text-gray-400 italic">Belum ada topik.</p>
-                                    @endforelse
+                                </a>
+                                @empty
+                                <p class="text-sm text-gray-500 dark:text-gray-400 italic">Belum ada topik.</p>
+                                @endforelse
                             </div>
                         </div>
 

@@ -15,28 +15,13 @@
 
             <div class="absolute bottom-0 left-0 p-3 w-full bg-gradient-to-t from-black/80 to-transparent">
                 @php
-                $tagName = $post->tags->first()->name ?? 'Berita';
-                $colors = [
-                'bg-blue-600',
-                'bg-red-600',
-                'bg-green-600',
-                'bg-yellow-600',
-                'bg-purple-600',
-                'bg-pink-600',
-                'bg-indigo-600',
-                'bg-teal-600',
-                'bg-orange-600',
-                'bg-cyan-600',
-                ];
-                // Generate a consistent index based on the tag name string
-                $colorIndex = crc32($tagName) % count($colors);
-                // Ensure positive index
-                if ($colorIndex < 0) $colorIndex=-$colorIndex;
-                    $bgClass=$colors[$colorIndex];
-                    @endphp
-                    <span class="inline-block px-2 py-1 text-xs font-semibold text-white {{ $bgClass }} rounded-md shadow-sm">
+                $postTag = $post->tags->first();
+                $tagName = $postTag->name ?? 'Berita';
+                $bgColor = $postTag->color ?? '#3b82f6';
+                @endphp
+                <span class="inline-block px-2 py-1 text-xs font-semibold text-white rounded-md shadow-sm" style="background-color: {{ $bgColor }}">
                     {{ $tagName }}
-                    </span>
+                </span>
             </div>
         </a>
 
