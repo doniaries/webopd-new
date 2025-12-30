@@ -52,6 +52,7 @@ class PostForm
                         FileUpload::make('foto_utama')
                             ->label('Foto Utama')
                             ->image()
+                            ->required()
                             ->disk('public')
                             ->directory('posts')
                             ->visibility('public')
