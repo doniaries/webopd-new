@@ -99,14 +99,28 @@ class PostForm
                             ->default('draft'),
                         DateTimePicker::make('published_at')
                             ->label('Published At')
+                            ->default(now())
                             ->native(false)
                             ->displayFormat('d F Y H:i'),
                         Select::make('tags')
                             ->relationship('tags', 'name')
                             ->multiple()
-                            ->reuqired()
+                            ->required()
                             ->preload()
-                            ->label('Tags'),
+                            ->createOptionForm([
+                                TextInput::make('name')
+                                    ->required()
+                                    ->label('Nama Tag/Kategori')
+                                    ->maxLength(255)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
+                                TextInput::make('slug')
+                                    ->required()
+                                    ->hidden()
+                                    ->dehydrated()
+                                    ->maxLength(255),
+                            ])
+                            ->label('Tags/Kategori'),
                         Toggle::make('is_featured')
                             ->label('Tampilkan di Slider')
                             ->helperText('Aktifkan untuk menampilkan berita ini di slider halaman utama')
