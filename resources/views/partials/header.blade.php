@@ -19,25 +19,25 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                 <div class="flex items-center gap-4">
                     <a href="{{ url('/') }}" class="flex items-center gap-3 border-r border-gray-200 dark:border-gray-700 pr-4 transition-all duration-300">
                         <img src="{{ $logoUrl }}" alt="Logo"
-                            class="w-auto object-contain transition-all duration-300 ease-in-out"
-                            :class="{'h-9': scrolled, 'h-12': !scrolled}"
+                            class="w-auto h-12 object-contain transition-all duration-300 ease-in-out"
+                            :class="{'!h-9': scrolled}"
                             onerror="this.src='{{ asset('images/logo.png') }}'">
                         <div class="flex flex-col justify-center">
                             <span class="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 uppercase transition-all duration-300"
                                 :class="{'opacity-0 h-0 overflow-hidden': scrolled}">Pemerintah Kabupaten {{ $pengaturan->kabupaten ?? 'Sijunjung' }}</span>
                             <h1 class="text-xs sm:text-base font-bold text-gray-900 dark:text-white uppercase leading-tight transition-all duration-300"
-                                :class="{'text-sm': scrolled}">{{ $siteName }}</h1>
+                                :class="{'!text-sm': scrolled}">{{ $siteName }}</h1>
                         </div>
                     </a>
 
                     <!-- Partner Logos (Desktop) -->
                     <div class="hidden lg:flex items-center gap-4 transition-all duration-300">
                         <img src="{{ asset('images/bangga.png') }}" alt="Bangga"
-                            class="w-auto transition-all duration-300 ease-in-out"
-                            :class="{'h-6': scrolled, 'h-8': !scrolled}">
+                            class="w-auto h-8 transition-all duration-300 ease-in-out"
+                            :class="{'!h-6': scrolled}">
                         <img src="{{ asset('images/berakhlak.png') }}" alt="Berakhlak"
-                            class="w-auto transition-all duration-300 ease-in-out"
-                            :class="{'h-6': scrolled, 'h-8': !scrolled}">
+                            class="w-auto h-8 transition-all duration-300 ease-in-out"
+                            :class="{'!h-6': scrolled}">
                     </div>
                 </div>
 
@@ -96,7 +96,7 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                     </a>
                     <ul class="absolute left-1/2 transform -translate-x-1/2 top-full hidden group-hover:block bg-white dark:bg-gray-800 shadow-lg rounded-b-lg min-w-[220px] py-2 z-50 border border-gray-200 dark:border-gray-700">
                         <li><a href="{{ route('agenda.index') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Agenda Kegiatan</a></li>
-                        <li><a href="{{ route('dokumen.index') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Dokumen & Download</a></li>
+                        <li><a href="{{ route('dokumen.index') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Dokumen</a></li>
                     </ul>
                 </li>
 

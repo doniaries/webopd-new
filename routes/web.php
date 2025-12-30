@@ -14,13 +14,11 @@ Route::get('/berita/{post:slug}', \App\Livewire\BeritaDetail::class)->name('beri
 Route::get('/pengumuman', \App\Livewire\PengumumanIndex::class)->name('pengumuman.index');
 Route::get('/pengumuman/{pengumuman:slug}', \App\Livewire\PengumumanDetail::class)->name('pengumuman.show');
 
-// Dokumen Index Placeholder (to prevent route error if linked)
-Route::get('/dokumen', function () {
-    return 'Dokumen Index Placeholder';
-})->name('dokumen.index');
-Route::get('/dokumen/{slug}', function () {
-    return 'Dokumen Detail Placeholder';
-})->name('dokumen.detail');
+// Dokumen & Download
+Route::get('/dokumen', \App\Livewire\DokumenIndex::class)->name('dokumen.index');
+// Route::get('/dokumen/{slug}', function () {
+//     return 'Dokumen Detail Placeholder';
+// })->name('dokumen.detail');
 
 // Agenda Kegiatan
 Route::get('/agenda', \App\Livewire\AgendaKegiatan::class)->name('agenda.index');
