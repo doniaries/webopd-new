@@ -104,6 +104,7 @@ class PostForm
                         Select::make('tags')
                             ->relationship('tags', 'name')
                             ->multiple()
+                            ->reuqired()
                             ->preload()
                             ->label('Tags'),
                         Toggle::make('is_featured')
