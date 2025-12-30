@@ -9,10 +9,7 @@ use App\Models\AgendaKegiatan;
 #[Lazy]
 class HomeAgendas extends Component
 {
-    public function placeholder()
-    {
-        return view('livewire.placeholders.skeleton-agenda');
-    }
+
 
     public function render()
     {

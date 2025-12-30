@@ -22,9 +22,4 @@ class PengumumanIndex extends Component
             'pengumuman' => $pengumuman
         ]);
     }
-
-    public function placeholder()
-    {
-        return view('livewire.placeholders.skeleton-pengumuman');
-    }
 }

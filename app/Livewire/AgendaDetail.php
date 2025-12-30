@@ -22,9 +22,4 @@ class AgendaDetail extends Component
             'pageTitle' => $this->agenda->nama_agenda,
         ]);
     }
-
-    public function placeholder()
-    {
-        return view('livewire.placeholders.skeleton-detail');
-    }
 }

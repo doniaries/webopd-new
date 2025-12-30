@@ -11,10 +11,7 @@ use Livewire\Attributes\Lazy;
 #[Lazy]
 class VisitorStats extends Component
 {
-    public function placeholder()
-    {
-        return view('livewire.placeholders.skeleton-sidebar');
-    }
+
     public $today;
     public $month;
     public $online;

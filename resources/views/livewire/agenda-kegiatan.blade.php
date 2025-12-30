@@ -3,12 +3,7 @@
 
     <div class="py-8 bg-white dark:bg-zinc-900">
 
-        {{-- Loading Skeleton --}}
-        <div wire:loading class="w-full">
-            @include('livewire.placeholders.skeleton-agenda')
-        </div>
-
-        <div wire:loading.remove class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg shadow-md overflow-hidden border border-green-200 dark:border-green-800">
 
                 <!-- Controls: Search & Month/Year Navigation -->

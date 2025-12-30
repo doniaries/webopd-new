@@ -9,10 +9,7 @@ use App\Models\Pengumuman;
 #[Lazy]
 class HomePengumuman extends Component
 {
-    public function placeholder()
-    {
-        return view('livewire.placeholders.skeleton-pengumuman');
-    }
+
 
     public function render()
     {

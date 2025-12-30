@@ -9,10 +9,7 @@ use App\Models\Post;
 #[Lazy]
 class HomeLatestPosts extends Component
 {
-    public function placeholder()
-    {
-        return view('livewire.placeholders.skeleton-news-grid');
-    }
+
 
     public function render()
     {

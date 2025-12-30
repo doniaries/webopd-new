@@ -1,12 +1,7 @@
 <div class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200 min-h-screen relative">
 
-    {{-- Loading Skeleton (Now explicitly outside the content container) --}}
-    <div wire:loading class="w-full">
-        @include('livewire.placeholders.skeleton-news-grid')
-    </div>
-
     {{-- Content --}}
-    <div wire:loading.remove>
+    <div>
         <x-page-header title="Berita" />
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

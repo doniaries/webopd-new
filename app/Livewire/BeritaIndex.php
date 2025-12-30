@@ -37,9 +37,4 @@ class BeritaIndex extends Component
             'tags' => $tags
         ]);
     }
-
-    public function placeholder()
-    {
-        return view('livewire.placeholders.skeleton-news-grid');
-    }
 }

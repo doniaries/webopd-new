@@ -32,9 +32,4 @@ class BeritaDetail extends Component
             'relatedPosts' => $relatedPosts
         ]);
     }
-
-    public function placeholder()
-    {
-        return view('livewire.placeholders.skeleton-detail');
-    }
 }

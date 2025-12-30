@@ -22,9 +22,4 @@ class PengumumanDetail extends Component
             'pengumuman' => $this->pengumuman
         ]);
     }
-
-    public function placeholder()
-    {
-        return view('livewire.placeholders.skeleton-detail');
-    }
 }

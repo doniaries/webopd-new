@@ -109,9 +109,4 @@ class AgendaKegiatan extends Component
             'pageTitle' => 'Agenda Kegiatan',
         ]);
     }
-
-    public function placeholder()
-    {
-        return view('livewire.placeholders.skeleton-agenda');
-    }
 }
