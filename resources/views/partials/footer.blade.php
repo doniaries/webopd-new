@@ -1,6 +1,8 @@
 @php
 use App\Models\Pengaturan;
 $pengaturan = Pengaturan::first();
+$siteName = $pengaturan->name ?? config('app.name');
+$logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan->logo)) : asset('images/logo.png');
 @endphp
 
 <footer class="bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-gray-800 pt-16 pb-8 transition-colors duration-200">
@@ -10,19 +12,14 @@ $pengaturan = Pengaturan::first();
             <!-- Brand & Socials -->
             <div class="space-y-6">
                 <a href="{{ url('/') }}" class="inline-block">
-                    <div class="flex items-center space-x-3">
-                        @if(!empty($pengaturan->logo_instansi))
-                        <img src="{{ asset('storage/' . $pengaturan->logo_instansi) }}" alt="Logo" class="h-10 w-auto">
-                        @else
-                        <div class="h-10 w-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                            {{ substr($pengaturan->name ?? config('app.name'), 0, 1) }}
-                        </div>
-                        @endif
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-900 dark:text-white leading-tight">
-                                {{ $pengaturan->name ?? config('app.name') }}
+                    <div class="flex items-center gap-3">
+                        <img src="{{ $logoUrl }}" alt="Logo" class="w-auto h-12 object-contain"
+                            onerror="this.src='{{ asset('images/logo.png') }}'">
+                        <div class="flex flex-col justify-center">
+                            <span class="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 uppercase">Pemerintah Kabupaten {{ $pengaturan->kabupaten ?? 'Sijunjung' }}</span>
+                            <h3 class="text-sm sm:text-base font-bold text-gray-900 dark:text-white uppercase leading-tight">
+                                {{ $siteName }}
                             </h3>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">Pemerintah Kabupaten Sijunjung</p>
                         </div>
                     </div>
                 </a>
@@ -68,17 +65,23 @@ $pengaturan = Pengaturan::first();
                     <li>
                         <a href="{{ route('berita.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
                             <span class="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-gray-600 mr-2 group-hover:bg-blue-600 dark:group-hover:bg-blue-400 transition-colors"></span>
-                            Berita & Artikel
+                            Berita
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
+                        <a href="{{ route('agenda.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
                             <span class="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-gray-600 mr-2 group-hover:bg-blue-600 dark:group-hover:bg-blue-400 transition-colors"></span>
                             Agenda Kegiatan
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
+                        <a href="{{ route('galeri.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
+                            <span class="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-gray-600 mr-2 group-hover:bg-blue-600 dark:group-hover:bg-blue-400 transition-colors"></span>
+                            Galeri
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('pengumuman.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
                             <span class="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-gray-600 mr-2 group-hover:bg-blue-600 dark:group-hover:bg-blue-400 transition-colors"></span>
                             Pengumuman
                         </a>

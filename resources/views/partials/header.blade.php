@@ -124,8 +124,8 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                 </li>
 
                 <li>
-                    <a href="{{ route('gallery.index') }}"
-                        class="flex items-center gap-2 px-5 py-4 text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide hover:text-blue-600 dark:hover:text-blue-400 hover:border-b-2 hover:border-blue-600 dark:hover:border-blue-400 transition-all {{ request()->routeIs('gallery.index') ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400' : '' }}">
+                    <a href="{{ route('galeri.index') }}"
+                        class="flex items-center gap-2 px-5 py-4 text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide hover:text-blue-600 dark:hover:text-blue-400 hover:border-b-2 hover:border-blue-600 dark:hover:border-blue-400 transition-all {{ request()->routeIs('galeri.index') ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400' : '' }}">
                         Galeri
                     </a>
                 </li>
@@ -177,7 +177,7 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
             </li>
 
             <!-- Mobile Galeri -->
-            <li><a href="{{ route('gallery.index') }}" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 {{ request()->routeIs('gallery.index') ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400' : '' }}">Galeri</a></li>
+            <li><a href="{{ route('galeri.index') }}" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 {{ request()->routeIs('galeri.index') ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400' : '' }}">Galeri</a></li>
 
             <li><a href="{{ route('pengumuman.index') }}" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 {{ request()->is('pengumuman*') ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400' : '' }}">Pengumuman</a></li>
             <li><a href="{{ route('home') }}#layanan" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">Layanan</a></li>

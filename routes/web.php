@@ -18,7 +18,7 @@ Route::get('/pengumuman/{pengumuman:slug}', \App\Livewire\PengumumanDetail::clas
 Route::get('/dokumen', \App\Livewire\DokumenIndex::class)->name('dokumen.index');
 
 // Galeri Kegiatan
-Route::get('/galeri', \App\Livewire\GalleryIndex::class)->name('gallery.index');
+Route::get('/galeri', \App\Livewire\GalleryIndex::class)->name('galeri.index');
 // Route::get('/dokumen/{slug}', function () {
 //     return 'Dokumen Detail Placeholder';
 // })->name('dokumen.detail');
@@ -29,13 +29,3 @@ Route::get('/agenda/{agenda:slug}', \App\Livewire\AgendaDetail::class)->name('ag
 
 // Struktur Organisasi
 Route::get('/struktur-organisasi', \App\Livewire\StrukturOrganisasi::class)->name('struktur-organisasi');
-
-// Route::get('/force-link', function () {
-//     // Hapus link yang lama/rusak jika ada
-//     File::delete(public_path('storage'));
-
-//     // Panggil command melalui facade
-//     Artisan::call('storage:link');
-
-//     return Artisan::output();
-// });
