@@ -56,13 +56,13 @@
                                     @php
                                     $tagName = $postTag->name;
                                     // Use model accessor
-                                    $bgColor = $postTag->color;
+                                    $bgColor = $postTag->color ?: '#3B82F6';
                                     @endphp
                                     <a href="{{ route('berita.index', ['tag' => $postTag->slug]) }}"
                                         class="inline-block px-2 py-1 text-xs font-semibold text-white rounded-md shadow-sm hover:opacity-90 transition-opacity pointer-events-auto"
-                                        style="background-color: {{ $bgColor }}">
-                                        {{ $tagName }}
-                                    </a>
+                                        @style(['background-color: ' . $bgColor])>
+    {{ $tagName }}
+</a>
                                     @else
                                     <a href="{{ route('berita.index') }}"
                                         class="inline-block px-2 py-1 text-xs font-semibold text-white bg-blue-600 rounded-md shadow-sm hover:opacity-90 transition-opacity pointer-events-auto">
@@ -153,43 +153,43 @@
                                 @forelse($tags as $t)
                                 @php
                                 $tagName = $t->name;
-                                $isActive = request()->query('tag') === $t->slug;
-                                // Use the model accessor for color
-                                $bgClass = $t->color; // This returns a HEX code now, e.g., #3b82f6
+                                $isActive = request()->query(' tag')===$t->slug;
+                                        // Use the model accessor for color
+                                        $bgClass = $t->color ?: '#3b82f6'; // This returns a HEX code now, e.g., #3b82f6
 
-                                // Active State vs Inactive State
-                                if ($isActive) {
-                                $style = "background-color: {$bgClass}; color: white; transform: scale(1.05); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);";
-                                } else {
-                                // Make it look like a pastel version for inactive, or just use the color with lower opacity if possible,
-                                // but since we have hex, let's just use the solid color with white text for consistency with slider,
-                                // OR use a utility class if we want to be fancy.
-                                // For now, let's stick to the consistent solid color look from the slider.
-                                $style = "background-color: {$bgClass}; color: white;";
-                                }
-                                @endphp
-                                <a href="{{ route('berita.index', ['tag' => $t->slug]) }}"
-                                    class="inline-flex items-center text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 hover:opacity-90"
-                                    style="{{ $style }}">
-                                    {{ $tagName }}
-                                    <span class="ml-1.5 opacity-70 text-[10px] bg-white/20 px-1.5 rounded-full">{{ $t->posts_count }}</span>
-                                </a>
-                                @empty
-                                <p class="text-sm text-gray-500 dark:text-gray-400 italic">Belum ada topik.</p>
-                                @endforelse
+                                        // Active State vs Inactive State
+                                        if ($isActive) {
+                                        $style = "background-color: {$bgClass}; color: white; transform: scale(1.05); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);";
+                                        } else {
+                                        // Make it look like a pastel version for inactive, or just use the color with lower opacity if possible,
+                                        // but since we have hex, let's just use the solid color with white text for consistency with slider,
+                                        // OR use a utility class if we want to be fancy.
+                                        // For now, let's stick to the consistent solid color look from the slider.
+                                        $style = "background-color: {$bgClass}; color: white;";
+                                        }
+                                        @endphp
+                                        <a href="{{ route('berita.index', ['tag' => $t->slug]) }}"
+                                            class="inline-flex items-center text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 hover:opacity-90"
+                                            @style([$style])>
+                                            {{ $tagName }}
+                                            <span class="ml-1.5 opacity-70 text-[10px] bg-white/20 px-1.5 rounded-full">{{ $t->posts_count }}</span>
+                                        </a>
+                                        @empty
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 italic">Belum ada topik.</p>
+                                        @endforelse
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- Info Widget -->
-                        <!-- <div class="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border border-blue-100 dark:border-blue-900/50">
+                            <!-- Info Widget -->
+                            <!-- <div class="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border border-blue-100 dark:border-blue-900/50">
                             <h4 class="font-bold text-blue-800 dark:text-blue-200 mb-2 text-sm">Informasi</h4>
                             <p class="text-xs text-blue-600 dark:text-blue-300 leading-relaxed">
                                 Gunakan filter topik di atas untuk menemukan berita berdasarkan kategori yang Anda minati.
                             </p>
                         </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
