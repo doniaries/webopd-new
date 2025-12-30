@@ -5,27 +5,39 @@ $siteName = $pengaturan->name ?? config('app.name');
 $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan->logo)) : asset('images/logo.png');
 @endphp
 
-<header class="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-sm transition-colors duration-200">
+<header
+    x-data="{ scrolled: false }"
+    @scroll.window="scrolled = (window.pageYOffset > 50)"
+    class="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-sm transition-all duration-300 ease-in-out"
+    :class="{'shadow-md': scrolled}">
     <!-- Top Bar -->
-    <div class="border-b border-gray-200 dark:border-gray-700">
+    <div class="border-b border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out">
         <div class="container mx-auto px-4 lg:px-8">
-            <div class="flex items-center justify-between py-3">
+            <div class="flex items-center justify-between transition-all duration-300 ease-in-out"
+                :class="{'py-1': scrolled, 'py-3': !scrolled}">
                 <!-- Logo Group -->
                 <div class="flex items-center gap-4">
-                    <a href="{{ url('/') }}" class="flex items-center gap-3 border-r border-gray-200 dark:border-gray-700 pr-4">
-                        <img src="{{ $logoUrl }}" alt="Logo" class="h-12 w-auto object-contain"
+                    <a href="{{ url('/') }}" class="flex items-center gap-3 border-r border-gray-200 dark:border-gray-700 pr-4 transition-all duration-300">
+                        <img src="{{ $logoUrl }}" alt="Logo"
+                            class="w-auto object-contain transition-all duration-300 ease-in-out"
+                            :class="{'h-9': scrolled, 'h-12': !scrolled}"
                             onerror="this.src='{{ asset('images/logo.png') }}'">
-                        <div class="flex flex-col">
-                            <span class="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 uppercase">Pemerintah Kabupaten {{ $pengaturan->kabupaten ?? 'Sijunjung' }}</span>
-                            <h1 class="text-xs sm:text-base font-bold text-gray-900 dark:text-white uppercase leading-tight">{{ $siteName }}</h1>
-
+                        <div class="flex flex-col justify-center">
+                            <span class="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 uppercase transition-all duration-300"
+                                :class="{'opacity-0 h-0 overflow-hidden': scrolled}">Pemerintah Kabupaten {{ $pengaturan->kabupaten ?? 'Sijunjung' }}</span>
+                            <h1 class="text-xs sm:text-base font-bold text-gray-900 dark:text-white uppercase leading-tight transition-all duration-300"
+                                :class="{'text-sm': scrolled}">{{ $siteName }}</h1>
                         </div>
                     </a>
 
                     <!-- Partner Logos (Desktop) -->
-                    <div class="hidden lg:flex items-center gap-4">
-                        <img src="{{ asset('images/bangga.png') }}" alt="Bangga" class="h-8 w-auto">
-                        <img src="{{ asset('images/berakhlak.png') }}" alt="Berakhlak" class="h-8 w-auto">
+                    <div class="hidden lg:flex items-center gap-4 transition-all duration-300">
+                        <img src="{{ asset('images/bangga.png') }}" alt="Bangga"
+                            class="w-auto transition-all duration-300 ease-in-out"
+                            :class="{'h-6': scrolled, 'h-8': !scrolled}">
+                        <img src="{{ asset('images/berakhlak.png') }}" alt="Berakhlak"
+                            class="w-auto transition-all duration-300 ease-in-out"
+                            :class="{'h-6': scrolled, 'h-8': !scrolled}">
                     </div>
                 </div>
 
