@@ -43,6 +43,29 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
 
                 <!-- Dark Mode Toggle & Mobile Menu -->
                 <div class="flex items-center gap-2">
+                    <!-- Live Clock -->
+                    <div x-data="{
+                        time: '',
+                        init() {
+                            this.updateTime();
+                            setInterval(() => this.updateTime(), 1000);
+                        },
+                        updateTime() {
+                            const options = { 
+                                weekday: 'long', 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric',
+                                hour: '2-digit', 
+                                minute: '2-digit', 
+                                second: '2-digit',
+                                hour12: false
+                            };
+                            this.time = new Date().toLocaleString('id-ID', options).replace(/\./g, ':');
+                        }
+                    }" class="hidden md:block text-[11px] sm:text-xs font-medium text-gray-600 dark:text-gray-300 mr-2 sm:mr-4 text-right leading-tight">
+                        <span x-text="time"></span>
+                    </div>
                     <!-- Dark Mode Toggle -->
                     <button id="theme-toggle" class="p-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" aria-label="Toggle dark mode">
                         <i class="bi bi-sun-fill text-xl hidden dark:block"></i>
