@@ -28,9 +28,9 @@ class DokumenTable
                     ->sortable(),
                 TextColumn::make('views')
                     ->sortable(),
-                TextColumn::make('published_at')
-                    ->dateTime()
-                    ->sortable(),
+                // TextColumn::make('published_at')
+                //     ->dateTime()
+                //     ->sortable(),
             ])
             ->filters([
                 //
