@@ -19,7 +19,9 @@ class PengaturanForm
                     ->schema([
                         TextInput::make('name')
                             ->required()
-                            ->maxLength(255)
+                            ->maxLength(68)
+                            ->minLength(4)
+                            ->helperText('Maksimal 68 karakter.')
                             ->live(onBlur: true)
                             ->afterStateUpdated(fn(string $operation, $state, callable $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
                         TextInput::make('slug')
