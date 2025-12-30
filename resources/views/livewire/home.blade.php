@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="mt-8 text-center">
-                        <a href="{{ route('berita.index') }}" class="inline-flex items-center px-6 py-2.5 border border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 font-medium rounded-full hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 dark:hover:text-white transition-all duration-300">
+                        <a wire:navigate href="{{ route('berita.index') }}" class="inline-flex items-center px-6 py-2.5 border border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 font-medium rounded-full hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 dark:hover:text-white transition-all duration-300">
                             Lihat Semua Berita <i class="bi bi-arrow-right-short ml-2 text-xl"></i>
                         </a>
                     </div>

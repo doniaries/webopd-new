@@ -4,7 +4,7 @@
             <div class="h-6 w-1 bg-blue-600 rounded-full mr-3"></div>
             <h2 class="text-xl font-bold text-gray-900 dark:text-white">Agenda Kegiatan</h2>
         </div>
-        <a href="{{ route('agenda.index') }}" class="text-sm text-blue-600 dark:text-blue-400 font-medium hover:underline flex items-center">
+        <a wire:navigate href="{{ route('agenda.index') }}" class="text-sm text-blue-600 dark:text-blue-400 font-medium hover:underline flex items-center">
             Lihat Semua <i class="bi bi-arrow-right ml-1"></i>
         </a>
     </div>
@@ -65,7 +65,7 @@
                         {{ $agenda->waktu_selesai ? \Carbon\Carbon::parse($agenda->waktu_selesai)->format('H:i') : '-' }}
                     </td>
                     <td class="px-4 py-4 text-center whitespace-nowrap">
-                        <a href="{{ route('agenda.show', $agenda->slug) }}" class="inline-flex items-center justify-center p-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                        <a wire:navigate href="{{ route('agenda.show', $agenda->slug) }}" class="inline-flex items-center justify-center p-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
                             <i class="bi bi-eye"></i>
                         </a>
                     </td>

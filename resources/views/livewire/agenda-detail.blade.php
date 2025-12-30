@@ -6,7 +6,7 @@
             <div class="max-w-4xl mx-auto">
                 <div class="bg-white dark:bg-zinc-800 rounded-lg shadow-md overflow-hidden border border-gray-200 dark:border-gray-700">
                     <div class="p-6">
-                        <a href="{{ route('agenda.index') }}" class="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 mb-6 transition-colors">
+                        <a wire:navigate href="{{ route('agenda.index') }}" class="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 mb-6 transition-colors">
                             <i class="fas fa-arrow-left mr-2"></i> Kembali ke Daftar Agenda
                         </a>
 

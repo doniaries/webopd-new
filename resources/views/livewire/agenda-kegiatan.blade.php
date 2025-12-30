@@ -150,7 +150,7 @@
                                         </div>
                                     </td>
                                     <td class="px-2 py-3 text-sm font-medium text-center">
-                                        <a href="{{ route('agenda.show', $agenda->slug) }}" class="inline-flex items-center justify-center w-full px-2 py-1.5 border border-transparent text-xs font-medium rounded-md {{ $isPastEvent ? 'bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-600' : 'text-white bg-green-600 hover:bg-green-700' }} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
+                                        <a wire:navigate href="{{ route('agenda.show', $agenda->slug) }}" class="inline-flex items-center justify-center p-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
                                             <i class="far fa-eye mr-1"></i> Detail
                                         </a>
                                     </td>

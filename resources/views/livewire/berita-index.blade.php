@@ -15,7 +15,7 @@
                         <div class="animate-fade-in-up">
                             <span class="inline-flex items-center gap-2 px-3 py-1 rounded-md text-sm bg-blue-50 text-blue-700 border border-blue-100">
                                 Topik: <strong>{{ Str::title(str_replace('-', ' ', $tag)) }}</strong>
-                                <a href="{{ route('berita.index') }}" class="ml-1 text-blue-400 hover:text-red-500 transition-colors" title="Hapus Filter">
+                                <a wire:navigate href="{{ route('berita.index') }}" class="ml-1 text-blue-400 hover:text-red-500 transition-colors" title="Hapus Filter">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                     </svg>
@@ -32,7 +32,7 @@
                             <!-- Featured Image -->
                             <!-- Featured Image Wrapper -->
                             <div class="block flex-shrink-0 relative group">
-                                <a href="{{ route('berita.show', $post->slug) }}" class="block w-full h-full">
+                                <a wire:navigate href="{{ route('berita.show', $post->slug) }}" class="block w-full h-full">
                                     @if($post->foto_utama)
                                     <img src="{{ asset('storage/' . $post->foto_utama) }}"
                                         alt="{{ $post->title }}"
@@ -58,13 +58,13 @@
                                     // Use model accessor
                                     $bgColor = $postTag->color ?: '#3B82F6';
                                     @endphp
-                                    <a href="{{ route('berita.index', ['tag' => $postTag->slug]) }}"
+                                    <a wire:navigate href="{{ route('berita.index', ['tag' => $postTag->slug]) }}"
                                         class="inline-block px-2 py-1 text-xs font-semibold text-white rounded-md shadow-sm hover:opacity-90 transition-opacity pointer-events-auto"
                                         @style(['background-color: ' . $bgColor])>
     {{ $tagName }}
 </a>
                                     @else
-                                    <a href="{{ route('berita.index') }}"
+                                    <a wire:navigate href="{{ route('berita.index') }}"
                                         class="inline-block px-2 py-1 text-xs font-semibold text-white bg-blue-600 rounded-md shadow-sm hover:opacity-90 transition-opacity pointer-events-auto">
                                         Berita
                                     </a>
@@ -78,7 +78,7 @@
 
                                 <!-- Title -->
                                 <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-white leading-tight">
-                                    <a href="{{ route('berita.show', $post->slug) }}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                    <a wire:navigate href="{{ route('berita.show', $post->slug) }}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                                         {{ $post->title }}
                                     </a>
                                 </h2>
@@ -168,7 +168,7 @@
                                         $style = "background-color: {$bgClass}; color: white;";
                                         }
                                         @endphp
-                                        <a href="{{ route('berita.index', ['tag' => $t->slug]) }}"
+                                        <a wire:navigate href="{{ route('berita.index', ['tag' => $t->slug]) }}"
                                             class="inline-flex items-center text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 hover:opacity-90"
                                             @style([$style])>
                                             {{ $tagName }}

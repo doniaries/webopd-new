@@ -1,7 +1,7 @@
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
     @foreach ($recentPosts as $post)
     <div class="bg-white dark:bg-zinc-800 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 h-full flex flex-col group">
-        <a href="{{ route('berita.show', $post->slug) }}" class="block relative aspect-video overflow-hidden">
+        <a wire:navigate href="{{ route('berita.show', $post->slug) }}" class="block relative aspect-video overflow-hidden">
             @if ($post->foto_utama)
             <img src="{{ $post->foto_utama ? asset('storage/' . $post->foto_utama) : 'https://placehold.co/600x400/e2e8f0/64748b?text=No+Image' }}"
                 alt="{{ $post->title }}"
@@ -28,7 +28,7 @@
 
 
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                <a href="{{ route('berita.show', $post->slug) }}">
+                <a wire:navigate href="{{ route('berita.show', $post->slug) }}">
                     {{ $post->title }}
                 </a>
             </h3>
@@ -49,7 +49,7 @@
                     <span class="flex items-center gap-1 text-gray-400" title="{{ $post->views ?? 0 }} Dilihat">
                         <i class="bi bi-eye"></i> {{ $post->views ?? 0 }}
                     </span>
-                    <a href="{{ route('berita.show', $post->slug) }}" class="text-blue-600 dark:text-blue-400 font-medium hover:underline">
+                    <a wire:navigate href="{{ route('berita.show', $post->slug) }}" class="text-blue-600 dark:text-blue-400 font-medium hover:underline">
                         Baca..
                     </a>
                 </div>

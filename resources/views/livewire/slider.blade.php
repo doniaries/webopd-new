@@ -30,13 +30,13 @@
                     </div>
                     @endif
 
-                    <a href="{{ route('berita.show', $slider->slug) }}" class="group block">
+                    <a wire:navigate href="{{ route('berita.show', $slider->slug) }}" class="group block">
                         <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight drop-shadow-lg group-hover:text-blue-400 transition-colors duration-300 max-w-4xl">
                             {{ $slider->title }}
                         </h2>
                     </a>
 
-                    <a href="{{ route('berita.show', $slider->slug) }}" class="inline-flex items-center text-white text-sm md:text-base gap-2 hover:text-blue-400 transition-colors w-fit">
+                    <a wire:navigate href="{{ route('berita.show', $slider->slug) }}" class="inline-flex items-center text-white text-sm md:text-base gap-2 hover:text-blue-400 transition-colors w-fit">
                         <i class="bi bi-arrow-right-circle"></i>
                         <span>Baca Selengkapnya</span>
                     </a>
@@ -59,7 +59,7 @@
                 <h3 class="text-white font-bold text-lg mb-3">Berita populer</h3>
                 <div class="flex overflow-x-auto snap-x scrollbar-hide md:grid md:grid-cols-4 gap-3 pb-2 -mx-4 px-4 md:mx-0 md:px-0">
                     @foreach($popularPosts as $post)
-                    <a href="{{ route('berita.show', $post->slug) }}" class="group flex flex-shrink-0 w-[85%] sm:w-[300px] md:w-auto snap-center gap-2 bg-black/40 hover:bg-black/60 rounded-lg overflow-hidden transition-all duration-300 backdrop-blur-sm">
+                    <a wire:navigate href="{{ route('berita.show', $post->slug) }}" class="group flex flex-shrink-0 w-[85%] sm:w-[300px] md:w-auto snap-center gap-2 bg-black/40 hover:bg-black/60 rounded-lg overflow-hidden transition-all duration-300 backdrop-blur-sm">
                         @if($post->foto_utama_url)
                         <img src="{{ $post->foto_utama_url }}"
                             alt="{{ $post->title }}"

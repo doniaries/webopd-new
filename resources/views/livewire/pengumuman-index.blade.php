@@ -20,7 +20,7 @@
                             </div>
                             <div class="flex-1">
                                 <h2 class="text-xl font-bold mb-2">
-                                    <a href="{{ route('pengumuman.show', $item->slug) }}" class="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                    <a wire:navigate href="{{ route('pengumuman.show', $item->slug) }}" class="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                                         {{ $item->judul }}
                                     </a>
                                 </h2>
@@ -32,7 +32,7 @@
                                     {{ Str::limit(strip_tags($item->isi), 200) }}
                                 </p>
                                 <div class="mt-4">
-                                    <a href="{{ route('pengumuman.show', $item->slug) }}" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors">
+                                    <a wire:navigate href="{{ route('pengumuman.show', $item->slug) }}" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors">
                                         Baca Selengkapnya <i class="bi bi-arrow-right ml-1"></i>
                                     </a>
                                 </div>

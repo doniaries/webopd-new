@@ -11,7 +11,7 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
 
             <!-- Brand & Socials -->
             <div class="space-y-6">
-                <a href="{{ url('/') }}" class="inline-block">
+                <a wire:navigate href="{{ url('/') }}" class="inline-block">
                     <div class="flex items-center gap-3">
                         <img src="{{ $logoUrl }}" alt="Logo" class="w-auto h-12 object-contain"
                             onerror="this.src='{{ asset('images/logo.png') }}'">
@@ -57,31 +57,31 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                 <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-6">Tautan Cepat</h4>
                 <ul class="space-y-3 text-sm">
                     <li>
-                        <a href="{{ url('/') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
+                        <a wire:navigate href="{{ url('/') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
                             <span class="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-gray-600 mr-2 group-hover:bg-blue-600 dark:group-hover:bg-blue-400 transition-colors"></span>
                             Beranda
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('berita.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
+                        <a wire:navigate href="{{ route('berita.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
                             <span class="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-gray-600 mr-2 group-hover:bg-blue-600 dark:group-hover:bg-blue-400 transition-colors"></span>
                             Berita
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('agenda.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
+                        <a wire:navigate href="{{ route('agenda.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
                             <span class="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-gray-600 mr-2 group-hover:bg-blue-600 dark:group-hover:bg-blue-400 transition-colors"></span>
                             Agenda Kegiatan
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('galeri.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
+                        <a wire:navigate href="{{ route('galeri.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
                             <span class="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-gray-600 mr-2 group-hover:bg-blue-600 dark:group-hover:bg-blue-400 transition-colors"></span>
                             Galeri
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('pengumuman.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
+                        <a wire:navigate href="{{ route('pengumuman.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group">
                             <span class="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-gray-600 mr-2 group-hover:bg-blue-600 dark:group-hover:bg-blue-400 transition-colors"></span>
                             Pengumuman
                         </a>

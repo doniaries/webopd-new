@@ -176,7 +176,7 @@
 
                     <!-- Back Button -->
                     <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-                        <a href="{{ route('berita.index') }}" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium">
+                        <a wire:navigate href="{{ route('berita.index') }}" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
@@ -198,7 +198,7 @@
                         @forelse($relatedPosts as $related)
                         <div class="group flex gap-4">
                             <!-- Thumbnail -->
-                            <a href="{{ route('berita.show', $related->slug) }}" class="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden relative">
+                            <a wire:navigate href="{{ route('berita.show', $related->slug) }}" class="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden relative">
                                 @if($related->foto_utama)
                                 <img src="{{ $related->foto_utama_url }}"
                                     alt="{{ $related->title }}"
@@ -219,7 +219,7 @@
                                     {{ $related->published_at->format('d M Y') }}
                                 </div>
                                 <h4 class="text-sm font-semibold text-gray-900 dark:text-white line-clamp-2 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                                    <a href="{{ route('berita.show', $related->slug) }}">
+                                    <a wire:navigate href="{{ route('berita.show', $related->slug) }}">
                                         {{ $related->title }}
                                     </a>
                                 </h4>
@@ -233,7 +233,7 @@
                     </div>
 
                     <div class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 text-center">
-                        <a href="{{ route('berita.index') }}" class="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
+                        <a wire:navigate href="{{ route('berita.index') }}" class="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
                             Lihat Semua Berita <i class="bi bi-arrow-right ml-1"></i>
                         </a>
                     </div>

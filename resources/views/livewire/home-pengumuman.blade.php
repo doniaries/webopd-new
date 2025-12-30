@@ -4,7 +4,7 @@
             <div class="h-6 w-1 bg-yellow-400 rounded-full mr-3"></div>
             <h2 class="text-xl font-bold text-gray-900 dark:text-white">Pengumuman</h2>
         </div>
-        <a href="{{ route('pengumuman.index') }}" class="text-sm text-blue-600 dark:text-blue-400 font-medium hover:underline flex items-center">
+        <a wire:navigate href="{{ route('pengumuman.index') }}" class="text-sm text-blue-600 dark:text-blue-400 font-medium hover:underline flex items-center">
             Lihat Semua <i class="bi bi-arrow-right ml-1"></i>
         </a>
     </div>
@@ -25,7 +25,7 @@
                         </span>
                     </div>
                     <h3 class="font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
-                        <a href="{{ route('pengumuman.show', $item->slug) }}" class="before:absolute before:inset-0">
+                        <a wire:navigate href="{{ route('pengumuman.show', $item->slug) }}" class="before:absolute before:inset-0">
                             {{ $item->judul }}
                         </a>
                     </h3>

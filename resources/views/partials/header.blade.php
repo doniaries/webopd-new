@@ -17,7 +17,7 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                 :class="{'py-1': scrolled, 'py-3': !scrolled}">
                 <!-- Logo Group -->
                 <div class="flex items-center gap-4">
-                    <a href="{{ url('/') }}" class="flex items-center gap-3 border-r border-gray-200 dark:border-gray-700 pr-4 transition-all duration-300">
+                    <a wire:navigate href="{{ url('/') }}" class="flex items-center gap-3 border-r border-gray-200 dark:border-gray-700 pr-4 transition-all duration-300">
                         <img src="{{ $logoUrl }}" alt="Logo"
                             class="w-auto h-12 object-contain transition-all duration-300 ease-in-out"
                             :class="{'!h-9': scrolled}"
@@ -87,14 +87,14 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
             <ul class="flex justify-center items-center">
                 <!-- Home Icon -->
                 <li>
-                    <a href="{{ route('home') }}"
+                    <a wire:navigate href="{{ route('home') }}"
                         class="flex items-center px-5 py-4 text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide hover:text-blue-600 dark:hover:text-blue-400 hover:border-b-2 hover:border-blue-600 dark:hover:border-blue-400 transition-all {{ request()->routeIs('home') ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400' : '' }}">
                         <i class="bi bi-house-door-fill text-xl"></i>
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('berita.index') }}"
+                    <a wire:navigate href="{{ route('berita.index') }}"
                         class="flex items-center gap-2 px-5 py-4 text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide hover:text-blue-600 dark:hover:text-blue-400 hover:border-b-2 hover:border-blue-600 dark:hover:border-blue-400 transition-all {{ request()->is('berita*') ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400' : '' }}">
                         Berita
                     </a>
@@ -108,7 +108,7 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                     <ul class="absolute left-1/2 transform -translate-x-1/2 top-full hidden group-hover:block bg-white dark:bg-gray-800 shadow-lg rounded-b-lg min-w-[220px] py-2 z-50 border border-gray-200 dark:border-gray-700">
                         <!-- <li><a href="{{ route('home') }}#sejarah" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Sejarah</a></li> -->
 
-                        <li><a href="{{ route('struktur-organisasi') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Struktur Organisasi</a></li>
+                        <li><a wire:navigate href="{{ route('struktur-organisasi') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Struktur Organisasi</a></li>
                     </ul>
                 </li>
 
@@ -118,27 +118,27 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                         Informasi <i class="bi bi-chevron-down text-xs"></i>
                     </a>
                     <ul class="absolute left-1/2 transform -translate-x-1/2 top-full hidden group-hover:block bg-white dark:bg-gray-800 shadow-lg rounded-b-lg min-w-[220px] py-2 z-50 border border-gray-200 dark:border-gray-700">
-                        <li><a href="{{ route('agenda.index') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Agenda Kegiatan</a></li>
-                        <li><a href="{{ route('dokumen.index') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Dokumen & Download</a></li>
+                        <li><a wire:navigate href="{{ route('agenda.index') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Agenda Kegiatan</a></li>
+                        <li><a wire:navigate href="{{ route('dokumen.index') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Dokumen & Download</a></li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="{{ route('galeri.index') }}"
+                    <a wire:navigate href="{{ route('galeri.index') }}"
                         class="flex items-center gap-2 px-5 py-4 text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide hover:text-blue-600 dark:hover:text-blue-400 hover:border-b-2 hover:border-blue-600 dark:hover:border-blue-400 transition-all {{ request()->routeIs('galeri.index') ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400' : '' }}">
                         Galeri
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('pengumuman.index') }}"
+                    <a wire:navigate href="{{ route('pengumuman.index') }}"
                         class="flex items-center gap-2 px-5 py-4 text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide hover:text-blue-600 dark:hover:text-blue-400 hover:border-b-2 hover:border-blue-600 dark:hover:border-blue-400 transition-all {{ request()->is('pengumuman*') ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400' : '' }}">
                         Pengumuman
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('home') }}#layanan"
+                    <a wire:navigate href="{{ route('home') }}#layanan"
                         class="flex items-center gap-2 px-5 py-4 text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide hover:text-blue-600 dark:hover:text-blue-400 hover:border-b-2 hover:border-blue-600 dark:hover:border-blue-400 transition-all">
                         Layanan
                     </a>
@@ -150,8 +150,8 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
         <ul class="py-2">
-            <li><a href="{{ route('home') }}" class="flex items-center gap-3 px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 {{ request()->routeIs('home') ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400' : '' }}"><i class="bi bi-house-door-fill"></i> Beranda</a></li>
-            <li><a href="{{ route('berita.index') }}" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 {{ request()->is('berita*') ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400' : '' }}">Berita</a></li>
+            <li><a wire:navigate href="{{ route('home') }}" class="flex items-center gap-3 px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 {{ request()->routeIs('home') ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400' : '' }}"><i class="bi bi-house-door-fill"></i> Beranda</a></li>
+            <li><a wire:navigate href="{{ route('berita.index') }}" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 {{ request()->is('berita*') ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400' : '' }}">Berita</a></li>
 
             <!-- Mobile Profil -->
             <li>
@@ -159,9 +159,9 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                     Profil <i class="bi bi-chevron-down text-xs"></i>
                 </button>
                 <ul class="mobile-dropdown-menu hidden bg-gray-50 dark:bg-gray-800">
-                    <li><a href="{{ route('home') }}#sejarah" class="block px-10 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Sejarah</a></li>
-                    <li><a href="{{ route('home') }}#visi-misi" class="block px-10 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Visi & Misi</a></li>
-                    <li><a href="{{ route('struktur-organisasi') }}" class="block px-10 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Struktur Organisasi</a></li>
+                    <li><a wire:navigate href="{{ route('home') }}#sejarah" class="block px-10 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Sejarah</a></li>
+                    <li><a wire:navigate href="{{ route('home') }}#visi-misi" class="block px-10 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Visi & Misi</a></li>
+                    <li><a wire:navigate href="{{ route('struktur-organisasi') }}" class="block px-10 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Struktur Organisasi</a></li>
                 </ul>
             </li>
 
@@ -171,16 +171,16 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                     Informasi <i class="bi bi-chevron-down text-xs"></i>
                 </button>
                 <ul class="mobile-dropdown-menu hidden bg-gray-50 dark:bg-gray-800">
-                    <li><a href="{{ route('agenda.index') }}" class="block px-10 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Agenda Kegiatan</a></li>
-                    <li><a href="{{ route('dokumen.index') }}" class="block px-10 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Dokumen & Download</a></li>
+                    <li><a wire:navigate href="{{ route('agenda.index') }}" class="block px-10 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Agenda Kegiatan</a></li>
+                    <li><a wire:navigate href="{{ route('dokumen.index') }}" class="block px-10 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Dokumen & Download</a></li>
                 </ul>
             </li>
 
             <!-- Mobile Galeri -->
-            <li><a href="{{ route('galeri.index') }}" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 {{ request()->routeIs('galeri.index') ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400' : '' }}">Galeri</a></li>
+            <li><a wire:navigate href="{{ route('galeri.index') }}" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 {{ request()->routeIs('galeri.index') ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400' : '' }}">Galeri</a></li>
 
-            <li><a href="{{ route('pengumuman.index') }}" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 {{ request()->is('pengumuman*') ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400' : '' }}">Pengumuman</a></li>
-            <li><a href="{{ route('home') }}#layanan" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">Layanan</a></li>
+            <li><a wire:navigate href="{{ route('pengumuman.index') }}" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 {{ request()->is('pengumuman*') ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400' : '' }}">Pengumuman</a></li>
+            <li><a wire:navigate href="{{ route('home') }}#layanan" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">Layanan</a></li>
         </ul>
     </div>
 </header>
