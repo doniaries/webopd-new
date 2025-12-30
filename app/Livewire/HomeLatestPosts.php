@@ -11,12 +11,18 @@ class HomeLatestPosts extends Component
 {
 
 
+    public function placeholder()
+    {
+        return view('livewire.skeletons.posts');
+    }
+
     public function render()
     {
         $recentPosts = Post::query()
+            ->select('id', 'title', 'slug', 'foto_utama', 'published_at', 'views', 'user_id', 'created_at')
             ->where('status', 'published')
             ->where('published_at', '<=', now())
-            ->with(['tags', 'user'])
+            ->with(['tags:id,name,slug,color', 'user:id,name'])
             ->latest('published_at')
             ->take(6)
             ->get();

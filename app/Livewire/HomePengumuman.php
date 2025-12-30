@@ -11,9 +11,15 @@ class HomePengumuman extends Component
 {
 
 
+    public function placeholder()
+    {
+        return view('livewire.skeletons.pengumuman');
+    }
+
     public function render()
     {
         $pengumuman = Pengumuman::query()
+            ->select('id', 'judul', 'slug', 'isi', 'published_at')
             ->where('published_at', '<=', now())
             ->latest('published_at')
             ->take(3)

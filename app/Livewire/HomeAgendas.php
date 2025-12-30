@@ -11,9 +11,15 @@ class HomeAgendas extends Component
 {
 
 
+    public function placeholder()
+    {
+        return view('livewire.skeletons.agendas');
+    }
+
     public function render()
     {
         $agendas = AgendaKegiatan::query()
+            ->select('id', 'nama_agenda', 'slug', 'tempat', 'penyelenggara', 'dari_tanggal', 'sampai_tanggal', 'waktu_mulai', 'waktu_selesai')
             ->where('dari_tanggal', '>=', now()->toDateString())
             ->orderBy('dari_tanggal')
             ->orderBy('waktu_mulai')

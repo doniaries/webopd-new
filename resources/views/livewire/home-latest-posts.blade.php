@@ -5,6 +5,7 @@
             @if ($post->foto_utama)
             <img src="{{ $post->foto_utama ? asset('storage/' . $post->foto_utama) : 'https://placehold.co/600x400/e2e8f0/64748b?text=No+Image' }}"
                 alt="{{ $post->title }}"
+                loading="lazy"
                 class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
             @else
             <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-zinc-700 dark:to-zinc-800 flex items-center justify-center">
