@@ -129,7 +129,7 @@ class PostSeeder extends Seeder
 
                 // Generate sample posts
                 $posts = [];
-                $postCount = 30; // Jumlah post yang ingin dibuat
+                $postCount = 10; // Jumlah post yang ingin dibuat
 
                 for ($i = 1; $i <= $postCount; $i++) {
                     try {
@@ -160,7 +160,7 @@ class PostSeeder extends Seeder
                             'status' => 'published',
                             'user_id' => $user->id,
 
-                            'views' => $this->faker->numberBetween(10, 1000),
+                            'views' => $this->faker->numberBetween(10, 100),
                             'foto_utama' => $placeholderUrl, // Use placehold.co URL
                             'is_featured' => $isFeatured,
                             'created_at' => $postDate,

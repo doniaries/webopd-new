@@ -2,7 +2,7 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <div x-ref="swiperContainer" class="swiper w-full h-[300px] md:h-[450px] lg:h-[550px] bg-gray-900 relative">
+    <div x-ref="swiperContainer" class="swiper w-full h-[500px] md:h-[450px] lg:h-[550px] bg-gray-900 relative">
         <div class="swiper-wrapper">
             @foreach ($sliders as $slider)
             <div class="swiper-slide relative flex items-center justify-center bg-gray-900">
@@ -57,9 +57,9 @@
         <div class="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black/90 to-transparent pb-4 pt-12">
             <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
                 <h3 class="text-white font-bold text-lg mb-3">Berita populer</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="flex overflow-x-auto snap-x scrollbar-hide md:grid md:grid-cols-4 gap-3 pb-2 -mx-4 px-4 md:mx-0 md:px-0">
                     @foreach($popularPosts as $post)
-                    <a href="{{ route('berita.show', $post->slug) }}" class="group flex gap-2 bg-black/40 hover:bg-black/60 rounded-lg overflow-hidden transition-all duration-300 backdrop-blur-sm">
+                    <a href="{{ route('berita.show', $post->slug) }}" class="group flex flex-shrink-0 w-[85%] sm:w-[300px] md:w-auto snap-center gap-2 bg-black/40 hover:bg-black/60 rounded-lg overflow-hidden transition-all duration-300 backdrop-blur-sm">
                         @if($post->foto_utama_url)
                         <img src="{{ $post->foto_utama_url }}"
                             alt="{{ $post->title }}"
