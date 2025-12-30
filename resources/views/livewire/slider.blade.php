@@ -127,7 +127,7 @@
                     el: '.swiper-pagination',
                     clickable: true,
                     renderBullet: function(index, className) {
-                        return '<span class=' + className + '>' + (index + 1) + '</span>';
+                        return '<span class=\'' + className + '\'>' + (index + 1) + '</span>';
                     },
                 },
             });
@@ -146,6 +146,8 @@
             right: 20px !important;
             left: auto !important;
             width: auto !important;
+            z-index: 50 !important;
+            pointer-events: auto !important;
         }
 
         .swiper-pagination-bullet {

@@ -76,7 +76,7 @@
 
             <div x-ref="track" class="flex gap-6 w-max will-change-transform">
                 @foreach ($links as $link)
-                <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer"
+                <a href="{{ Str::startsWith($link->url, ['http://', 'https://']) ? $link->url : 'https://' . $link->url }}" target="_blank" rel="noopener noreferrer"
                     class="flex flex-col items-center justify-center p-4 bg-white dark:bg-zinc-800 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 transition-all duration-300 w-48 h-40 group/item hover:-translate-y-1">
 
                     <div class="w-16 h-16 mb-3 rounded-full bg-gray-50 dark:bg-zinc-700 flex items-center justify-center p-2 group-hover/item:bg-blue-50 dark:group-hover/item:bg-blue-900/30 transition-colors">

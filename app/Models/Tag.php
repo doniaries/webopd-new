@@ -22,4 +22,25 @@ class Tag extends Model
     {
         return $this->belongsToMany(Post::class);
     }
+
+    public function getColorAttribute()
+    {
+        $colors = [
+            'Teknologi' => '#3b82f6', // Blue
+            'Teknologi Informasi' => '#3b82f6', // Blue
+            'Kesehatan' => '#ef4444', // Red
+            'Pendidikan' => '#f97316', // Orange
+            'Olahraga' => '#f97316', // Orange
+            'Politik' => '#64748b', // Slate
+            'Sosial' => '#f59e0b', // Amber
+            'Lingkungan' => '#10b981', // Emerald
+            'Pariwisata' => '#06b6d4', // Cyan
+            'Otomotif' => '#eab308', // Yellow
+            'Agama' => '#8b5cf6', // Violet
+            'Pemerintahan' => '#0ea5e9', // Sky
+            'Peraturan' => '#6366f1', // Indigo
+        ];
+
+        return $colors[$this->name] ?? '#6b7280'; // Default Gray
+    }
 }
