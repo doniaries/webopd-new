@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('agenda_kegiatans', function (Blueprint $table) {
             $table->enum('status', ['Mendatang', 'Berlangsung', 'Selesai'])
                 ->default('Mendatang')
-                ->after('penyelenggara');
+                ->nullable();
         });
     }
 

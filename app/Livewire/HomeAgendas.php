@@ -19,7 +19,7 @@ class HomeAgendas extends Component
     public function render()
     {
         $agendas = AgendaKegiatan::query()
-            ->select('id', 'nama_agenda', 'slug', 'tempat', 'penyelenggara', 'dari_tanggal', 'sampai_tanggal', 'waktu_mulai', 'waktu_selesai')
+            ->select('id', 'nama_agenda', 'slug', 'tempat', 'penyelenggara', 'status', 'dari_tanggal', 'sampai_tanggal', 'waktu_mulai', 'waktu_selesai')
             ->where('dari_tanggal', '>=', now()->toDateString())
             ->orderBy('dari_tanggal')
             ->orderBy('waktu_mulai')
