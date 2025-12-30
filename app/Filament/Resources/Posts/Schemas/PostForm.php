@@ -42,6 +42,13 @@ class PostForm
                             ->required()
                             ->placeholder('Tulis konten berita di sini...')
                             ->columnSpanFull(),
+
+                    ])
+                    ->columns(1),
+                // Section 2: Gallery
+                Section::make('Galeri Foto')
+                    ->description('Upload foto-foto tambahan untuk galeri berita ini')
+                    ->schema([
                         FileUpload::make('foto_utama')
                             ->label('Foto Utama')
                             ->image()
@@ -58,10 +65,21 @@ class PostForm
                             ->maxSize(2048)
                             ->helperText('Upload foto utama (max 2MB). Format: JPEG, JPG, PNG')
                             ->columnSpanFull(),
-                    ])
-                    ->columns(1),
-
-                // Section 2: Meta Information
+                        FileUpload::make('gallery')
+                            ->label('Foto Galeri')
+                            ->multiple()
+                            ->image()
+                            ->disk('public')
+                            ->directory('posts/galleries')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->columnSpanFull()
+                            ->reorderable()
+                            ->appendFiles()
+                            ->maxSize(2048)
+                            ->helperText('Upload foto galeri (max 2MB/foto). Bisa upload banyak sekaligus.'),
+                    ]),
+                // Section 3: Meta Information
                 Section::make('Meta Information')
                     ->schema([
                         Select::make('user_id')
@@ -94,24 +112,7 @@ class PostForm
                     ])
                     ->columns(2),
 
-                // Section 3: Gallery
-                Section::make('Galeri Foto')
-                    ->description('Upload foto-foto tambahan untuk galeri berita ini')
-                    ->schema([
-                        FileUpload::make('gallery')
-                            ->label('Foto Galeri')
-                            ->multiple()
-                            ->image()
-                            ->disk('public')
-                            ->directory('posts/galleries')
-                            ->visibility('public')
-                            ->imageEditor()
-                            ->columnSpanFull()
-                            ->reorderable()
-                            ->appendFiles()
-                            ->maxSize(2048)
-                            ->helperText('Upload foto galeri (max 2MB/foto). Bisa upload banyak sekaligus.'),
-                    ]),
+
             ]);
     }
 }
