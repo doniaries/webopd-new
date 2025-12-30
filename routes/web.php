@@ -16,6 +16,9 @@ Route::get('/pengumuman/{pengumuman:slug}', \App\Livewire\PengumumanDetail::clas
 
 // Dokumen & Download
 Route::get('/dokumen', \App\Livewire\DokumenIndex::class)->name('dokumen.index');
+
+// Galeri Kegiatan
+Route::get('/galeri', \App\Livewire\GalleryIndex::class)->name('gallery.index');
 // Route::get('/dokumen/{slug}', function () {
 //     return 'Dokumen Detail Placeholder';
 // })->name('dokumen.detail');

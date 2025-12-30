@@ -96,8 +96,15 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                     </a>
                     <ul class="absolute left-1/2 transform -translate-x-1/2 top-full hidden group-hover:block bg-white dark:bg-gray-800 shadow-lg rounded-b-lg min-w-[220px] py-2 z-50 border border-gray-200 dark:border-gray-700">
                         <li><a href="{{ route('agenda.index') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Agenda Kegiatan</a></li>
-                        <li><a href="{{ route('dokumen.index') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Dokumen</a></li>
+                        <li><a href="{{ route('dokumen.index') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Dokumen & Download</a></li>
                     </ul>
+                </li>
+
+                <li>
+                    <a href="{{ route('gallery.index') }}"
+                        class="flex items-center gap-2 px-5 py-4 text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide hover:text-blue-600 dark:hover:text-blue-400 hover:border-b-2 hover:border-blue-600 dark:hover:border-blue-400 transition-all {{ request()->routeIs('gallery.index') ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400' : '' }}">
+                        Galeri
+                    </a>
                 </li>
 
                 <li>
@@ -145,6 +152,9 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                     <li><a href="{{ route('dokumen.index') }}" class="block px-10 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Dokumen & Download</a></li>
                 </ul>
             </li>
+
+            <!-- Mobile Galeri -->
+            <li><a href="{{ route('gallery.index') }}" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 {{ request()->routeIs('gallery.index') ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400' : '' }}">Galeri</a></li>
 
             <li><a href="{{ route('pengumuman.index') }}" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 {{ request()->is('pengumuman*') ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-blue-400' : '' }}">Pengumuman</a></li>
             <li><a href="{{ route('home') }}#layanan" class="block px-5 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">Layanan</a></li>
