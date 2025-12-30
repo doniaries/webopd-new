@@ -22,6 +22,11 @@ class PengaturanResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Settings';
 
+    public static function canCreate(): bool
+    {
+        return static::getModel()::count() < 1;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return PengaturanForm::configure($schema);
