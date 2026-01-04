@@ -54,7 +54,14 @@ class PengaturanForm
                 Section::make('Contact Details')
                     ->schema([
                         TextInput::make('kepala_instansi')
-                            ->maxLength(255),
+                            ->maxLength(255)
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(function ($state) {
+                                $sambutan = \App\Models\SambutanPimpinan::first();
+                                if ($sambutan) {
+                                    $sambutan->update(['nama' => $state]);
+                                }
+                            }),
                         Textarea::make('alamat_instansi')
                             ->columnSpanFull(),
                         TextInput::make('no_telp_instansi')

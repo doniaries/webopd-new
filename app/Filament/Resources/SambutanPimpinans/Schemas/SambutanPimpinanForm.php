@@ -26,8 +26,11 @@ class SambutanPimpinanForm
                     ->hidden()
                     ->dehydrated(),
                 TextInput::make('nama')
+                    ->hidden()
                     ->maxLength(255),
                 TextInput::make('jabatan')
+                    ->hidden()
+                    ->default('Kepala Dinas')
                     ->maxLength(255),
                 FileUpload::make('foto')
                     ->label('Foto Pimpinan')
