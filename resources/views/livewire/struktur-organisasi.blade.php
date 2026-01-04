@@ -9,9 +9,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {{-- Header Section --}}
         <div class="text-center mb-16">
-            <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
-                Dinas Komunikasi dan Informatika Kabupaten Sijunjung
-            </p>
+            <span class="mt-4 inline-flex items-center px-5 py-2 rounded-full text-base font-medium bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-700/10 dark:bg-blue-400/10 dark:text-blue-400 dark:ring-blue-400/30 shadow-sm">
+                {{ $siteName }}
+            </span>
         </div>
 
         {{-- Table Container --}}

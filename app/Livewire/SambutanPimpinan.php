@@ -11,6 +11,11 @@ class SambutanPimpinan extends Component
     {
         $sambutan = SambutanPimpinanModel::first();
         $pengaturan = \App\Models\Pengaturan::first();
-        return view('livewire.sambutan-pimpinan', compact('sambutan', 'pengaturan'));
+        return view('livewire.sambutan-pimpinan', [
+            'sambutan' => $sambutan,
+            'pengaturan' => $pengaturan,
+            'pageTitle' => 'Sambutan Pimpinan',
+            'pageDescription' => 'Sambutan Pimpinan ' . ($pengaturan->name ?? 'Dinas Komunikasi dan Informatika'),
+        ]);
     }
 }
