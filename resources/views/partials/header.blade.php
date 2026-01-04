@@ -67,9 +67,33 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                         <span x-text="time"></span>
                     </div>
                     <!-- Dark Mode Toggle -->
-                    <button id="theme-toggle" class="p-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" aria-label="Toggle dark mode">
-                        <i class="bi bi-sun-fill text-xl hidden dark:block"></i>
-                        <i class="bi bi-moon-fill text-xl block dark:hidden"></i>
+                    <button id="theme-toggle"
+                        x-data="{
+                            darkMode: localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
+                            toggle() {
+                                this.darkMode = !this.darkMode;
+                                this.updateClass();
+                            },
+                            updateClass() {
+                                if (this.darkMode) {
+                                    document.documentElement.classList.add('dark');
+                                    localStorage.theme = 'dark';
+                                } else {
+                                    document.documentElement.classList.remove('dark');
+                                    localStorage.theme = 'light';
+                                }
+                            },
+                            init() {
+                                this.updateClass();
+                            }
+                        }"
+                        @click="toggle()"
+                        class="p-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        aria-label="Toggle dark mode">
+                        <!-- Sun icon (show in dark mode) -->
+                        <i class="bi bi-sun-fill text-xl" x-show="darkMode" style="display: none;"></i>
+                        <!-- Moon icon (show in light mode) -->
+                        <i class="bi bi-moon-fill text-xl" x-show="!darkMode"></i>
                     </button>
 
                     <!-- Mobile Menu Toggle -->
@@ -109,6 +133,7 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                         <!-- <li><a href="{{ route('home') }}#sejarah" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Sejarah</a></li> -->
 
                         <li><a wire:navigate href="{{ route('struktur-organisasi') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Struktur Organisasi</a></li>
+                        <li><a wire:navigate href="{{ route('sambutan-pimpinan') }}" class="block px-5 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400">Sambutan Pimpinan</a></li>
                     </ul>
                 </li>
 
@@ -187,23 +212,9 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
 
 @push('scripts')
 <script>
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-            const html = document.documentElement;
-            const isDark = html.classList.contains('dark');
-
-            if (isDark) {
-                html.classList.remove('dark');
-                localStorage.theme = 'light';
-            } else {
-                html.classList.add('dark');
-                localStorage.theme = 'dark';
-            }
-        });
-    }
+    // Theme toggle functionality (Moved to Alpine)
+    // const themeToggle = document.getElementById('theme-toggle');
+    // if (themeToggle) { ... }
 
     // Mobile menu toggle
     document.getElementById('mobile-menu-toggle')?.addEventListener('click', function() {

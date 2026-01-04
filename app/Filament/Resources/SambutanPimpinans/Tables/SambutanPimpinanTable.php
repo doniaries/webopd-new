@@ -15,7 +15,14 @@ class SambutanPimpinanTable
     {
         return $table
             ->columns([
-                ImageColumn::make('foto'),
+                ImageColumn::make('foto')
+                    ->label('Foto')
+                    ->disk('public')
+                    ->visibility('public')
+                    ->circular()
+                    ->imageWidth(50)
+                    ->imageHeight(50)
+                    ->grow(false),
                 TextColumn::make('judul')
                     ->searchable()
                     ->sortable(),

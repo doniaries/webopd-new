@@ -27,9 +27,11 @@ class SambutanPimpinanForm
                     ->dehydrated(),
                 TextInput::make('nama')
                     ->hidden()
+                    ->default(fn() => \App\Models\Pengaturan::first()?->kepala_instansi)
                     ->maxLength(255),
                 TextInput::make('jabatan')
-                    ->hidden()
+                    // ->hidden()
+                    ->placeholder('Kepala Dinas/kepala Badan')
                     ->default('Kepala Dinas')
                     ->maxLength(255),
                 FileUpload::make('foto')

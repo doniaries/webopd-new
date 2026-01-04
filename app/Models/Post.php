@@ -42,10 +42,7 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function sliders()
-    {
-        return $this->hasMany(Slider::class);
-    }
+
 
     public function getFotoUtamaUrlAttribute()
     {

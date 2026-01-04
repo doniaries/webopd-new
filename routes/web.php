@@ -29,3 +29,6 @@ Route::get('/agenda/{agenda:slug}', \App\Livewire\AgendaDetail::class)->name('ag
 
 // Struktur Organisasi
 Route::get('/struktur-organisasi', \App\Livewire\StrukturOrganisasi::class)->name('struktur-organisasi');
+
+// Sambutan Pimpinan
+Route::get('/sambutan-pimpinan', \App\Livewire\SambutanPimpinan::class)->name('sambutan-pimpinan');
