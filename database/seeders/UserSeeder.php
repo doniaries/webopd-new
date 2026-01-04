@@ -22,15 +22,7 @@ class UserSeeder extends Seeder
         // Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
-        // Create Super Admin
-        $superAdmin = User::create([
-            'name' => 'Super Admin',
-            'email' => 'superadmin@gmail.com',
-            'password' => Hash::make('password'),
-            'is_active' => true,
-            'email_verified_at' => now(),
-        ]);
-        $superAdmin->syncRoles(['super_admin']);
+
 
         // Create Admin User
         $admin = User::create([
