@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('logo')->nullable();
             $table->string('favicon')->nullable();
+            $table->string('kabupaten')->nullable();
             $table->string('kepala_instansi')->nullable();
+            $table->string('jabatan_pimpinan')->nullable();
+            $table->string('foto_pimpinan')->nullable();
             $table->text('alamat_instansi')->nullable();
             $table->string('no_telp_instansi', 20)->nullable();
             $table->string('email_instansi')->unique()->nullable();
@@ -27,6 +30,7 @@ return new class extends Migration
             $table->string('youtube')->nullable();
             $table->decimal('latitude', 10, 8)->nullable()->comment('Koordinat latitude untuk peta');
             $table->decimal('longitude', 11, 8)->nullable()->comment('Koordinat longitude untuk peta');
+            $table->string('active_theme')->default('default');
             $table->timestamps();
 
             // Add indexes

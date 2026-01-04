@@ -16,14 +16,10 @@ return new class extends Migration
             $table->string('judul');
             $table->string('slug')->unique();
             $table->text('isi_sambutan')->nullable();
-            $table->string('foto')->nullable();
-            $table->string('nama')->nullable();
-            $table->string('jabatan')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->index('created_at');
-            $table->index('updated_at');
         });
     }
 

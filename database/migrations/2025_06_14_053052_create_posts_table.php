@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->text('content');
             $table->string('foto_utama')->nullable()->comment('Foto utama/cover untuk postingan');
+            $table->json('gallery')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
             $table->dateTime('published_at')->nullable();

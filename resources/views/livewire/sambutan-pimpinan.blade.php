@@ -4,14 +4,14 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
             <div class="p-6 md:p-8">
                 <div class="flex flex-col md:flex-row gap-8 items-start">
-                    @if($sambutan->foto)
+                    @if($pengaturan?->foto_pimpinan)
                     <div class="w-full md:w-1/3 flex-shrink-0">
-                        <img src="{{ asset('storage/' . $sambutan->foto) }}"
-                            alt="{{ $sambutan->nama }}"
+                        <img src="{{ asset('storage/' . $pengaturan->foto_pimpinan) }}"
+                            alt="{{ $pengaturan->kepala_instansi }}"
                             class="w-full h-auto rounded-lg shadow-md object-cover">
                         <div class="mt-4 text-center">
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ $sambutan->nama }}</h3>
-                            <p class="text-gray-600 dark:text-gray-400">{{ $sambutan->jabatan }}</p>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ $pengaturan->kepala_instansi }}</h3>
+                            <p class="text-gray-600 dark:text-gray-400">{{ $pengaturan->jabatan_pimpinan }}</p>
                         </div>
                     </div>
                     @endif

@@ -54,14 +54,21 @@ class PengaturanForm
                 Section::make('Contact Details')
                     ->schema([
                         TextInput::make('kepala_instansi')
-                            ->maxLength(255)
-                            ->live(onBlur: true)
-                            ->afterStateUpdated(function ($state) {
-                                $sambutan = \App\Models\SambutanPimpinan::first();
-                                if ($sambutan) {
-                                    $sambutan->update(['nama' => $state]);
-                                }
-                            }),
+                            ->label('Nama Pimpinan')
+                            ->maxLength(255),
+                        TextInput::make('jabatan_pimpinan')
+                            ->label('Jabatan Pimpinan')
+                            ->maxLength(255),
+                        FileUpload::make('foto_pimpinan')
+                            ->label('Foto Pimpinan')
+                            ->image()
+                            ->disk('public')
+                            ->directory('settings')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                            ->maxSize(2048)
+                            ->helperText('Upload foto pimpinan (max 2MB). Format: JPEG, JPG, PNG'),
                         Textarea::make('alamat_instansi')
                             ->columnSpanFull(),
                         TextInput::make('no_telp_instansi')

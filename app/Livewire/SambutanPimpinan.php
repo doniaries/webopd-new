@@ -10,6 +10,7 @@ class SambutanPimpinan extends Component
     public function render()
     {
         $sambutan = SambutanPimpinanModel::first();
-        return view('livewire.sambutan-pimpinan', compact('sambutan'));
+        $pengaturan = \App\Models\Pengaturan::first();
+        return view('livewire.sambutan-pimpinan', compact('sambutan', 'pengaturan'));
     }
 }

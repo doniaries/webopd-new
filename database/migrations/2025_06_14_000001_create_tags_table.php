@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('color', 7)->nullable()->comment('Hex color code for tag badge');
             $table->string('slug');
             $table->timestamps();
             $table->softDeletes();

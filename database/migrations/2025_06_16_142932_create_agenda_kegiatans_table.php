@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('sampai_tanggal')->nullable();
             $table->time('waktu_mulai')->nullable();
             $table->time('waktu_selesai')->nullable();
+            $table->enum('status', ['Mendatang', 'Berlangsung', 'Selesai'])->default('Mendatang')->nullable();
             $table->softDeletes();
             $table->timestamps();
 

@@ -15,6 +15,8 @@ class Pengaturan extends Model
         'logo',
         // 'favicon',
         'kepala_instansi',
+        'jabatan_pimpinan',
+        'foto_pimpinan',
         'alamat_instansi',
         'no_telp_instansi',
         'email_instansi',
