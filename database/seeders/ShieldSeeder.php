@@ -15,64 +15,162 @@ class ShieldSeeder extends Seeder
 
         // Define all permissions that should exist
         $permissions = [
-            // Core permissions
-            'view_post', 'view_any_post', 'create_post', 'update_post', 'delete_post',
-            'publish_post', 'unpublish_post', 'edit_published_posts', 'edit_others_posts',
-            'delete_published_posts', 'delete_others_posts', 'read_private_posts',
-            'restore_post', 'restore_any_post', 'replicate_post', 'reorder_post', 
-            'force_delete_post', 'force_delete_any_post',
-            
-            // Tag permissions
-            'view_tag', 'view_any_tag', 'create_tag', 'update_tag', 'delete_tag',
-            'delete_any_tag', 'restore_tag', 'restore_any_tag', 'replicate_tag',
-            'reorder_tag', 'force_delete_tag', 'force_delete_any_tag',
-            
-            // User management
-            'view_user', 'view_any_user', 'create_user', 'update_user', 'delete_user',
-            'restore_user', 'restore_any_user', 'replicate_user', 'reorder_user',
-            'force_delete_user', 'force_delete_any_user',
-            
-            // Role management
-            'view_role', 'view_any_role', 'create_role', 'update_role', 'delete_role',
-            'delete_any_role',
-            
-            // Settings
-            'view_setting', 'view_any_setting', 'create_setting', 'update_setting', 'delete_setting',
-            
-            // External Links
-            'view_external::link', 'view_any_external::link', 'create_external::link',
-            'update_external::link', 'delete_external::link', 'delete_any_external::link',
-            'restore_external::link', 'restore_any_external::link', 'replicate_external::link',
-            'reorder_external::link', 'force_delete_external::link', 'force_delete_any_external::link',
-            
-            // Sambutan Pimpinan
-            'view_sambutan::pimpinan', 'view_any_sambutan::pimpinan', 'create_sambutan::pimpinan',
-            'update_sambutan::pimpinan', 'delete_sambutan::pimpinan', 'delete_any_sambutan::pimpinan',
-            'restore_sambutan::pimpinan', 'restore_any_sambutan::pimpinan', 'replicate_sambutan::pimpinan',
-            'reorder_sambutan::pimpinan', 'force_delete_sambutan::pimpinan', 'force_delete_any_sambutan::pimpinan',
-            
+            // User
+            'ViewAny:User',
+            'View:User',
+            'Create:User',
+            'Update:User',
+            'Delete:User',
+            'Restore:User',
+            'RestoreAny:User',
+            'Replicate:User',
+            'Reorder:User',
+            'ForceDelete:User',
+            'ForceDeleteAny:User',
+
+            // Role
+            'ViewAny:Role',
+            'View:Role',
+            'Create:Role',
+            'Update:Role',
+            'Delete:Role',
+            'DeleteAny:Role',
+
+            // Post
+            'ViewAny:Post',
+            'View:Post',
+            'Create:Post',
+            'Update:Post',
+            'Delete:Post',
+            'Restore:Post',
+            'RestoreAny:Post',
+            'Replicate:Post',
+            'Reorder:Post',
+            'ForceDelete:Post',
+            'ForceDeleteAny:Post',
+            'Publish:Post',
+            'Unpublish:Post',
+
+            // Tag
+            'ViewAny:Tag',
+            'View:Tag',
+            'Create:Tag',
+            'Update:Tag',
+            'Delete:Tag',
+            'Restore:Tag',
+            'RestoreAny:Tag',
+            'Replicate:Tag',
+            'Reorder:Tag',
+            'ForceDelete:Tag',
+            'ForceDeleteAny:Tag',
+
+            // SambutanPimpinan
+            'ViewAny:SambutanPimpinan',
+            'View:SambutanPimpinan',
+            'Create:SambutanPimpinan',
+            'Update:SambutanPimpinan',
+            'Delete:SambutanPimpinan',
+            'DeleteAny:SambutanPimpinan',
+            'Restore:SambutanPimpinan',
+            'RestoreAny:SambutanPimpinan',
+            'Replicate:SambutanPimpinan',
+            'Reorder:SambutanPimpinan',
+            'ForceDelete:SambutanPimpinan',
+            'ForceDeleteAny:SambutanPimpinan',
+
+            // AgendaKegiatan
+            'ViewAny:AgendaKegiatan',
+            'View:AgendaKegiatan',
+            'Create:AgendaKegiatan',
+            'Update:AgendaKegiatan',
+            'Delete:AgendaKegiatan',
+            'DeleteAny:AgendaKegiatan',
+
+            // Banner
+            'ViewAny:Banner',
+            'View:Banner',
+            'Create:Banner',
+            'Update:Banner',
+            'Delete:Banner',
+            'DeleteAny:Banner',
+
+            // Dokumen
+            'ViewAny:Dokumen',
+            'View:Dokumen',
+            'Create:Dokumen',
+            'Update:Dokumen',
+            'Delete:Dokumen',
+            'DeleteAny:Dokumen',
+
+            // ExternalLink
+            'ViewAny:ExternalLink',
+            'View:ExternalLink',
+            'Create:ExternalLink',
+            'Update:ExternalLink',
+            'Delete:ExternalLink',
+            'DeleteAny:ExternalLink',
+
             // Gallery
-            'view_gallery', 'view_any_gallery', 'create_gallery', 'update_gallery', 'delete_gallery',
-            'delete_any_gallery', 'restore_gallery', 'restore_any_gallery', 'replicate_gallery',
-            'reorder_gallery', 'force_delete_gallery', 'force_delete_any_gallery',
-            
-            // Pengumuman
-            'view_pengumuman', 'view_any_pengumuman', 'create_pengumuman', 'update_pengumuman', 'delete_pengumuman',
-            'delete_any_pengumuman', 'restore_pengumuman', 'restore_any_pengumuman', 'replicate_pengumuman',
-            'reorder_pengumuman', 'force_delete_pengumuman', 'force_delete_any_pengumuman',
-            
+            'ViewAny:Gallery',
+            'View:Gallery',
+            'Create:Gallery',
+            'Update:Gallery',
+            'Delete:Gallery',
+            'DeleteAny:Gallery',
+
+            // Infografis
+            'ViewAny:Infografis',
+            'View:Infografis',
+            'Create:Infografis',
+            'Update:Infografis',
+            'Delete:Infografis',
+            'DeleteAny:Infografis',
+
             // Layanan
-            'view_layanan', 'view_any_layanan', 'create_layanan', 'update_layanan', 'delete_layanan',
-            'delete_any_layanan', 'restore_layanan', 'restore_any_layanan', 'replicate_layanan',
-            'reorder_layanan', 'force_delete_layanan', 'force_delete_any_layanan',
-            
-            // Other common permissions
-            'view_any_*', 'view_*', 'create_*', 'update_*', 'delete_*', 'delete_any_*',
-            'restore_*', 'restore_any_*', 'replicate_*', 'reorder_*', 'force_delete_*', 'force_delete_any_*',
-            'publish_*', 'unpublish_*',
-            
-            // Filament pages
-            'page_*',
+            'ViewAny:Layanan',
+            'View:Layanan',
+            'Create:Layanan',
+            'Update:Layanan',
+            'Delete:Layanan',
+            'DeleteAny:Layanan',
+
+            // Pengaturan
+            'ViewAny:Pengaturan',
+            'View:Pengaturan',
+            'Create:Pengaturan',
+            'Update:Pengaturan',
+            'Delete:Pengaturan',
+            'DeleteAny:Pengaturan',
+
+            // Pengumuman
+            'ViewAny:Pengumuman',
+            'View:Pengumuman',
+            'Create:Pengumuman',
+            'Update:Pengumuman',
+            'Delete:Pengumuman',
+            'DeleteAny:Pengumuman',
+
+            // StrukturOrganisasi
+            'ViewAny:StrukturOrganisasi',
+            'View:StrukturOrganisasi',
+            'Create:StrukturOrganisasi',
+            'Update:StrukturOrganisasi',
+            'Delete:StrukturOrganisasi',
+            'DeleteAny:StrukturOrganisasi',
+
+            // Visit
+            'ViewAny:Visit',
+            'View:Visit',
+            'Create:Visit',
+            'Update:Visit',
+            'Delete:Visit',
+            'DeleteAny:Visit',
+
+            // Widget
+            'page_Dashboard',
+            'page_Logs',
+            'widget_AccountWidget',
+            'widget_FilamentInfoWidget',
         ];
 
         // Create all permissions
@@ -88,65 +186,55 @@ class ShieldSeeder extends Seeder
         }
 
         // Create roles with their permissions
-        // Define role permissions
         $roles = [
             [
                 'name' => 'super_admin',
                 'guard_name' => 'web',
-                'permissions' => $permissions, // All permissions
+                'permissions' => ['*'], // All permissions
                 'description' => 'Super Administrator dengan akses penuh ke semua fitur'
             ],
             [
                 'name' => 'administrator',
                 'guard_name' => 'web',
-                'permissions' => array_filter($permissions, function($permission) {
-                    // Admin bisa semua kecuali beberapa hal sensitif
-                    return !in_array($permission, [
-                        'delete_user', 'force_delete_user', 'force_delete_any_user',
-                        'delete_role', 'delete_any_role',
-                        'delete_setting', 'force_delete_setting', 'force_delete_any_setting'
-                    ]);
+                'permissions' => array_filter($permissions, function ($permission) {
+                    // Admin can do almost anything except deleting users or roles or system settings
+                    // Assuming 'Pengaturan' is system setting
+                    return !str_contains($permission, 'Delete:User') &&
+                        !str_contains($permission, 'ForceDelete:User') &&
+                        !str_contains($permission, 'Delete:Role') &&
+                        !str_contains($permission, 'Delete:Pengaturan');
                 }),
-                'description' => 'Administrator dengan kendali penuh atas situs'
+                'description' => 'Administrator dengan kendali penuh atas situs, kecuali hapus user/role'
             ],
             [
                 'name' => 'editor',
                 'guard_name' => 'web',
-                'permissions' => array_filter($permissions, function($permission) {
-                    // Editor bisa mengelola konten termasuk mempublikasikan
-                    $allowed = [
-                        'view_post', 'view_any_post', 'create_post', 'update_post', 'delete_post',
-                        'publish_post', 'unpublish_post', 'edit_published_posts', 'edit_others_posts',
-                        'delete_published_posts', 'delete_others_posts', 'read_private_posts',
-                        'view_tag', 'view_any_tag', 'create_tag', 'update_tag', 'delete_tag',
-                        'view_sambutan::pimpinan', 'view_any_sambutan::pimpinan', 'update_sambutan::pimpinan'
+                'permissions' => array_filter($permissions, function ($permission) {
+                    // Editor manages content
+                    $contentResources = [
+                        'Post',
+                        'Tag',
+                        'SambutanPimpinan',
+                        'AgendaKegiatan',
+                        'Banner',
+                        'Dokumen',
+                        'ExternalLink',
+                        'Gallery',
+                        'Infografis',
+                        'Layanan',
+                        'Pengumuman'
                     ];
-                    return in_array($permission, $allowed);
+
+                    foreach ($contentResources as $resource) {
+                        if (str_ends_with($permission, ":$resource")) {
+                            return true;
+                        }
+                    }
+
+                    return $permission === 'page_Dashboard';
                 }),
                 'description' => 'Dapat mengelola dan mempublikasikan konten'
             ],
-            [
-                'name' => 'author',
-                'guard_name' => 'web',
-                'permissions' => array_filter($permissions, function($permission) {
-                    // Author hanya bisa membuat dan mengedit draft
-                    $allowed = [
-                        'view_post', 'view_any_post', 'create_post', 'update_post', 'delete_post',
-                        'view_tag', 'view_any_tag', 'create_tag', 'update_tag'
-                    ];
-                    return in_array($permission, $allowed);
-                }),
-                'description' => 'Dapat membuat dan mengelola postingan mereka sendiri, tapi tidak bisa mempublikasikan'
-            ],
-            [
-                'name' => 'contributor',
-                'guard_name' => 'web',
-                'permissions' => [
-                    'view_post', 'view_any_post', 'create_post', 'update_post',
-                    'view_tag', 'view_any_tag'
-                ],
-                'description' => 'Can write and edit their own posts but cannot publish'
-            ]
         ];
 
         // Create roles and assign permissions
@@ -165,11 +253,11 @@ class ShieldSeeder extends Seeder
 
             // Handle permissions
             $permissionsToSync = [];
-            
+
             // Handle wildcard permission (super_admin case)
             if (in_array('*', $roleData['permissions'] ?? [])) {
                 $permissionsToSync = Permission::all()->pluck('name')->toArray();
-            } 
+            }
             // Handle array of permissions
             elseif (is_array($roleData['permissions'] ?? null)) {
                 $permissionsToSync = array_filter(
@@ -177,7 +265,7 @@ class ShieldSeeder extends Seeder
                     fn($p) => is_string($p) && !empty(trim($p))
                 );
             }
-            
+
             // Only sync if we have permissions to sync
             if (!empty($permissionsToSync)) {
                 $role->syncPermissions($permissionsToSync);

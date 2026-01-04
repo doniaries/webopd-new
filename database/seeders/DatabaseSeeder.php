@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,7 +12,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Run seeders in order
+
+
         $this->call([
             ShieldSeeder::class,   // Set up roles and permissions using Filament Shield
             UserSeeder::class,     // Then create users
@@ -28,6 +30,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
         $superAdmin->syncRoles(['super_admin']);
+
 
         $this->call([
             StrukturOrganisasiSeeder::class,
