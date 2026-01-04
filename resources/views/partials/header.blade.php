@@ -2,7 +2,8 @@
 use App\Models\Pengaturan;
 $pengaturan = Pengaturan::first();
 $siteName = $pengaturan->name ?? config('app.name');
-$logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan->logo)) : asset('images/logo.png');
+$defaultLogo = asset('images/logo.png');
+$logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan->logo)) : $defaultLogo;
 @endphp
 
 <header
@@ -21,7 +22,7 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                         <img src="{{ $logoUrl }}" alt="Logo"
                             class="w-auto h-12 object-contain transition-all duration-300 ease-in-out"
                             :class="{'!h-9': scrolled}"
-                            onerror="this.src='{{ asset('images/logo.png') }}'">
+                            onerror="this.src='{{ $defaultLogo }}'">
                         <div class="flex flex-col justify-center">
                             <span class="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 uppercase transition-all duration-300"
                                 :class="{'opacity-0 h-0 overflow-hidden': scrolled}">Pemerintah Kabupaten {{ $pengaturan->kabupaten ?? 'Sijunjung' }}</span>
