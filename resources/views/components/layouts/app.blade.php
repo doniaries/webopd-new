@@ -13,6 +13,10 @@ $opdName = $pengaturan->name ?? config('app.name');
 
     <title>{{ isset($title) ? $title . ' - ' . $opdName : $opdName }}</title>
 
+    @if($pengaturan?->logo)
+    <link rel="icon" href="{{ asset('storage/' . $pengaturan->logo) }}">
+    @endif
+
     <!-- Theme Initialization (Prevent FOUC) -->
     <script>
         // Initialize theme before page renders
