@@ -29,6 +29,7 @@ class PostForm
                             ->schema([
                                 TextInput::make('title')
                                     ->required()
+                                    ->unique()
                                     ->label('Judul Berita')
                                     ->maxLength(255)
                                     ->placeholder('Masukkan judul berita')
@@ -50,6 +51,7 @@ class PostForm
                                         ['table', 'attachFiles'], // The `customBlocks` and `mergeTags` tools are also added here if those features are used.
                                         ['undo', 'redo'],
                                     ])
+                                    ->extraInputAttributes(['style' => 'min-height: 200px;'])
                                     ->placeholder('Tulis konten berita di sini...')
                                     ->columnSpanFull(),
                                 FileUpload::make('foto_utama')
