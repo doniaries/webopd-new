@@ -11,9 +11,11 @@ class Home extends Component
 {
     public function render()
     {
-        $infografis = \App\Models\Infografis::where('is_active', true)
-            ->latest()
-            ->get();
+        $infografis = \Illuminate\Support\Facades\Cache::remember('home_infografis', 60 * 60, function () {
+            return \App\Models\Infografis::where('is_active', true)
+                ->latest()
+                ->get();
+        });
 
         return view('livewire.home', [
             'infografis' => $infografis,

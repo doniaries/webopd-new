@@ -14,7 +14,9 @@ class StrukturOrganisasi extends Component
     public function render()
     {
         $strukturOrganisasi = StrukturModel::all();
-        $pengaturan = Pengaturan::first();
+        $pengaturan = \Illuminate\Support\Facades\Cache::remember('app_settings', 60 * 60, function () {
+            return Pengaturan::first();
+        });
         $siteName = $pengaturan->name ?? 'Dinas Komunikasi dan Informatika';
 
         return view('livewire.struktur-organisasi', [
