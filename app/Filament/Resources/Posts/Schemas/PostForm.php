@@ -54,6 +54,22 @@ class PostForm
                                     ->extraInputAttributes(['style' => 'min-height: 200px;'])
                                     ->placeholder('Tulis konten berita di sini...')
                                     ->columnSpanFull(),
+                                TextInput::make('source_link')
+                                    ->label('Link Sumber Berita')
+                                    ->placeholder('Contoh: https://detik.com/berita-terbaru')
+                                    ->url()
+                                    ->maxLength(255)
+                                    ->columnSpanFull(),
+
+                            ])
+                            ->columns(1),
+                    ]),
+
+                Group::make()
+                    ->columnSpan(1)
+                    ->schema([
+                        Section::make('Informasi Tambahan')
+                            ->schema([
                                 FileUpload::make('foto_utama')
                                     ->label('Foto Utama')
                                     ->image()
@@ -84,15 +100,6 @@ class PostForm
                                     ->appendFiles()
                                     ->maxSize(2048)
                                     ->helperText('Upload foto galeri (max 2MB/foto). Bisa upload banyak sekaligus.'),
-                            ])
-                            ->columns(1),
-                    ]),
-
-                Group::make()
-                    ->columnSpan(1)
-                    ->schema([
-                        Section::make('Informasi Tambahan')
-                            ->schema([
                                 Select::make('user_id')
                                     ->label('User')
                                     ->relationship('user', 'name')

@@ -13,6 +13,7 @@ class Post extends Model
     protected $fillable = [
         'title',
         'slug',
+        'source_link',
         'content',
         'foto_utama',
         'gallery',
