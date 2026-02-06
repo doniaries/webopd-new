@@ -96,7 +96,8 @@ class PostForm
                                 'archived' => 'Archived',
                             ])
                             ->required()
-                            ->default('draft'),
+                            ->default('draft')
+                            ->visible(fn() => !auth()->user()->hasRole('contributor')),
                         DateTimePicker::make('published_at')
                             ->label('Published At')
                             ->default(now())

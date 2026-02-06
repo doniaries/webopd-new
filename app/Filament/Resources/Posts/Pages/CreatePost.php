@@ -12,6 +12,14 @@ class CreatePost extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['user_id'] = auth()->id();
+
+        // Auto-publish logic
+        if (auth()->user()->hasRole('contributor')) {
+            $data['status'] = 'draft';
+        } else {
+            $data['status'] = 'published';
+        }
+
         return $data;
     }
 

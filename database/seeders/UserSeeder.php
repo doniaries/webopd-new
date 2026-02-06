@@ -45,6 +45,26 @@ class UserSeeder extends Seeder
         ]);
         $editor->syncRoles(['editor']);
 
+        // Create Author User
+        $author = User::create([
+            'name' => 'Author',
+            'email' => 'author@example.com',
+            'password' => Hash::make('password'),
+            'is_active' => true,
+            'email_verified_at' => now(),
+        ]);
+        $author->assignRole('author');
+
+        // Create Contributor User
+        $contributor = User::create([
+            'name' => 'Contributor',
+            'email' => 'contributor@example.com',
+            'password' => Hash::make('password'),
+            'is_active' => true,
+            'email_verified_at' => now(),
+        ]);
+        $contributor->assignRole('contributor');
+
 
 
         $this->command->info('User seeding completed!');

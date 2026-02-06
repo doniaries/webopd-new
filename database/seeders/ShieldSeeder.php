@@ -235,6 +235,35 @@ class ShieldSeeder extends Seeder
                 }),
                 'description' => 'Dapat mengelola dan mempublikasikan konten'
             ],
+            [
+                'name' => 'author',
+                'guard_name' => 'web',
+                'permissions' => [
+                    'ViewAny:Post',
+                    'View:Post',
+                    'Create:Post',
+                    'Update:Post', // Will be restricted by Policy to own posts
+                    'Delete:Post', // Will be restricted by Policy to own posts
+                    'ViewAny:Tag',
+                    'View:Tag',
+                    'page_Dashboard'
+                ],
+                'description' => 'Penulis (Bisa tulis & publish sendiri)'
+            ],
+            [
+                'name' => 'contributor',
+                'guard_name' => 'web',
+                'permissions' => [
+                    'ViewAny:Post',
+                    'View:Post',
+                    'Create:Post',
+                    'Update:Post', // Will be restricted by Policy to own posts
+                    'ViewAny:Tag',
+                    'View:Tag',
+                    'page_Dashboard'
+                ],
+                'description' => 'Kontributor (Tulis tanpa publish)'
+            ],
         ];
 
         // Create roles and assign permissions
