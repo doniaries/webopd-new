@@ -26,7 +26,9 @@ class PostTable
                     ->width(100),
                 TextColumn::make('title')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->limit(50)
+                    ->tooltip(fn($state) => $state),
                 TextColumn::make('user.name')
                     ->label('Author')
                     ->sortable(),
