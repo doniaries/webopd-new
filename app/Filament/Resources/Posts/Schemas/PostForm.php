@@ -141,8 +141,7 @@ class PostForm
                                     ->label('Tampilkan di Slider')
                                     ->helperText('Aktifkan untuk menampilkan berita ini di slider halaman utama')
                                     ->default(false),
-                            ])
-                            ->columns(2),
+                            ]),
 
                     ]),
             ]);
