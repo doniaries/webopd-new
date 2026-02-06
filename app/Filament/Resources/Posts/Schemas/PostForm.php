@@ -43,11 +43,6 @@ class PostForm
                                 RichEditor::make('content')
                                     ->label('Konten Berita')
                                     ->required()
-                                    ->textColors([
-                                        '#ef4444' => 'Red',
-                                        '#10b981' => 'Green',
-                                        '#0ea5e9' => 'Sky',
-                                    ])
                                     ->toolbarButtons([
                                         ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
                                         ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
