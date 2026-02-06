@@ -111,6 +111,7 @@ class PostForm
                             ->createOptionForm([
                                 TextInput::make('name')
                                     ->required()
+                                    ->unique(ignoreRecord: true)
                                     ->label('Nama Tag/Kategori')
                                     ->maxLength(255)
                                     ->live(onBlur: true)
