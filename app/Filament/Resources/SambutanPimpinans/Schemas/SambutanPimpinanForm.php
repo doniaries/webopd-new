@@ -43,7 +43,7 @@ class SambutanPimpinanForm
                 FileUpload::make('foto_pimpinan')
                     ->label('Foto Pimpinan')
                     ->image()
-                    ->directory('sambutan-pimpinan')
+                    ->directory('foto-pimpinan')
                     ->visibility('public')
                     ->imageEditor()
                     ->maxSize(2048),

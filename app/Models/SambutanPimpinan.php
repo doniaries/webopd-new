@@ -19,4 +19,22 @@ class SambutanPimpinan extends Model
     ];
 
     protected $slugSource = 'judul';
+
+    protected $casts = [
+        'foto_pimpinan' => 'array',
+    ];
+
+    protected $appends = ['foto_pimpinan_url'];
+
+    public function getFotoPimpinanUrlAttribute()
+    {
+        if (!$this->foto_pimpinan) {
+            return null;
+        }
+
+        // Handle if it's stored as array (multiple files) or string (single file)
+        $foto = is_array($this->foto_pimpinan) ? $this->foto_pimpinan[0] : $this->foto_pimpinan;
+
+        return asset('storage/' . $foto);
+    }
 }

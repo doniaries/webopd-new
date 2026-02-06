@@ -15,22 +15,26 @@ class SambutanPimpinanTable
     {
         return $table
             ->columns([
-                ImageColumn::make('foto')
-                    ->label('Foto')
+                ImageColumn::make('foto_pimpinan')
+                    ->label('Foto Pimpinan')
                     ->disk('public')
-                    ->visibility('public')
                     ->circular()
-                    ->imageWidth(50)
-                    ->imageHeight(50)
-                    ->grow(false),
+                    ->width(50)
+                    ->height(50),
                 TextColumn::make('judul')
                     ->searchable()
-                    ->sortable(),
-                TextColumn::make('nama')
+                    ->sortable()
+                    ->limit(50)
+                    ->tooltip(fn($state) => $state),
+                TextColumn::make('nama_pimpinan')
+                    ->label('Nama Pimpinan')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('jabatan')
-                    ->searchable(),
+                TextColumn::make('created_at')
+                    ->label('Dibuat')
+                    ->dateTime('d M Y')
+                    ->sortable()
+                    ->toggleable(),
             ])
             ->filters([
                 //
