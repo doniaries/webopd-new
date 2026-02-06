@@ -63,12 +63,36 @@ class PostForm
 
                             ])
                             ->columns(1),
+                        Section::make('Informasi Tambahan')
+                            ->schema([
+                                Select::make('user_id')
+                                    ->label('User')
+                                    ->relationship('user', 'name')
+                                    ->required()
+                                    ->searchable()
+                                    ->default(fn() => Auth::id()),
+                                Select::make('status')
+                                    ->options([
+                                        'draft' => 'Draft',
+                                        'published' => 'Published',
+                                        'archived' => 'Archived',
+                                    ])
+                                    ->required()
+                                    ->default('draft')
+                                    ->visible(fn() => !auth()->user()->hasRole('contributor')),
+                                DateTimePicker::make('published_at')
+                                    ->label('Published At')
+                                    ->default(now())
+                                    ->native(false)
+                                    ->displayFormat('d F Y H:i'),
+
+                            ]),
                     ]),
 
                 Group::make()
                     ->columnSpan(1)
                     ->schema([
-                        Section::make('Informasi Tambahan')
+                        Section::make('Dokumentasi')
                             ->schema([
                                 FileUpload::make('foto_utama')
                                     ->label('Foto Utama')
@@ -100,26 +124,6 @@ class PostForm
                                     ->appendFiles()
                                     ->maxSize(2048)
                                     ->helperText('Upload foto galeri (max 2MB/foto). Bisa upload banyak sekaligus.'),
-                                Select::make('user_id')
-                                    ->label('User')
-                                    ->relationship('user', 'name')
-                                    ->required()
-                                    ->searchable()
-                                    ->default(fn() => Auth::id()),
-                                Select::make('status')
-                                    ->options([
-                                        'draft' => 'Draft',
-                                        'published' => 'Published',
-                                        'archived' => 'Archived',
-                                    ])
-                                    ->required()
-                                    ->default('draft')
-                                    ->visible(fn() => !auth()->user()->hasRole('contributor')),
-                                DateTimePicker::make('published_at')
-                                    ->label('Published At')
-                                    ->default(now())
-                                    ->native(false)
-                                    ->displayFormat('d F Y H:i'),
                                 Select::make('tags')
                                     ->relationship('tags', 'name')
                                     ->multiple()
@@ -130,22 +134,15 @@ class PostForm
                                             ->required()
                                             ->unique('tags', 'name', ignoreRecord: true)
                                             ->label('Nama Tag/Kategori')
-                                            ->maxLength(255)
-                                            ->live(onBlur: true)
-                                            ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
-                                        TextInput::make('slug')
-                                            ->required()
-                                            ->maxLength(255)
-                                            ->unique('tags', 'slug', ignoreRecord: true)
-                                            ->hidden()
-                                            ->dehydrated(),
+                                            ->maxLength(255),
                                     ])
                                     ->label('Tags/Kategori'),
                                 Toggle::make('is_featured')
                                     ->label('Tampilkan di Slider')
                                     ->helperText('Aktifkan untuk menampilkan berita ini di slider halaman utama')
                                     ->default(false),
-                            ])
+                            ]),
+
                     ]),
             ]);
     }
