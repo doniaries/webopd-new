@@ -40,7 +40,7 @@
                         @if (Str::startsWith($link->logo, 'fa-'))
                         <i class="{{ $link->logo }} text-3xl text-gray-600 dark:text-gray-400 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400"></i>
                         @elseif ($link->logo)
-                        <img src="{{ asset('storage/' . $link->logo) }}"
+                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($link->logo) }}"
                             alt="{{ $link->nama_link }}"
                             class="w-full h-full object-contain transition-all duration-300"
                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ urlencode($link->nama_link) }}&background=random';">
@@ -66,7 +66,7 @@
                         @if (Str::startsWith($link->logo, 'fa-'))
                         <i class="{{ $link->logo }} text-3xl text-gray-600 dark:text-gray-400 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400"></i>
                         @elseif ($link->logo)
-                        <img src="{{ asset('storage/' . $link->logo) }}"
+                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($link->logo) }}"
                             alt="{{ $link->nama_link }}"
                             class="w-full h-full object-contain transition-all duration-300"
                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ urlencode($link->nama_link) }}&background=random';">
@@ -92,7 +92,7 @@
                         @if (Str::startsWith($link->logo, 'fa-'))
                         <i class="{{ $link->logo }} text-3xl text-gray-600 dark:text-gray-400 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400"></i>
                         @elseif ($link->logo)
-                        <img src="{{ asset('storage/' . $link->logo) }}"
+                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($link->logo) }}"
                             alt="{{ $link->nama_link }}"
                             class="w-full h-full object-contain transition-all duration-300"
                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ urlencode($link->nama_link) }}&background=random';">
@@ -118,7 +118,7 @@
                         @if (Str::startsWith($link->logo, 'fa-'))
                         <i class="{{ $link->logo }} text-3xl text-gray-600 dark:text-gray-400 group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400"></i>
                         @elseif ($link->logo)
-                        <img src="{{ asset('storage/' . $link->logo) }}"
+                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($link->logo) }}"
                             alt="{{ $link->nama_link }}"
                             class="w-full h-full object-contain transition-all duration-300"
                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ urlencode($link->nama_link) }}&background=random';">

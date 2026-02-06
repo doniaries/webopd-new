@@ -18,7 +18,28 @@ class ExternalLinkTable
                 ImageColumn::make('logo')
                     ->label('Logo')
                     ->disk('public')
-                    ->visibility('public'),
+                    ->visibility('public')
+                    ->extraAttributes(fn($record) => [
+                        'style' => \Illuminate\Support\Str::startsWith($record->logo, 'fa-') ? 'display: none;' : ''
+                    ]),
+
+                TextColumn::make('logo_icon')
+                    ->label('Icon')
+                    ->state(function ($record) {
+                        return $record->logo;
+                    })
+                    ->formatStateUsing(function ($state) {
+                        if (\Illuminate\Support\Str::startsWith($state, 'fa-')) {
+                            return '<i class="' . $state . ' text-2xl"></i>';
+                        }
+                        return null;
+                    })
+                    ->html()
+                    ->badge(false)
+                    ->extraAttributes(fn($record) => [
+                        'style' => !\Illuminate\Support\Str::startsWith($record->logo, 'fa-') ? 'display: none;' : ''
+                    ]),
+
                 TextColumn::make('nama_link')
                     ->searchable()
                     ->sortable(),
