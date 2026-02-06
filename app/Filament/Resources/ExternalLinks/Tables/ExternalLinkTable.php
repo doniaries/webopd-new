@@ -20,24 +20,25 @@ class ExternalLinkTable
                     ->disk('public')
                     ->visibility('public')
                     ->extraAttributes(fn($record) => [
-                        'style' => \Illuminate\Support\Str::startsWith($record->logo, 'fa-') ? 'display: none;' : ''
+                        'style' => \Illuminate\Support\Str::startsWith((string)$record->logo, 'fa-') ? 'display: none;' : ''
                     ]),
 
                 TextColumn::make('logo_icon')
                     ->label('Icon')
                     ->state(function ($record) {
-                        return $record->logo;
+                        return $record->logo ?? '';
                     })
                     ->formatStateUsing(function ($state) {
+                        $state = (string) $state;
                         if (\Illuminate\Support\Str::startsWith($state, 'fa-')) {
                             return '<i class="' . $state . ' text-2xl"></i>';
                         }
-                        return null;
+                        return '';
                     })
                     ->html()
                     ->badge(false)
                     ->extraAttributes(fn($record) => [
-                        'style' => !\Illuminate\Support\Str::startsWith($record->logo, 'fa-') ? 'display: none;' : ''
+                        'style' => !\Illuminate\Support\Str::startsWith((string)$record->logo, 'fa-') ? 'display: none;' : ''
                     ]),
 
                 TextColumn::make('nama_link')
@@ -50,6 +51,7 @@ class ExternalLinkTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
@@ -60,8 +62,6 @@ class ExternalLinkTable
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ])
-            ->defaultPaginationPageOption(25)
-            ->paginated([10, 25, 50, 'all']);
+            ]);
     }
 }
