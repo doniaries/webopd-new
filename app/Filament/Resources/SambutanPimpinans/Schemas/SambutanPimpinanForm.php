@@ -31,15 +31,7 @@ class SambutanPimpinanForm
                     ->label('Nama Pimpinan')
                     ->options(fn() => StrukturOrganisasi::whereNotNull('pimpinan')->pluck('pimpinan', 'pimpinan'))
                     ->searchable()
-                    ->preload()
-                    ->createOptionForm([
-                        TextInput::make('pimpinan')
-                            ->required()
-                            ->label('Nama Pimpinan Baru'),
-                    ])
-                    ->createOptionUsing(function ($data) {
-                        return $data['pimpinan'];
-                    }),
+                    ->preload(),
                 FileUpload::make('foto_pimpinan')
                     ->label('Foto Pimpinan')
                     ->image()
