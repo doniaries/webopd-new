@@ -33,6 +33,9 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
 
                     <!-- Partner Logos (Desktop) -->
                     <div class="hidden lg:flex items-center gap-4 transition-all duration-300">
+                        <img src="{{ asset('images/geopark.png') }}" alt="Geopark Silokek"
+                            class="w-auto h-10 transition-all duration-300 ease-in-out"
+                            :class="{'!h-8': scrolled}">
                         <img src="{{ asset('images/bangga.png') }}" alt="Bangga"
                             class="w-auto h-8 transition-all duration-300 ease-in-out"
                             :class="{'!h-6': scrolled}">
