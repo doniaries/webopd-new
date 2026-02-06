@@ -18,13 +18,15 @@ class HomeAgendas extends Component
 
     public function render()
     {
-        $agendas = AgendaKegiatan::query()
-            ->select('id', 'nama_agenda', 'slug', 'tempat', 'penyelenggara', 'status', 'dari_tanggal', 'sampai_tanggal', 'waktu_mulai', 'waktu_selesai')
-            ->where('dari_tanggal', '>=', now()->toDateString())
-            ->orderBy('dari_tanggal')
-            ->orderBy('waktu_mulai')
-            ->take(7)
-            ->get();
+        $agendas = \Illuminate\Support\Facades\Cache::remember('home_agendas', 60 * 60, function () {
+            return AgendaKegiatan::query()
+                ->select('id', 'nama_agenda', 'slug', 'tempat', 'penyelenggara', 'status', 'dari_tanggal', 'sampai_tanggal', 'waktu_mulai', 'waktu_selesai')
+                ->where('dari_tanggal', '>=', now()->toDateString())
+                ->orderBy('dari_tanggal')
+                ->orderBy('waktu_mulai')
+                ->take(7)
+                ->get();
+        });
 
         return view('livewire.home-agendas', [
             'agendas' => $agendas,

@@ -18,12 +18,14 @@ class HomePengumuman extends Component
 
     public function render()
     {
-        $pengumuman = Pengumuman::query()
-            ->select('id', 'judul', 'slug', 'isi', 'published_at')
-            ->where('published_at', '<=', now())
-            ->latest('published_at')
-            ->take(3)
-            ->get();
+        $pengumuman = \Illuminate\Support\Facades\Cache::remember('home_pengumuman', 60 * 60, function () {
+            return Pengumuman::query()
+                ->select('id', 'judul', 'slug', 'isi', 'published_at')
+                ->where('published_at', '<=', now())
+                ->latest('published_at')
+                ->take(3)
+                ->get();
+        });
 
         return view('livewire.home-pengumuman', [
             'pengumuman' => $pengumuman,
