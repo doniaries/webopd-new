@@ -23,23 +23,6 @@ class ExternalLinkTable
                         'style' => \Illuminate\Support\Str::startsWith((string)$record->logo, 'fa-') ? 'display: none;' : ''
                     ]),
 
-                TextColumn::make('logo_icon')
-                    ->label('Icon')
-                    ->state(function ($record) {
-                        return $record->logo ?? '';
-                    })
-                    ->formatStateUsing(function ($state) {
-                        $state = (string) $state;
-                        if (\Illuminate\Support\Str::startsWith($state, 'fa-')) {
-                            return '<i class="' . $state . ' text-2xl"></i>';
-                        }
-                        return '';
-                    })
-                    ->html()
-                    ->badge(false)
-                    ->extraAttributes(fn($record) => [
-                        'style' => !\Illuminate\Support\Str::startsWith((string)$record->logo, 'fa-') ? 'display: none;' : ''
-                    ]),
 
                 TextColumn::make('nama_link')
                     ->searchable()

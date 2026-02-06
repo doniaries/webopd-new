@@ -16,11 +16,8 @@ class BeritaDetail extends Component
         $this->post = $post;
 
         // Increment Views
-        $sessionKey = 'post_viewed_' . $post->id;
-        if (!session()->has($sessionKey)) {
-            $post->increment('views');
-            session()->put($sessionKey, true);
-        }
+        // Increment Views (Every Hit)
+        $post->increment('views');
     }
 
     public function render()
