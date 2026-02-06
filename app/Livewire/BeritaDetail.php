@@ -14,6 +14,13 @@ class BeritaDetail extends Component
     public function mount(Post $post)
     {
         $this->post = $post;
+
+        // Increment Views
+        $sessionKey = 'post_viewed_' . $post->id;
+        if (!session()->has($sessionKey)) {
+            $post->increment('views');
+            session()->put($sessionKey, true);
+        }
     }
 
     public function render()
