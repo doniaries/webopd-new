@@ -39,6 +39,8 @@ class ExternalLinkTable
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultPaginationPageOption(25)
+            ->paginated([10, 25, 50, 'all']);
     }
 }
