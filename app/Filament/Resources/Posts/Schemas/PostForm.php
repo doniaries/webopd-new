@@ -117,8 +117,6 @@ class PostForm
                                     ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
                                 TextInput::make('slug')
                                     ->required()
-                                    ->hidden()
-                                    ->dehydrated()
                                     ->maxLength(255),
                             ])
                             ->label('Tags/Kategori'),

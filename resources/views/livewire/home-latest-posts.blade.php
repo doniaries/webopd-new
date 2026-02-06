@@ -42,7 +42,7 @@
                 <div class="flex items-center gap-3 text-gray-500 dark:text-gray-400">
                     <span class="flex items-center gap-1.5 bg-gray-50 dark:bg-gray-700/50 px-2 py-1 rounded-md mb-0">
                         <i class="bi bi-calendar3"></i>
-                        {{ $post->created_at->translatedFormat('d F Y') }}
+                        {{ $post->published_at ? $post->published_at->translatedFormat('d F Y') : $post->created_at->translatedFormat('d F Y') }}
                     </span>
                 </div>
 
