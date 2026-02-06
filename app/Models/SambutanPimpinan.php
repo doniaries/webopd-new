@@ -14,6 +14,8 @@ class SambutanPimpinan extends Model
         'judul',
         'slug',
         'isi_sambutan',
+        'nama_pimpinan',
+        'foto_pimpinan',
     ];
 
     protected $slugSource = 'judul';
