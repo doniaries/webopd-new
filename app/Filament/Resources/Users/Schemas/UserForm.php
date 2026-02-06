@@ -28,9 +28,17 @@ class UserForm
                     ->searchable(),
                 TextInput::make('password')
                     ->password()
+                    ->revealable()
                     ->dehydrateStateUsing(fn($state) => Hash::make($state))
                     ->dehydrated(fn($state) => filled($state))
                     ->required(fn(string $context): bool => $context === 'create'),
+                TextInput::make('password_confirmation')
+                    ->password()
+                    ->revealable()
+                    ->required(fn($livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord)
+                    ->maxLength(255)
+                    ->same('password')
+                    ->label('Confirm Password'),
                 Toggle::make('is_active')
                     ->required(),
             ]);
