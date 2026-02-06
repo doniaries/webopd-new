@@ -35,7 +35,7 @@ class PostForm
                             ->required()
                             ->maxLength(255)
                             ->unique(ignoreRecord: true)
-                            ->hidden()
+                            ->disabled()
                             ->dehydrated(),
                         RichEditor::make('content')
                             ->label('Konten Berita')
@@ -118,7 +118,10 @@ class PostForm
                                     ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
                                 TextInput::make('slug')
                                     ->required()
-                                    ->maxLength(255),
+                                    ->maxLength(255)
+                                    ->unique('tags', 'slug', ignoreRecord: true)
+                                    ->hidden()
+                                    ->dehydrated(),
                             ])
                             ->label('Tags/Kategori'),
                         Toggle::make('is_featured')

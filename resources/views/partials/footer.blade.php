@@ -124,7 +124,7 @@ $logoUrl = $pengaturan->logo ? asset('storage/settings/' . basename($pengaturan-
                 &copy; {{ date('Y') }} <strong class="text-gray-900 dark:text-white font-semibold">{{ $pengaturan->name ?? config('app.name') }}</strong>. All Rights Reserved.
             </p>
             <p class="mt-2 sm:mt-0 flex items-center">
-                Dibuat dengan <i class="bi bi-heart-fill text-red-500 mx-1"></i> oleh <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 ml-1 transition-colors">Tim IT Diskominfo</a>
+                Dibuat dengan <i class="bi bi-heart-fill text-red-500 mx-1"></i> oleh <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 ml-1 transition-colors">DB</a>
             </p>
         </div>
     </div>

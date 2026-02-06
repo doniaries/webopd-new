@@ -20,7 +20,7 @@ class TagForm
                 TextInput::make('slug')
                     ->required()
                     ->maxLength(255)
-                    ->unique(ignoreRecord: true)
+                    ->unique('tags', 'slug', ignoreRecord: true)
                     ->hidden()
                     ->dehydrated(),
             ]);
