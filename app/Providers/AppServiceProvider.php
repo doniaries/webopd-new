@@ -22,5 +22,8 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Post::observe(\App\Observers\PostObserver::class);
         \App\Models\Infografis::observe(\App\Observers\InfografisObserver::class);
         \App\Models\Pengaturan::observe(\App\Observers\PengaturanObserver::class);
+        \App\Models\Banner::observe(\App\Observers\BannerObserver::class);
+        \App\Models\AgendaKegiatan::observe(\App\Observers\AgendaKegiatanObserver::class);
+        \App\Models\Pengumuman::observe(\App\Observers\PengumumanObserver::class);
     }
 }

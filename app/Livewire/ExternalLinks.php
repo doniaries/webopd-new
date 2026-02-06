@@ -10,6 +10,11 @@ use Livewire\Attributes\Lazy;
 class ExternalLinks extends Component
 {
 
+    public function placeholder()
+    {
+        return view('livewire.skeletons.external-links');
+    }
+
     public function render()
     {
         $links = \Illuminate\Support\Facades\Cache::remember('external_links', 60 * 60, function () {
