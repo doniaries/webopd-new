@@ -224,6 +224,14 @@
                         <div class="group flex gap-4">
                             <!-- Thumbnail -->
                             <a wire:navigate href="{{ route('berita.show', $related->slug) }}" class="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden relative">
+                                @if($related->source_link)
+                                <div class="absolute top-1 right-1 bg-black/60 backdrop-blur-sm p-0.5 rounded shadow-sm z-10" title="Berita Saduran/Link Luar">
+                                    <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                </div>
+                                @endif
+
                                 @if($related->foto_utama)
                                 <img src="{{ $related->foto_utama_url }}"
                                     alt="{{ $related->title }}"
