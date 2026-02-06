@@ -21,115 +21,120 @@ class PostForm
     {
         return $schema
             ->components([
-                // Section 1: Content
-                Section::make('Content')
+                Grid::make(3)
                     ->schema([
-                        TextInput::make('title')
-                            ->required()
-                            ->label('Judul Berita')
-                            ->maxLength(255)
-                            ->placeholder('Masukkan judul berita')
-                            ->live(onBlur: true)
-                            ->afterStateUpdated(fn(string $operation, $state, callable $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
-                        TextInput::make('slug')
-                            ->required()
-                            ->maxLength(255)
-                            ->unique(ignoreRecord: true)
-                            ->disabled()
-                            ->dehydrated(),
-                        RichEditor::make('content')
-                            ->label('Konten Berita')
-                            ->required()
-                            ->placeholder('Tulis konten berita di sini...')
-                            ->columnSpanFull(),
+                        // Main Content (Left, Span 2)
+                        \Filament\Annotations\Components\Group::make()
+                            ->schema([
+                                Section::make('Detail Berita')
+                                    ->schema([
+                                        TextInput::make('title')
+                                            ->required()
+                                            ->label('Judul Berita')
+                                            ->maxLength(255)
+                                            ->placeholder('Masukkan judul berita')
+                                            ->live(onBlur: true)
+                                            ->afterStateUpdated(fn(string $operation, $state, callable $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                                        TextInput::make('slug')
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->unique(ignoreRecord: true)
+                                            ->hidden()
+                                            ->dehydrated(),
+                                        RichEditor::make('content')
+                                            ->label('Konten Berita')
+                                            ->required()
+                                            ->placeholder('Tulis konten berita di sini...')
+                                            ->columnSpanFull(),
+                                        FileUpload::make('foto_utama')
+                                            ->label('Foto Utama')
+                                            ->image()
+                                            ->required()
+                                            ->disk('public')
+                                            ->directory('posts')
+                                            ->visibility('public')
+                                            ->imageEditor()
+                                            ->imageEditorAspectRatios([
+                                                '16:9',
+                                                '4:3',
+                                                '1:1',
+                                            ])
+                                            ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
+                                            ->maxSize(2048)
+                                            ->helperText('Upload foto utama (max 2MB). Format: JPEG, JPG, PNG')
+                                            ->columnSpanFull(),
+                                        FileUpload::make('gallery')
+                                            ->label('Foto Galeri')
+                                            ->multiple()
+                                            ->image()
+                                            ->disk('public')
+                                            ->directory('posts/galleries')
+                                            ->visibility('public')
+                                            ->imageEditor()
+                                            ->columnSpanFull()
+                                            ->reorderable()
+                                            ->appendFiles()
+                                            ->maxSize(2048)
+                                            ->helperText('Upload foto galeri (max 2MB/foto). Bisa upload banyak sekaligus.'),
+                                    ])
+                                    ->columns(1),
+                            ])
+                            ->columnSpan(2),
 
+                        // Sidebar (Right, Span 1)
+                        \Filament\Annotations\Components\Group::make()
+                            ->schema([
+                                Section::make('Informasi Tambahan')
+                                    ->schema([
+                                        Select::make('user_id')
+                                            ->label('User')
+                                            ->relationship('user', 'name')
+                                            ->required()
+                                            ->searchable()
+                                            ->default(fn() => Auth::id()),
+                                        Select::make('status')
+                                            ->options([
+                                                'draft' => 'Draft',
+                                                'published' => 'Published',
+                                                'archived' => 'Archived',
+                                            ])
+                                            ->required()
+                                            ->default('draft')
+                                            ->visible(fn() => !auth()->user()->hasRole('contributor')),
+                                        DateTimePicker::make('published_at')
+                                            ->label('Published At')
+                                            ->default(now())
+                                            ->native(false)
+                                            ->displayFormat('d F Y H:i'),
+                                        Select::make('tags')
+                                            ->relationship('tags', 'name')
+                                            ->multiple()
+                                            ->required()
+                                            ->preload()
+                                            ->createOptionForm([
+                                                TextInput::make('name')
+                                                    ->required()
+                                                    ->unique('tags', 'name', ignoreRecord: true)
+                                                    ->label('Nama Tag/Kategori')
+                                                    ->maxLength(255)
+                                                    ->live(onBlur: true)
+                                                    ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
+                                                TextInput::make('slug')
+                                                    ->required()
+                                                    ->maxLength(255)
+                                                    ->unique('tags', 'slug', ignoreRecord: true)
+                                                    ->hidden()
+                                                    ->dehydrated(),
+                                            ])
+                                            ->label('Tags/Kategori'),
+                                        Toggle::make('is_featured')
+                                            ->label('Tampilkan di Slider')
+                                            ->helperText('Aktifkan untuk menampilkan berita ini di slider halaman utama')
+                                            ->default(false),
+                                    ])
+                            ])
+                            ->columnSpan(1),
                     ])
-                    ->columns(1),
-                // Section 2: Gallery
-                Section::make('Galeri Foto')
-                    ->description('Upload foto-foto tambahan untuk galeri berita ini')
-                    ->schema([
-                        FileUpload::make('foto_utama')
-                            ->label('Foto Utama')
-                            ->image()
-                            ->required()
-                            ->disk('public')
-                            ->directory('posts')
-                            ->visibility('public')
-                            ->imageEditor()
-                            ->imageEditorAspectRatios([
-                                '16:9',
-                                '4:3',
-                                '1:1',
-                            ])
-                            ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png'])
-                            ->maxSize(2048)
-                            ->helperText('Upload foto utama (max 2MB). Format: JPEG, JPG, PNG')
-                            ->columnSpanFull(),
-                        FileUpload::make('gallery')
-                            ->label('Foto Galeri')
-                            ->multiple()
-                            ->image()
-                            ->disk('public')
-                            ->directory('posts/galleries')
-                            ->visibility('public')
-                            ->imageEditor()
-                            ->columnSpanFull()
-                            ->reorderable()
-                            ->appendFiles()
-                            ->maxSize(2048)
-                            ->helperText('Upload foto galeri (max 2MB/foto). Bisa upload banyak sekaligus.'),
-                    ]),
-                // Section 3: Meta Information
-                Section::make('Meta Information')
-                    ->schema([
-                        Select::make('user_id')
-                            ->label('User')
-                            ->relationship('user', 'name')
-                            ->required()
-                            ->searchable()
-                            ->default(fn() => Auth::id()),
-                        Select::make('status')
-                            ->options([
-                                'draft' => 'Draft',
-                                'published' => 'Published',
-                                'archived' => 'Archived',
-                            ])
-                            ->required()
-                            ->default('draft')
-                            ->visible(fn() => !auth()->user()->hasRole('contributor')),
-                        DateTimePicker::make('published_at')
-                            ->label('Published At')
-                            ->default(now())
-                            ->native(false)
-                            ->displayFormat('d F Y H:i'),
-                        Select::make('tags')
-                            ->relationship('tags', 'name')
-                            ->multiple()
-                            ->required()
-                            ->preload()
-                            ->createOptionForm([
-                                TextInput::make('name')
-                                    ->required()
-                                    ->unique('tags', 'name', ignoreRecord: true)
-                                    ->label('Nama Tag/Kategori')
-                                    ->maxLength(255)
-                                    ->live(onBlur: true)
-                                    ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
-                                TextInput::make('slug')
-                                    ->required()
-                                    ->maxLength(255)
-                                    ->unique('tags', 'slug', ignoreRecord: true)
-                                    ->hidden()
-                                    ->dehydrated(),
-                            ])
-                            ->label('Tags/Kategori'),
-                        Toggle::make('is_featured')
-                            ->label('Tampilkan di Slider')
-                            ->helperText('Aktifkan untuk menampilkan berita ini di slider halaman utama')
-                            ->default(false),
-                    ])
-                    ->columns(2),
 
 
             ]);
