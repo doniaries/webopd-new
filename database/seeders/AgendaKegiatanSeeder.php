@@ -12,10 +12,8 @@ class AgendaKegiatanSeeder extends Seeder
 {
     public function run(): void
     {
-        // Clear existing data
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        AgendaKegiatan::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // Clear existing data (using delete instead of truncate to avoid table lock issues)
+        AgendaKegiatan::query()->delete();
 
         // Array of colors for placeholder images
         $colors = ['10b981', '3b82f6', 'f59e0b', 'ef4444', '8b5cf6', 'ec4899', '06b6d4', '14b8a6', 'f97316'];

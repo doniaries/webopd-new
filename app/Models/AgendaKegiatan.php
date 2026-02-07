@@ -23,7 +23,6 @@ class AgendaKegiatan extends Model
         'waktu_mulai',
         'sampai_tanggal',
         'waktu_selesai',
-        'foto',
     ];
 
     protected $casts = [
@@ -120,23 +119,5 @@ class AgendaKegiatan extends Model
                 $model->penyelenggara = 'Penyelenggara Tidak Diketahui';
             }
         });
-    }
-
-    /**
-     * Get the URL for the foto
-     */
-    public function getFotoUrlAttribute(): string
-    {
-        // If foto is already a full URL (starts with http/https), return it directly
-        if ($this->foto && (str_starts_with($this->foto, 'http://') || str_starts_with($this->foto, 'https://'))) {
-            return $this->foto;
-        }
-
-        // Otherwise, check if it exists in storage
-        if ($this->foto && \Storage::disk('public')->exists($this->foto)) {
-            return asset('storage/' . $this->foto);
-        }
-
-        return asset('assets/images/defaults/no-image.png');
     }
 }
