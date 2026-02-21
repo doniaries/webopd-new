@@ -2,6 +2,12 @@
 
 Aplikasi Web OPD (Organisasi Perangkat Daerah) berbasis Laravel 12 dan Filament 4.
 
+> [!TIP]
+> Lihat [Panduan Perintah](file:///c:/larag- [x] Add Log Maintenance guide to README
+
+- [x] Create PANDUAN_PERINTAH.md and link from README
+      daftar perintah cepat Laravel, Filament, dan Maintenance.
+
 ## Prasyarat (Prerequisites)
 
 Sebelum menginstal, pastikan sistem Anda memiliki:
@@ -126,6 +132,22 @@ New-Item -Path "$env:APPDATA\npm" -ItemType Directory -Force
 ```
 
 Setelah itu, coba jalankan kembali `npm install` lalu `composer run dev`.
+
+### Membersihkan Log yang Menumpuk
+
+Jika file `storage/logs/laravel.log` sudah terlalu besar, Anda bisa mengosongkannya dengan perintah:
+
+- **PowerShell:** `Clear-Content storage\logs\laravel.log`
+- **Command Prompt:** `type nul > storage\logs\laravel.log`
+- **Git Bash / Linux:** `> storage/logs/laravel.log`
+
+**Tips:** Agar log tidak menumpuk di satu file, ubah pengaturan di `.env` agar log disimpan harian:
+
+```env
+LOG_CHANNEL=daily
+```
+
+Dengan ini, Laravel akan membuat file log baru setiap hari dan menghapus yang lama secara otomatis (default: 14 hari terakhir).
 
 ## Lisensi
 
