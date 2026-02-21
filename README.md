@@ -1,59 +1,120 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Web OPD New
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi Web OPD (Organisasi Perangkat Daerah) berbasis Laravel 12 dan Filament 4.
 
-## About Laravel
+## Prasyarat (Prerequisites)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Sebelum menginstal, pastikan sistem Anda memiliki:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- PHP >= 8.2
+- Composer
+- Node.js & NPM
+- MySQL/MariaDB
+- Laragon atau XAMPP (Direkomendasikan Laragon untuk pengguna Windows)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Instalasi Lokal (Local Installation)
 
-## Learning Laravel
+Ikuti langkah-langkah berikut untuk menjalankan project ini di komputer lokal Anda:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 1. Kloning dari GitHub (Cloning from GitHub)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Buka terminal atau command prompt, lalu jalankan:
 
-## Laravel Sponsors
+```bash
+git clone https://github.com/doniaries/webopd-new.git
+cd webopd-new
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 2. Instal Dependensi PHP (Install PHP Dependencies)
 
-### Premium Partners
+```bash
+composer install
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 3. Pengaturan Lingkungan (Environment Setup)
 
-## Contributing
+Salin file `.env.example` menjadi `.env`:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+cp .env.example .env
+```
 
-## Code of Conduct
+Kemudian, buat database baru di MySQL (misalnya: `webopd_new`) dan sesuaikan konfigurasi database di file `.env`:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=webopd
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Security Vulnerabilities
+### 4. Generate App Key
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan key:generate
+```
 
-## License
+### 5. Migrasi dan Seeding Database (Database Migration & Seeding)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Jalankan migrasi untuk membuat tabel dan seeder untuk data awal:
+
+```bash
+php artisan migrate --seed
+```
+
+### 6. Instal Dependensi JS & Build Asset (Install JS & Build Assets)
+
+```bash
+npm install
+npm run build
+```
+
+### 7. Link Storage
+
+```bash
+php artisan storage:link
+```
+
+## Petunjuk Penggunaan (Usage Instructions)
+
+### Menjalankan Server Pengembangan (Running Dev Server)
+
+Anda bisa menggunakan perintah bawaan Laravel:
+
+```bash
+php artisan serve
+```
+
+Atau jika ingin menjalankan server beserta Vite dan Queue secara bersamaan (menggunakan script yang sudah ada di `composer.json`):
+
+```bash
+composer run dev
+```
+
+### Akses Aplikasi
+
+- **Frontend:** [http://localhost:8000](http://localhost:8000)
+- **Admin Panel (Filament):** [http://localhost:8000/admin](http://localhost:8000/admin)
+
+### Kredensial Default (Default Credentials)
+
+Gunakan akun berikut untuk login ke panel admin:
+
+- **Email:** `admin@example.com`
+- **Password:** `password`
+
+## Fitur Utama
+
+- Manajemen Berita/Post
+- Manajemen Galeri & Infografis
+- Manajemen Dokumen & Pengumuman
+- Agenda Kegiatan
+- Struktur Organisasi & Visi Misi
+- Pengaturan Website Dinamis
+- Role & Permission Management (Filament Shield)
+
+## Lisensi
+
+Aplikasi ini bersifat open-source di bawah lisensi [MIT](https://opensource.org/licenses/MIT).
