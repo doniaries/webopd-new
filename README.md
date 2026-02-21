@@ -115,6 +115,18 @@ Gunakan akun berikut untuk login ke panel admin:
 - Pengaturan Website Dinamis
 - Role & Permission Management (Filament Shield)
 
+## Troubleshooting
+
+### Error: npm ENOENT `C:\Users\donia\AppData\Roaming\npm`
+
+Jika Anda mendapatkan error `ENOENT` yang menyatakan folder `npm` di `AppData\Roaming` tidak ada, silakan buat folder tersebut secara manual atau jalankan perintah ini di PowerShell:
+
+```powershell
+New-Item -Path "$env:APPDATA\npm" -ItemType Directory -Force
+```
+
+Setelah itu, coba jalankan kembali `npm install` lalu `composer run dev`.
+
 ## Lisensi
 
 Aplikasi ini bersifat open-source di bawah lisensi [MIT](https://opensource.org/licenses/MIT).
